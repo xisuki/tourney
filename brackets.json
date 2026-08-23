@@ -31,12 +31,7 @@
                 "seed": false,
                 "active": true
             },
-            "winner": {
-                "name": "eaf",
-                "school": "ef",
-                "seed": false,
-                "active": true
-            },
+            "winner": null,
             "parent_id": 4
         },
         {
@@ -83,12 +78,7 @@
                 "seed": false,
                 "active": true
             },
-            "team2": {
-                "name": "eaf",
-                "school": "ef",
-                "seed": false,
-                "active": true
-            },
+            "team2": null,
             "winner": null,
             "left_child": 0,
             "right_child": 1,
