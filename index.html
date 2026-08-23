@@ -74,33 +74,18 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image:
-        /* Diagonal stripes â€“ subtle */
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 20px,
-            rgba(255, 255, 255, 0.03) 20px,
-            rgba(255, 255, 255, 0.03) 21px
-        ),
-        /* Radial glow for depth */
-        radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    background:
+        /* Soft gradient overlay for glass depth */
+        radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
 }
 
 [data-theme="dark"] body::before {
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 20px,
-            rgba(255, 255, 255, 0.02) 20px,
-            rgba(255, 255, 255, 0.02) 21px
-        ),
-        radial-gradient(ellipse at 20% 50%, rgba(74, 140, 247, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(74, 140, 247, 0.03) 0%, transparent 50%);
+    background:
+        radial-gradient(ellipse at 30% 20%, rgba(74, 140, 247, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(74, 140, 247, 0.05) 0%, transparent 50%);
 }
 
 /* Glass container */
@@ -527,138 +512,636 @@ button.danger:hover {
     h1 { font-size: 1.6rem; }
 }
         :root { --primary: #1a73e8; }
+        /* Static site extras */
+        .match-card {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .match-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .match-card .match {
+            border-left: 4px solid var(--primary);
+            transition: border-color 0.3s;
+        }
+        .match-card .match.has-winner {
+            border-left-color: #4caf50;
+        }
+        .match-card .match .teams {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+        }
+        .match-card .match .team {
+            padding: 4px 8px;
+            text-align: center;
+            flex: 1;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+        .match-card .match .team .school {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            display: block;
+            font-weight: 400;
+        }
+        .match-card .match .team.bye {
+            color: var(--bye-color);
+            font-style: italic;
+        }
+        .match-card .match .team.winner {
+            background: #2e7d32;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 4px 12px;
+        }
+        .match-card .match .team.winner .school { color: #a5d6a7; }
+        .match-card .match .separator {
+            color: var(--text-light);
+            padding: 0 6px;
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+        .match-card .winner-badge {
+            font-size: 0.8rem;
+            color: #2e7d32;
+            margin-top: 4px;
+            font-weight: 600;
+            background: var(--success-bg);
+            padding: 2px 14px;
+            border-radius: 20px;
+        }
+        .match-card .scores-inline {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            display: none;
+            animation: slideDown 0.3s ease;
+            width: 100%;
+        }
+        .match-card .scores-inline.active {
+            display: block;
+        }
+        .match-card .scores-inline .game-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 4px 0;
+            font-size: 0.85rem;
+        }
+        .match-card .scores-inline .game-row .label {
+            min-width: 50px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        .match-card .scores-inline .game-row .score-highlight {
+            font-weight: 600;
+            color: var(--text);
+        }
+        .match-card .scores-inline .game-row .sep {
+            color: var(--text-light);
+        }
+        .round-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            min-width: 170px;
+            flex: 0 0 auto;
+        }
+        .bracket-view {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 20px 0 10px 0;
+        }
+        .bracket-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bracket-svg path {
+            stroke: var(--primary);
+            stroke-width: 2;
+            fill: none;
+            opacity: 0.4;
+            stroke-linecap: round;
+        }
+        [data-theme="dark"] .bracket-svg path {
+            opacity: 0.3;
+        }
+        .match-card {
+            position: relative;
+            z-index: 1;
+        }
+        .bracket-view {
+            position: relative;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Tooltip */
+        .tooltip {
+            position: fixed;
+            background: var(--surface-solid);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow);
+            z-index: 9998;
+            display: none;
+            min-width: 180px;
+            animation: fadeIn 0.2s ease;
+            color: var(--text);
+        }
+        .tooltip.active {
+            display: block;
+        }
+        .tooltip .tooltip-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+        .tooltip .tooltip-game {
+            font-size: 0.85rem;
+            padding: 2px 0;
+            color: var(--text-light);
+        }
+        .tooltip .tooltip-game .score-highlight {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .match-card {
+            cursor: default;
+        }
+        .match-card .match .team {
+            cursor: default;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>e</h1>
-        <div class="subhead">🏆 Tournament Bracket – Live View</div>
-        <div class="bracket-view" id="bracketContainer">
-<div class="round"><div class="round-title">Round 1</div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  ">awdawdawdada</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  ">eeafef</span>
-                        <span class="vs">vs</span>
-                        <span class="team  ">e</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  ">asdsadasdasd</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  ">ee</span>
-                        <span class="vs">vs</span>
-                        <span class="team  ">efe</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  ">aefeaf</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  ">aefaw</span>
-                        <span class="vs">vs</span>
-                        <span class="team  ">a</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  ">aef</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  ">sd</span>
-                        <span class="vs">vs</span>
-                        <span class="team  ">asdsad</span>
-                    </div>
-                    
-                </div></div><div class="round"><div class="round-title">Round 2</div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  -">-</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  -">-</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  -">-</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  -">-</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div></div><div class="round"><div class="round-title">Round 3</div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  -">-</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  -">-</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div></div><div class="round"><div class="round-title">Round 4</div>
-                <div class="match">
-                    <div class="teams">
-                        <span class="team  -">-</span>
-                        <span class="vs">vs</span>
-                        <span class="team  -">-</span>
-                    </div>
-                    
-                </div></div>
+    <div class="container" style="position:relative;">
+        <div class="title-wrapper">
+            <h1>e</h1>
+            <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
         </div>
-        <div class="footer" style="text-align:center; margin-top:30px; color:var(--text-light); font-size:0.9rem;">
-            Generated by Tourney Hall • e
+        <div class="subhead" style="display:flex; gap:15px; align-items:center;">
+            <span>Tournament Bracket – Live View</span>
         </div>
+        <div id="bracketContainer" class="bracket-view">
+<div id="bracketContainer" class="bracket-view"><div class="round-wrapper"><div class="round-title">Round 1</div>
+                <div class="match-card" data-matchid="0" onclick="toggleScores(0)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  ">
+                                awdawdawdada
+                                <span class="school">sded</span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  ">
+                                -
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-0">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="1" onclick="toggleScores(1)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  ">
+                                eeafef
+                                <span class="school">aefaef</span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  ">
+                                e
+                                <span class="school">ec</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-1">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="2" onclick="toggleScores(2)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  ">
+                                asdsadasdasd
+                                <span class="school">sedd</span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  ">
+                                -
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-2">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="3" onclick="toggleScores(3)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  ">
+                                ee
+                                <span class="school">e</span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  ">
+                                efe
+                                <span class="school">feafea</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-3">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="4" onclick="toggleScores(4)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  ">
+                                aefeaf
+                                <span class="school">sed</span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  ">
+                                -
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-4">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="5" onclick="toggleScores(5)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  ">
+                                aefaw
+                                <span class="school">awdawdwada</span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  ">
+                                a
+                                <span class="school">ecdecae</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-5">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="6" onclick="toggleScores(6)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  ">
+                                aef
+                                <span class="school">aefaef</span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  ">
+                                -
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-6">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="7" onclick="toggleScores(7)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  ">
+                                sd
+                                <span class="school">e</span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  ">
+                                asdsad
+                                <span class="school">sadasda</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-7">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Round 2</div>
+                <div class="match-card" data-matchid="8" onclick="toggleScores(8)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-8">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="9" onclick="toggleScores(9)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-9">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="10" onclick="toggleScores(10)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-10">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="11" onclick="toggleScores(11)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-11">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Round 3</div>
+                <div class="match-card" data-matchid="12" onclick="toggleScores(12)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-12">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="13" onclick="toggleScores(13)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-13">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Round 4</div>
+                <div class="match-card" data-matchid="14" onclick="toggleScores(14)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                            <span class="separator">:</span>
+                            <span class="team  bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-14">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div></div>
+        <script>
+            let tooltipTimeout = null;
+
+            function toggleTheme() {
+                const html = document.documentElement;
+                const current = html.getAttribute('data-theme');
+                const newTheme = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            }
+            const saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+
+            function toggleScores(matchId) {
+                const el = document.getElementById('scores-' + matchId);
+                if (el) {
+                    el.classList.toggle('active');
+                }
+            }
+
+            // Tooltip on hover (only for matches with scores)
+            document.querySelectorAll('.match-card').forEach(card => {
+                card.addEventListener('mouseenter', function(e) {
+                    const scoresEl = this.querySelector('.scores-inline');
+                    if (!scoresEl || !scoresEl.querySelector('.game-row')) return;
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip';
+                    tooltip.id = 'static-tooltip';
+                    const title = this.querySelector('.teams').textContent.trim();
+                    tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${scoresEl.innerHTML}`;
+                    document.body.appendChild(tooltip);
+                    tooltip.style.left = (e.clientX + 15) + 'px';
+                    tooltip.style.top = (e.clientY + 15) + 'px';
+                    tooltip.classList.add('active');
+                    clearTimeout(tooltipTimeout);
+                });
+                card.addEventListener('mouseleave', function() {
+                    tooltipTimeout = setTimeout(() => {
+                        const el = document.getElementById('static-tooltip');
+                        if (el) el.remove();
+                    }, 200);
+                });
+            });
+
+            // Draw curvy lines
+            function drawCurvyLines() {
+                document.querySelectorAll('.bracket-svg').forEach(el => el.remove());
+                const container = document.getElementById('bracketContainer');
+                if (!container) return;
+                const rect = container.getBoundingClientRect();
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('class', 'bracket-svg');
+                svg.style.width = rect.width + 'px';
+                svg.style.height = rect.height + 'px';
+                const cards = document.querySelectorAll('.match-card');
+                const positions = {};
+                cards.forEach(el => {
+                    const id = parseInt(el.dataset.matchid);
+                    const r = el.getBoundingClientRect();
+                    positions[id] = {
+                        top: r.top - rect.top + (r.height / 2),
+                        left: r.left - rect.left + r.width,
+                    };
+                });
+                // Find parents by matching IDs from bracket structure
+                // Since we can't access the bracket data in JS, we draw lines between consecutive matches
+                const rounds = document.querySelectorAll('.round-wrapper');
+                for (let i = 0; i < rounds.length - 1; i++) {
+                    const current = rounds[i].querySelectorAll('.match-card');
+                    const next = rounds[i+1].querySelectorAll('.match-card');
+                    for (let j = 0; j < current.length; j += 2) {
+                        const parentIdx = Math.floor(j / 2);
+                        if (parentIdx >= next.length) break;
+                        const child = current[j];
+                        const child2 = current[j+1] || current[j];
+                        const parent = next[parentIdx];
+                        if (!child || !parent) continue;
+                        const cId = parseInt(child.dataset.matchid);
+                        const pId = parseInt(parent.dataset.matchid);
+                        const cPos = positions[cId];
+                        const pPos = positions[pId];
+                        if (!cPos || !pPos) continue;
+                        const midX = (cPos.left + pPos.left) / 2;
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        const d = `M ${cPos.left} ${cPos.top} Q ${midX} ${cPos.top}, ${midX} ${(cPos.top + pPos.top)/2} Q ${midX} ${pPos.top}, ${pPos.left} ${pPos.top}`;
+                        path.setAttribute('d', d);
+                        svg.appendChild(path);
+                        // If there's a second child, draw from it too
+                        if (child2 && child2 !== child) {
+                            const c2Id = parseInt(child2.dataset.matchid);
+                            const c2Pos = positions[c2Id];
+                            if (c2Pos) {
+                                const d2 = `M ${c2Pos.left} ${c2Pos.top} Q ${midX} ${c2Pos.top}, ${midX} ${(c2Pos.top + pPos.top)/2} Q ${midX} ${pPos.top}, ${pPos.left} ${pPos.top}`;
+                                const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                                path2.setAttribute('d', d2);
+                                svg.appendChild(path2);
+                            }
+                        }
+                    }
+                }
+                container.appendChild(svg);
+            }
+
+            // Wait for DOM to render, then draw lines
+            setTimeout(drawCurvyLines, 200);
+            window.addEventListener('resize', () => {
+                setTimeout(drawCurvyLines, 300);
+            });
+        </script>
+        
+        </div>
+        <div class="footer">Generated by Tourney Hall • e</div>
     </div>
 </body>
 </html>
