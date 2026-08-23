@@ -1,1 +1,53 @@
-[]
+[
+    [
+        {
+            "id": 0,
+            "team1": {
+                "name": "awdwa",
+                "school": "daefea",
+                "seed": false,
+                "active": true
+            },
+            "team2": "\u2014",
+            "winner": {
+                "name": "awdwa",
+                "school": "daefea",
+                "seed": false,
+                "active": true
+            },
+            "parent_id": 2
+        },
+        {
+            "id": 1,
+            "team1": {
+                "name": "awdaw",
+                "school": "dafwa",
+                "seed": false,
+                "active": true
+            },
+            "team2": {
+                "name": "efa",
+                "school": "eafaef",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 2
+        }
+    ],
+    [
+        {
+            "id": 2,
+            "team1": {
+                "name": "awdwa",
+                "school": "daefea",
+                "seed": false,
+                "active": true
+            },
+            "team2": null,
+            "winner": null,
+            "left_child": 0,
+            "right_child": 1
+        }
+    ]
+]
