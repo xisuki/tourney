@@ -3,15 +3,20 @@
         {
             "id": 0,
             "team1": {
-                "name": "awdwa",
-                "school": "daefea",
+                "name": "ds",
+                "school": "awdawdad",
                 "seed": false,
                 "active": true
             },
-            "team2": "\u2014",
+            "team2": {
+                "name": "awdaw",
+                "school": "dawda",
+                "seed": false,
+                "active": true
+            },
             "winner": {
-                "name": "awdwa",
-                "school": "daefea",
+                "name": "awdaw",
+                "school": "dawda",
                 "seed": false,
                 "active": true
             },
@@ -20,14 +25,14 @@
         {
             "id": 1,
             "team1": {
-                "name": "awdaw",
-                "school": "dafwa",
+                "name": "awd",
+                "school": "aweaffea",
                 "seed": false,
                 "active": true
             },
             "team2": {
-                "name": "efa",
-                "school": "eafaef",
+                "name": "eaf",
+                "school": "eafefa",
                 "seed": false,
                 "active": true
             },
@@ -39,8 +44,8 @@
         {
             "id": 2,
             "team1": {
-                "name": "awdwa",
-                "school": "daefea",
+                "name": "awdaw",
+                "school": "dawda",
                 "seed": false,
                 "active": true
             },
