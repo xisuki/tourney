@@ -6,6 +6,12 @@
         "active": true
     },
     {
+        "name": "a",
+        "school": "ecdecae",
+        "seed": false,
+        "active": true
+    },
+    {
         "name": "asdsad",
         "school": "sadasda",
         "seed": false,
