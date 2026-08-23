@@ -1,32 +1,38 @@
 [
     {
-        "name": "grade a",
-        "school": "ec",
-        "seed": false,
-        "active": true
-    },
-    {
-        "name": "grade b",
-        "school": "ec",
-        "seed": false,
-        "active": true
-    },
-    {
         "name": "e",
-        "school": "c",
+        "school": "ec",
         "seed": false,
         "active": true
     },
     {
-        "name": "1",
-        "school": "2",
-        "seed": true,
+        "name": "d",
+        "school": "ec",
+        "seed": false,
         "active": true
     },
     {
-        "name": "2",
-        "school": "1",
-        "seed": true,
+        "name": "ad",
+        "school": "awdwd",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "eaf",
+        "school": "ef",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "awdw",
+        "school": "efaef",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "awdwad",
+        "school": "awdawd",
+        "seed": false,
         "active": true
     }
 ]
