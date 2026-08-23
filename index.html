@@ -70,12 +70,37 @@ body {
 body::before {
     content: "";
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image:
-        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+        /* Diagonal stripes â€“ subtle */
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.03) 20px,
+            rgba(255, 255, 255, 0.03) 21px
+        ),
+        /* Radial glow for depth */
+        radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
+}
+
+[data-theme="dark"] body::before {
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.02) 20px,
+            rgba(255, 255, 255, 0.02) 21px
+        ),
+        radial-gradient(ellipse at 20% 50%, rgba(74, 140, 247, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(74, 140, 247, 0.03) 0%, transparent 50%);
 }
 
 /* Glass container */
@@ -512,15 +537,63 @@ button.danger:hover {
 <div class="round"><div class="round-title">Round 1</div>
                 <div class="match">
                     <div class="teams">
-                        <span class="team  ">eeafef</span>
+                        <span class="team  ">awdawdawdada</span>
                         <span class="vs">vs</span>
-                        <span class="team winner ">a</span>
+                        <span class="team  -">-</span>
                     </div>
-                    <div class="winner-badge">🏆 a</div>
+                    
                 </div>
                 <div class="match">
                     <div class="teams">
+                        <span class="team  ">eeafef</span>
+                        <span class="vs">vs</span>
                         <span class="team  ">e</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  ">asdsadasdasd</span>
+                        <span class="vs">vs</span>
+                        <span class="team  -">-</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  ">ee</span>
+                        <span class="vs">vs</span>
+                        <span class="team  ">efe</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  ">aefeaf</span>
+                        <span class="vs">vs</span>
+                        <span class="team  -">-</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  ">aefaw</span>
+                        <span class="vs">vs</span>
+                        <span class="team  ">a</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  ">aef</span>
+                        <span class="vs">vs</span>
+                        <span class="team  -">-</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  ">sd</span>
                         <span class="vs">vs</span>
                         <span class="team  ">asdsad</span>
                     </div>
@@ -528,7 +601,55 @@ button.danger:hover {
                 </div></div><div class="round"><div class="round-title">Round 2</div>
                 <div class="match">
                     <div class="teams">
-                        <span class="team  ">a</span>
+                        <span class="team  -">-</span>
+                        <span class="vs">vs</span>
+                        <span class="team  -">-</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  -">-</span>
+                        <span class="vs">vs</span>
+                        <span class="team  -">-</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  -">-</span>
+                        <span class="vs">vs</span>
+                        <span class="team  -">-</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  -">-</span>
+                        <span class="vs">vs</span>
+                        <span class="team  -">-</span>
+                    </div>
+                    
+                </div></div><div class="round"><div class="round-title">Round 3</div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  -">-</span>
+                        <span class="vs">vs</span>
+                        <span class="team  -">-</span>
+                    </div>
+                    
+                </div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  -">-</span>
+                        <span class="vs">vs</span>
+                        <span class="team  -">-</span>
+                    </div>
+                    
+                </div></div><div class="round"><div class="round-title">Round 4</div>
+                <div class="match">
+                    <div class="teams">
+                        <span class="team  -">-</span>
                         <span class="vs">vs</span>
                         <span class="team  -">-</span>
                     </div>
