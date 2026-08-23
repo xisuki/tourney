@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>e</title>
     <style>
-        /* static/style.css â€“ Complete with themes, glass, clean design */
+        /* static/style.css â€“ Complete with visible glassmorphism */
 
 :root {
-    /* Light mode (default) */
-    --bg: #f0f4f8;
-    --surface: rgba(255, 255, 255, 0.7);
+    /* Light mode */
+    --bg-start: #e0e7ff;
+    --bg-end: #f0f4f8;
+    --surface: rgba(255, 255, 255, 0.65);
     --surface-solid: #ffffff;
     --text: #1a1a2e;
     --text-light: #5a6a7a;
@@ -18,17 +19,19 @@
     --primary-dark: #1557b0;
     --border: rgba(0, 0, 0, 0.08);
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.3);
     --highlight: rgba(26, 115, 232, 0.06);
     --bye-color: #999;
     --error-bg: #fee;
     --success-bg: #e6ffed;
-    --backdrop-blur: blur(12px);
+    --backdrop-blur: blur(16px);
+    --grid-pattern: none;
 }
 
 [data-theme="dark"] {
-    --bg: #0f0f1a;
-    --surface: rgba(30, 30, 50, 0.7);
+    --bg-start: #0a0a1a;
+    --bg-end: #1a1a2e;
+    --surface: rgba(30, 30, 50, 0.6);
     --surface-solid: #1a1a2e;
     --text: #e8e8f0;
     --text-light: #9a9ab0;
@@ -49,19 +52,33 @@
     padding: 0;
 }
 
+/* BODY with gradient â€“ this makes the glass effect visible */
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--bg);
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
     color: var(--text);
     padding: 20px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 0.3s, color 0.3s;
+    transition: background 0.4s, color 0.3s;
+    background-attachment: fixed;
 }
 
-/* Glassmorphism container */
+/* Optional subtle texture overlay for extra glass depth */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Glass container */
 .container {
     max-width: 1200px;
     width: 100%;
@@ -73,9 +90,11 @@ body {
     box-shadow: var(--shadow);
     border: 1px solid var(--glass-border);
     transition: all 0.3s;
+    position: relative;
+    z-index: 1;
 }
 
-/* Title â€“ editable, big, no box */
+/* Title */
 .title-wrapper {
     display: flex;
     align-items: center;
@@ -146,7 +165,6 @@ h1:focus {
     color: var(--text);
 }
 
-/* Inputs */
 input, textarea, button {
     padding: 10px 14px;
     margin: 4px 4px 4px 0;
@@ -164,7 +182,6 @@ input:focus, textarea:focus {
     box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
 }
 
-/* Buttons â€“ properly sized */
 button {
     background: var(--primary);
     color: #fff;
@@ -211,7 +228,6 @@ button.danger:hover {
     background: #d32f2f;
 }
 
-/* Button group */
 .btn-group {
     display: flex;
     flex-wrap: wrap;
@@ -222,7 +238,7 @@ button.danger:hover {
     flex: 0 1 auto;
 }
 
-/* Team list â€“ grouped by school */
+/* Team list */
 .school-group {
     margin-bottom: 16px;
 }
@@ -230,7 +246,7 @@ button.danger:hover {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--primary);
-    padding: 4px 0 4px 0;
+    padding: 4px 0;
     border-bottom: 2px solid var(--border);
     margin-bottom: 8px;
 }
@@ -250,7 +266,6 @@ button.danger:hover {
     align-items: center;
     gap: 8px;
     color: var(--text);
-    transition: background 0.3s;
 }
 .team-chip .delete-btn {
     background: none;
@@ -262,7 +277,6 @@ button.danger:hover {
     font-size: 1.1rem;
     box-shadow: none;
     min-height: auto;
-    line-height: 1;
 }
 .team-chip .seed-badge {
     color: #f5a623;
@@ -270,7 +284,6 @@ button.danger:hover {
     font-size: 0.8rem;
 }
 
-/* Batch textarea */
 .batch-area {
     width: 100%;
     min-height: 120px;
@@ -318,7 +331,6 @@ button.danger:hover {
     font-weight: bold;
     color: var(--text-light);
     font-size: 1.2rem;
-    transition: 0.2s;
 }
 .toast .toast-close:hover { color: var(--text); }
 
@@ -331,7 +343,7 @@ button.danger:hover {
     to { transform: translateX(100%); opacity: 0; }
 }
 
-/* ===== BRACKET VIEW ===== */
+/* BRACKET VIEW */
 .bracket-view {
     display: flex;
     flex-direction: row;
@@ -353,7 +365,6 @@ button.danger:hover {
     color: var(--primary);
     margin-bottom: 18px;
     font-size: 1.05rem;
-    letter-spacing: 0.3px;
 }
 .match {
     background: var(--surface-solid);
@@ -414,7 +425,7 @@ button.danger:hover {
     color: var(--text-light);
     padding: 0 6px;
     font-size: 0.8rem;
-    font-weight: 400;
+    font-weight: 300;
 }
 .winner-badge {
     font-size: 0.8rem;
@@ -432,7 +443,7 @@ button.danger:hover {
     color: var(--text-light);
 }
 
-/* ===== MODAL (frosted glass) ===== */
+/* MODAL */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -483,7 +494,6 @@ button.danger:hover {
 .modal-box .btn-group { margin-top: 16px; display: flex; gap: 10px; }
 .modal-box .btn-group button { flex: 1; }
 
-/* Responsive */
 @media (max-width: 800px) {
     .container { padding: 20px; }
     .bracket-view { flex-direction: column; align-items: center; gap: 20px; }
