@@ -3,16 +3,16 @@
         {
             "id": 0,
             "team1": {
-                "name": "2",
-                "school": "1",
-                "seed": true,
+                "name": "awdwad",
+                "school": "awdawd",
+                "seed": false,
                 "active": true
             },
             "team2": "\u2014",
             "winner": {
-                "name": "2",
-                "school": "1",
-                "seed": true,
+                "name": "awdwad",
+                "school": "awdawd",
+                "seed": false,
                 "active": true
             },
             "parent_id": 4
@@ -20,15 +20,20 @@
         {
             "id": 1,
             "team1": {
-                "name": "e",
-                "school": "c",
+                "name": "d",
+                "school": "ec",
                 "seed": false,
                 "active": true
             },
-            "team2": "\u2014",
+            "team2": {
+                "name": "eaf",
+                "school": "ef",
+                "seed": false,
+                "active": true
+            },
             "winner": {
-                "name": "e",
-                "school": "c",
+                "name": "eaf",
+                "school": "ef",
                 "seed": false,
                 "active": true
             },
@@ -37,16 +42,16 @@
         {
             "id": 2,
             "team1": {
-                "name": "1",
-                "school": "2",
-                "seed": true,
+                "name": "ad",
+                "school": "awdwd",
+                "seed": false,
                 "active": true
             },
             "team2": "\u2014",
             "winner": {
-                "name": "1",
-                "school": "2",
-                "seed": true,
+                "name": "ad",
+                "school": "awdwd",
+                "seed": false,
                 "active": true
             },
             "parent_id": 5
@@ -54,14 +59,14 @@
         {
             "id": 3,
             "team1": {
-                "name": "grade a",
+                "name": "e",
                 "school": "ec",
                 "seed": false,
                 "active": true
             },
             "team2": {
-                "name": "grade b",
-                "school": "ec",
+                "name": "awdw",
+                "school": "efaef",
                 "seed": false,
                 "active": true
             },
@@ -73,14 +78,14 @@
         {
             "id": 4,
             "team1": {
-                "name": "2",
-                "school": "1",
-                "seed": true,
+                "name": "awdwad",
+                "school": "awdawd",
+                "seed": false,
                 "active": true
             },
             "team2": {
-                "name": "e",
-                "school": "c",
+                "name": "eaf",
+                "school": "ef",
                 "seed": false,
                 "active": true
             },
@@ -92,9 +97,9 @@
         {
             "id": 5,
             "team1": {
-                "name": "1",
-                "school": "2",
-                "seed": true,
+                "name": "ad",
+                "school": "awdwd",
+                "seed": false,
                 "active": true
             },
             "team2": null,
