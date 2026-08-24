@@ -598,9 +598,6 @@ button.danger:hover { background: #d32f2f; }
     cursor: default;
 }
         :root { --primary: #1a73e8; }
-        /* Override for static */
-        .match-card { cursor: default; }
-        .match-card .match .team { cursor: default; }
         /* No extra bottom padding */
         .match-card .scores-inline {
             margin-top: 0 !important;
@@ -680,47 +677,7 @@ button.danger:hover { background: #d32f2f; }
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
-        /* Scores panel */
-        .scores-inline {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid var(--border);
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.3s ease;
-            width: 100%;
-        }
-        .scores-inline.active {
-            max-height: 500px;
-            opacity: 1;
-        }
-        .scores-inline .game-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin: 4px 0;
-            font-size: 0.85rem;
-        }
-        .scores-inline .game-row .label {
-            min-width: 50px;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-        .scores-inline .game-row .score-highlight {
-            font-weight: 600;
-            color: var(--text);
-        }
-        .scores-inline .game-row .sep {
-            color: var(--text-light);
-        }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        /* Card layout */
+        /* Override match-card margin for alignment */
         .match-card {
             margin: 0 !important;
         }
@@ -777,6 +734,18 @@ button.danger:hover { background: #d32f2f; }
             color: var(--bye-color);
             font-style: italic;
         }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .no-bracket {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
     </style>
 </head>
 <body>
@@ -789,7 +758,11 @@ button.danger:hover { background: #d32f2f; }
             <span>Tournament Bracket – Live View</span>
         </div>
         <div id="bracketContainer" class="bracket-view">
-<div class="round-wrapper"><div class="round-title">Round of 32</div><div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+            
+            <div class="round-wrapper">
+                <div class="round-title">Round of 32</div>
+                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+            
                 <div class="match-card" data-matchid="0" data-round="0">
                     <div class="match has-winner">
                         <div class="teams">
@@ -805,13 +778,14 @@ button.danger:hover { background: #d32f2f; }
                         </div>
                         <div class="winner-badge">2 : 0</div>
                         
-                        <div class="scores-inline" id="scores-0">
-                            <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 2 : 0</div>
-                            <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">2</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 2:</span><span class="score-highlight">1</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 3:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">0</span></div>
-                            
-                        </div>
+                    <div class="scores-inline" id="scores-0">
+                        <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 2 : 0</div>
+                        <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">2</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 2:</span><span class="score-highlight">1</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 3:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">0</span></div>
+                    </div>
+                    
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="1" data-round="0">
                     <div class="match has-winner">
                         <div class="teams">
@@ -827,13 +801,14 @@ button.danger:hover { background: #d32f2f; }
                         </div>
                         <div class="winner-badge">0 : 2</div>
                         
-                        <div class="scores-inline" id="scores-1">
-                            <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 0 : 2</div>
-                            <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 2:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">1</span></div><div class="game-row"><span class="label">Game 3:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">1</span></div>
-                            
-                        </div>
+                    <div class="scores-inline" id="scores-1">
+                        <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 0 : 2</div>
+                        <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 2:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">1</span></div><div class="game-row"><span class="label">Game 3:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">1</span></div>
+                    </div>
+                    
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="2" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -851,6 +826,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="3" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -868,6 +844,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="4" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -885,6 +862,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="5" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -902,6 +880,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="6" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -919,6 +898,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="7" data-round="0">
                     <div class="match has-winner">
                         <div class="teams">
@@ -936,6 +916,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="8" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -953,6 +934,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="9" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -970,6 +952,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="10" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -987,6 +970,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="11" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -1004,6 +988,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="12" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -1021,6 +1006,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="13" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -1038,6 +1024,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="14" data-round="0">
                     <div class="match ">
                         <div class="teams">
@@ -1055,6 +1042,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="15" data-round="0">
                     <div class="match has-winner">
                         <div class="teams">
@@ -1071,7 +1059,12 @@ button.danger:hover { background: #d32f2f; }
                         
                         
                     </div>
-                </div></div></div><div class="round-wrapper"><div class="round-title">Round of 16</div><div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+                </div>
+                </div></div>
+            <div class="round-wrapper">
+                <div class="round-title">Round of 16</div>
+                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+            
                 <div class="match-card" data-matchid="16" data-round="1">
                     <div class="match has-winner">
                         <div class="teams">
@@ -1089,6 +1082,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="17" data-round="1">
                     <div class="match ">
                         <div class="teams">
@@ -1106,6 +1100,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="18" data-round="1">
                     <div class="match ">
                         <div class="teams">
@@ -1123,6 +1118,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="19" data-round="1">
                     <div class="match ">
                         <div class="teams">
@@ -1140,6 +1136,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="20" data-round="1">
                     <div class="match ">
                         <div class="teams">
@@ -1157,6 +1154,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="21" data-round="1">
                     <div class="match ">
                         <div class="teams">
@@ -1174,6 +1172,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="22" data-round="1">
                     <div class="match ">
                         <div class="teams">
@@ -1191,6 +1190,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="23" data-round="1">
                     <div class="match ">
                         <div class="teams">
@@ -1207,7 +1207,12 @@ button.danger:hover { background: #d32f2f; }
                         
                         
                     </div>
-                </div></div></div><div class="round-wrapper"><div class="round-title">Quarter‑finals</div><div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+                </div>
+                </div></div>
+            <div class="round-wrapper">
+                <div class="round-title">Quarter‑finals</div>
+                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+            
                 <div class="match-card" data-matchid="24" data-round="2">
                     <div class="match ">
                         <div class="teams">
@@ -1225,6 +1230,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="25" data-round="2">
                     <div class="match ">
                         <div class="teams">
@@ -1242,6 +1248,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="26" data-round="2">
                     <div class="match ">
                         <div class="teams">
@@ -1259,6 +1266,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="27" data-round="2">
                     <div class="match ">
                         <div class="teams">
@@ -1275,7 +1283,12 @@ button.danger:hover { background: #d32f2f; }
                         
                         
                     </div>
-                </div></div></div><div class="round-wrapper"><div class="round-title">Semi‑finals</div><div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+                </div>
+                </div></div>
+            <div class="round-wrapper">
+                <div class="round-title">Semi‑finals</div>
+                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+            
                 <div class="match-card" data-matchid="28" data-round="3">
                     <div class="match ">
                         <div class="teams">
@@ -1293,6 +1306,7 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div>
+                
                 <div class="match-card" data-matchid="29" data-round="3">
                     <div class="match ">
                         <div class="teams">
@@ -1309,7 +1323,12 @@ button.danger:hover { background: #d32f2f; }
                         
                         
                     </div>
-                </div></div></div><div class="round-wrapper"><div class="round-title">Final</div><div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+                </div>
+                </div></div>
+            <div class="round-wrapper">
+                <div class="round-title">Final</div>
+                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
+            
                 <div class="match-card" data-matchid="30" data-round="4">
                     <div class="match ">
                         <div class="teams">
@@ -1326,206 +1345,206 @@ button.danger:hover { background: #d32f2f; }
                         
                         
                     </div>
-                </div></div></div>
-        <script>
-            let tooltipTimeout = null;
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip';
-            tooltip.id = 'static-tooltip';
-            document.body.appendChild(tooltip);
-
-            function toggleTheme() {
-                const html = document.documentElement;
-                const current = html.getAttribute('data-theme');
-                const newTheme = current === 'dark' ? 'light' : 'dark';
-                html.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-            }
-            const saved = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', saved);
-
-            // ---- Expand scores on click ----
-            function toggleScores(matchId) {
-                const el = document.getElementById('scores-' + matchId);
-                if (el) {
-                    el.classList.toggle('active');
-                    setTimeout(drawCurvyLines, 300);
-                }
-            }
-
-            // ---- Attach click listeners to cards with scores ----
-            document.querySelectorAll('.match-card').forEach(card => {
-                const scoresEl = card.querySelector('.scores-inline');
-                if (scoresEl && scoresEl.innerHTML.trim() !== '' && !scoresEl.innerHTML.includes('No scores recorded')) {
-                    card.style.cursor = 'pointer';
-                    card.addEventListener('click', function(e) {
-                        if (e.target.closest('input') || e.target.closest('button') || e.target.closest('select')) return;
-                        const matchId = this.dataset.matchid;
-                        if (matchId) toggleScores(parseInt(matchId));
-                    });
-                }
-            });
-
-            // ---- Tooltip ----
-            document.querySelectorAll('.match-card').forEach(card => {
-                const scoresEl = card.querySelector('.scores-inline');
-                if (!scoresEl || scoresEl.innerHTML.trim() === '' || scoresEl.innerHTML.includes('No scores recorded')) return;
-
-                card.addEventListener('mouseenter', function(e) {
-                    const title = this.querySelector('.teams').textContent.trim();
-                    const content = scoresEl.innerHTML;
-                    tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${content}`;
-                    tooltip.style.left = (e.clientX + 16) + 'px';
-                    tooltip.style.top = (e.clientY + 16) + 'px';
-                    tooltip.classList.add('active');
-                    clearTimeout(tooltipTimeout);
-                });
-                card.addEventListener('mousemove', function(e) {
-                    if (tooltip.classList.contains('active')) {
-                        tooltip.style.left = (e.clientX + 16) + 'px';
-                        tooltip.style.top = (e.clientY + 16) + 'px';
-                    }
-                });
-                card.addEventListener('mouseleave', function() {
-                    tooltipTimeout = setTimeout(() => {
-                        tooltip.classList.remove('active');
-                    }, 200);
-                });
-            });
-
-            // ---- ALIGN BRACKET (same as display) ----
-            function alignBracket() {
-                const rounds = document.querySelectorAll('.round-wrapper');
-                for (let i = 0; i < rounds.length - 1; i++) {
-                    const children = rounds[i].querySelectorAll('.match-card');
-                    const parents = rounds[i+1].querySelectorAll('.match-card');
-                    if (children.length === 0 || parents.length === 0) continue;
-
-                    const container = children[0]?.parentElement;
-                    if (!container) continue;
-                    const containerRect = container.getBoundingClientRect();
-
-                    for (let p = 0; p < parents.length; p++) {
-                        const child1 = children[p * 2];
-                        const child2 = children[p * 2 + 1];
-                        if (!child1 || !child2) continue;
-
-                        // Reset styles first
-                        parents[p].style.marginTop = '0px';
-                        parents[p].style.transform = '';
-
-                        const child1Rect = child1.getBoundingClientRect();
-                        const child2Rect = child2.getBoundingClientRect();
-                        const child1Center = child1Rect.top + child1Rect.height / 2 - containerRect.top;
-                        const child2Center = child2Rect.top + child2Rect.height / 2 - containerRect.top;
-                        const avgCenter = (child1Center + child2Center) / 2;
-
-                        const parentRect = parents[p].getBoundingClientRect();
-                        const parentCenter = parentRect.top + parentRect.height / 2 - containerRect.top;
-                        const offset = avgCenter - parentCenter;
-
-                        if (offset >= 0) {
-                            parents[p].style.marginTop = offset + 'px';
-                            parents[p].style.transform = '';
-                        } else {
-                            parents[p].style.marginTop = '0px';
-                            parents[p].style.transform = `translateY(${offset}px)`;
-                        }
-                    }
-                }
-            }
-
-            // ---- DRAW CURVY LINES (same as display) ----
-            function drawCurvyLines() {
-                const container = document.getElementById('bracketContainer');
-                if (!container) return;
-                document.querySelectorAll('.bracket-svg').forEach(el => el.remove());
-
-                const rect = container.getBoundingClientRect();
-                const contentWidth = container.scrollWidth;
-                const contentHeight = container.scrollHeight;
-
-                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                svg.setAttribute('class', 'bracket-svg');
-                svg.style.width = contentWidth + 'px';
-                svg.style.height = contentHeight + 'px';
-                svg.style.opacity = '0';
-
-                const cards = container.querySelectorAll('.match-card');
-                const positions = {};
-                cards.forEach(el => {
-                    const id = parseInt(el.dataset.matchid);
-                    const r = el.getBoundingClientRect();
-                    positions[id] = {
-                        top: r.top - rect.top + (r.height / 2),
-                        left: r.left - rect.left + r.width - 2,
-                        right: r.left - rect.left + 2
-                    };
-                });
-
-                const rounds = container.querySelectorAll('.round-wrapper');
-                for (let i = 0; i < rounds.length - 1; i++) {
-                    const current = rounds[i].querySelectorAll('.match-card');
-                    const next = rounds[i+1].querySelectorAll('.match-card');
-                    for (let j = 0; j < current.length; j += 2) {
-                        const parentIdx = Math.floor(j / 2);
-                        if (parentIdx >= next.length) break;
-                        const child1 = current[j];
-                        const child2 = current[j+1] || current[j];
-                        const parent = next[parentIdx];
-                        if (!child1 || !parent) continue;
-
-                        const c1Id = parseInt(child1.dataset.matchid);
-                        const c2Id = child2 !== child1 ? parseInt(child2.dataset.matchid) : null;
-                        const pId = parseInt(parent.dataset.matchid);
-
-                        const c1Pos = positions[c1Id];
-                        const c2Pos = c2Id !== null ? positions[c2Id] : null;
-                        const pPos = positions[pId];
-                        if (!c1Pos || !pPos) continue;
-
-                        const midY = c2Pos ? (c1Pos.top + c2Pos.top) / 2 : c1Pos.top;
-                        const startX = c1Pos.left;
-                        const endX = pPos.right;
-                        const midX = (startX + endX) / 2;
-
-                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                        const d = `M ${startX} ${c1Pos.top} Q ${midX} ${c1Pos.top}, ${midX} ${midY} Q ${midX} ${pPos.top}, ${endX} ${pPos.top}`;
-                        path.setAttribute('d', d);
-                        svg.appendChild(path);
-
-                        if (c2Pos) {
-                            const startX2 = c2Pos.left;
-                            const d2 = `M ${startX2} ${c2Pos.top} Q ${midX} ${c2Pos.top}, ${midX} ${midY}`;
-                            const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                            path2.setAttribute('d', d2);
-                            svg.appendChild(path2);
-                        }
-                    }
-                }
-
-                container.appendChild(svg);
-                requestAnimationFrame(() => {
-                    svg.style.opacity = '1';
-                });
-            }
-
-            // ---- Wait for layout, then align and draw ----
-            setTimeout(() => {
-                alignBracket();
-                drawCurvyLines();
-            }, 150);
-
-            window.addEventListener('resize', () => {
-                setTimeout(() => {
-                    alignBracket();
-                    drawCurvyLines();
-                }, 200);
-            });
-        </script>
-        
+                </div>
+                </div></div>
         </div>
         <div class="footer">Generated by Tourney Hall • test🌓Manage teams, generate25</div>
     </div>
+
+    <script>
+        // ===== THEME =====
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        const saved = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', saved);
+
+        // ===== TOOLTIP =====
+        let tooltipTimeout = null;
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.id = 'static-tooltip';
+        document.body.appendChild(tooltip);
+
+        document.querySelectorAll('.match-card').forEach(card => {
+            const scoresEl = card.querySelector('.scores-inline');
+            if (!scoresEl || scoresEl.innerHTML.trim() === '' || scoresEl.innerHTML.includes('No scores recorded')) return;
+
+            card.addEventListener('mouseenter', function(e) {
+                const title = this.querySelector('.teams').textContent.trim();
+                const content = scoresEl.innerHTML;
+                tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${content}`;
+                tooltip.style.left = (e.clientX + 16) + 'px';
+                tooltip.style.top = (e.clientY + 16) + 'px';
+                tooltip.classList.add('active');
+                clearTimeout(tooltipTimeout);
+            });
+            card.addEventListener('mousemove', function(e) {
+                if (tooltip.classList.contains('active')) {
+                    tooltip.style.left = (e.clientX + 16) + 'px';
+                    tooltip.style.top = (e.clientY + 16) + 'px';
+                }
+            });
+            card.addEventListener('mouseleave', function() {
+                tooltipTimeout = setTimeout(() => {
+                    tooltip.classList.remove('active');
+                }, 200);
+            });
+        });
+
+        // ===== EXPAND SCORES =====
+        function toggleScores(matchId) {
+            const el = document.getElementById('scores-' + matchId);
+            if (el) {
+                el.classList.toggle('active');
+                setTimeout(drawCurvyLines, 300);
+            }
+        }
+
+        document.querySelectorAll('.match-card').forEach(card => {
+            const scoresEl = card.querySelector('.scores-inline');
+            if (scoresEl && scoresEl.innerHTML.trim() !== '' && !scoresEl.innerHTML.includes('No scores recorded')) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function(e) {
+                    if (e.target.closest('input') || e.target.closest('button') || e.target.closest('select')) return;
+                    const matchId = this.dataset.matchid;
+                    if (matchId) toggleScores(parseInt(matchId));
+                });
+            }
+        });
+
+        // ===== ALIGN BRACKET =====
+        function alignBracket() {
+            const rounds = document.querySelectorAll('.round-wrapper');
+            for (let i = 0; i < rounds.length - 1; i++) {
+                const children = rounds[i].querySelectorAll('.match-card');
+                const parents = rounds[i+1].querySelectorAll('.match-card');
+                if (children.length === 0 || parents.length === 0) continue;
+
+                const container = children[0]?.parentElement;
+                if (!container) continue;
+                const containerRect = container.getBoundingClientRect();
+
+                for (let p = 0; p < parents.length; p++) {
+                    const child1 = children[p * 2];
+                    const child2 = children[p * 2 + 1];
+                    if (!child1 || !child2) continue;
+
+                    parents[p].style.marginTop = '0px';
+                    parents[p].style.transform = '';
+
+                    const child1Rect = child1.getBoundingClientRect();
+                    const child2Rect = child2.getBoundingClientRect();
+                    const child1Center = child1Rect.top + child1Rect.height / 2 - containerRect.top;
+                    const child2Center = child2Rect.top + child2Rect.height / 2 - containerRect.top;
+                    const avgCenter = (child1Center + child2Center) / 2;
+
+                    const parentRect = parents[p].getBoundingClientRect();
+                    const parentCenter = parentRect.top + parentRect.height / 2 - containerRect.top;
+                    const offset = avgCenter - parentCenter;
+
+                    if (offset >= 0) {
+                        parents[p].style.marginTop = offset + 'px';
+                        parents[p].style.transform = '';
+                    } else {
+                        parents[p].style.marginTop = '0px';
+                        parents[p].style.transform = `translateY(${offset}px)`;
+                    }
+                }
+            }
+        }
+
+        // ===== DRAW CURVY LINES =====
+        function drawCurvyLines() {
+            const container = document.getElementById('bracketContainer');
+            if (!container) return;
+            document.querySelectorAll('.bracket-svg').forEach(el => el.remove());
+
+            const rect = container.getBoundingClientRect();
+            const contentWidth = container.scrollWidth;
+            const contentHeight = container.scrollHeight;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('class', 'bracket-svg');
+            svg.style.width = contentWidth + 'px';
+            svg.style.height = contentHeight + 'px';
+            svg.style.opacity = '0';
+
+            const cards = container.querySelectorAll('.match-card');
+            const positions = {};
+            cards.forEach(el => {
+                const id = parseInt(el.dataset.matchid);
+                const r = el.getBoundingClientRect();
+                positions[id] = {
+                    top: r.top - rect.top + (r.height / 2),
+                    left: r.left - rect.left + r.width - 2,
+                    right: r.left - rect.left + 2
+                };
+            });
+
+            const rounds = container.querySelectorAll('.round-wrapper');
+            for (let i = 0; i < rounds.length - 1; i++) {
+                const current = rounds[i].querySelectorAll('.match-card');
+                const next = rounds[i+1].querySelectorAll('.match-card');
+                for (let j = 0; j < current.length; j += 2) {
+                    const parentIdx = Math.floor(j / 2);
+                    if (parentIdx >= next.length) break;
+                    const child1 = current[j];
+                    const child2 = current[j+1] || current[j];
+                    const parent = next[parentIdx];
+                    if (!child1 || !parent) continue;
+
+                    const c1Id = parseInt(child1.dataset.matchid);
+                    const c2Id = child2 !== child1 ? parseInt(child2.dataset.matchid) : null;
+                    const pId = parseInt(parent.dataset.matchid);
+
+                    const c1Pos = positions[c1Id];
+                    const c2Pos = c2Id !== null ? positions[c2Id] : null;
+                    const pPos = positions[pId];
+                    if (!c1Pos || !pPos) continue;
+
+                    const midY = c2Pos ? (c1Pos.top + c2Pos.top) / 2 : c1Pos.top;
+                    const startX = c1Pos.left;
+                    const endX = pPos.right;
+                    const midX = (startX + endX) / 2;
+
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    const d = `M ${startX} ${c1Pos.top} Q ${midX} ${c1Pos.top}, ${midX} ${midY} Q ${midX} ${pPos.top}, ${endX} ${pPos.top}`;
+                    path.setAttribute('d', d);
+                    svg.appendChild(path);
+
+                    if (c2Pos) {
+                        const startX2 = c2Pos.left;
+                        const d2 = `M ${startX2} ${c2Pos.top} Q ${midX} ${c2Pos.top}, ${midX} ${midY}`;
+                        const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path2.setAttribute('d', d2);
+                        svg.appendChild(path2);
+                    }
+                }
+            }
+
+            container.appendChild(svg);
+            requestAnimationFrame(() => {
+                svg.style.opacity = '1';
+            });
+        }
+
+        // ===== INIT =====
+        setTimeout(() => {
+            alignBracket();
+            drawCurvyLines();
+        }, 150);
+
+        window.addEventListener('resize', () => {
+            setTimeout(() => {
+                alignBracket();
+                drawCurvyLines();
+            }, 200);
+        });
+    </script>
 </body>
 </html>
