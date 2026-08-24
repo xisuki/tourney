@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test🌓Manage teams, generate23</title>
+    <title>test🌓Manage teams, generate23 – Static Bracket</title>
     <style>
         /* ===== THEMES ===== */
 html, body {
@@ -312,6 +312,9 @@ button.danger:hover { background: #d32f2f; }
     min-width: 170px;
     flex: 0 0 auto;
 }
+.round-wrapper .match-container {
+    justify-content: flex-start !important;
+}
 .round-title {
     text-align: center;
     font-weight: 700;
@@ -334,7 +337,7 @@ button.danger:hover { background: #d32f2f; }
     z-index: 1;
     margin: 8px 0;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     background: var(--surface-solid);
     border-radius: 14px;
     border: 1px solid var(--glass-border);
@@ -427,8 +430,8 @@ button.danger:hover { background: #d32f2f; }
 }
 /* --- Inline scores (expands to full width) --- */
 .match-card .scores-inline {
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
     border-top: 1px solid var(--border);
     max-height: 0;
     opacity: 0;
@@ -437,9 +440,10 @@ button.danger:hover { background: #d32f2f; }
     width: 100%;
 }
 .match-card .scores-inline.active {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
     max-height: 500px;
     opacity: 1;
-    margin-top: 10px;
 }
 .match-card .scores-inline .game-row {
     display: flex;
@@ -594,129 +598,8 @@ button.danger:hover { background: #d32f2f; }
     cursor: default;
 }
         :root { --primary: #1a73e8; }
-        .match-card { cursor: default; }
+        .match-card { cursor: pointer; }
         .match-card .match .team { cursor: default; }
-        .scores-inline {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid var(--border);
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.3s ease;
-            width: 100%;
-        }
-        .scores-inline.active {
-            max-height: 500px;
-            opacity: 1;
-        }
-        .scores-inline .game-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin: 4px 0;
-            font-size: 0.85rem;
-        }
-        .scores-inline .game-row .label {
-            min-width: 50px;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-        .scores-inline .game-row .score-highlight {
-            font-weight: 600;
-            color: var(--text);
-        }
-        .scores-inline .game-row .sep {
-            color: var(--text-light);
-        }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        /* School-first layout */
-        .match-card .match .team {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0;
-        }
-        .match-card .match .team strong {
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        .match-card .match .team .sub {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            font-weight: 400;
-        }
-        .match-card .match .team.winner strong {
-            color: #fff;
-        }
-        .match-card .match .team.winner .sub {
-            color: #a5d6a7;
-        }
-        /* Center the vs separator */
-        .match-card .match .teams {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            gap: 4px;
-        }
-        .match-card .match .team {
-            flex: 1;
-            text-align: center;
-        }
-        .match-card .match .separator {
-            flex: 0 0 auto;
-            font-size: 0.85rem;
-            font-weight: 300;
-            color: var(--text-light);
-            padding: 0 4px;
-        }
-        /* TBD/Bye styles */
-        .match-card .match .team.tbd {
-            color: var(--text-light);
-            font-style: italic;
-        }
-        .match-card .match .team.bye {
-            color: var(--bye-color);
-            font-style: italic;
-        }
-        /* SVG lines */
-        .bracket-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: visible !important;
-        }
-        .bracket-svg path {
-            stroke: var(--primary);
-            stroke-width: 2.5;
-            fill: none;
-            opacity: 0.35;
-            stroke-linecap: round;
-        }
-        [data-theme="dark"] .bracket-svg path { opacity: 0.25; }
-        .bracket-svg path {
-            stroke-dasharray: 800;
-            stroke-dashoffset: 800;
-            animation: drawLine 1s ease forwards;
-        }
-        @keyframes drawLine {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-        .bracket-svg {
-            transition: opacity 1s;
-        }
         /* Tooltip */
         .tooltip {
             position: fixed;
@@ -753,6 +636,27 @@ button.danger:hover { background: #d32f2f; }
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
+        .scores-inline {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        .scores-inline.active {
+            margin-top: 10px !important;
+            padding-top: 10px !important;
+        }
+        .match-card {
+            margin: 0 !important;
+        }
+        /* Ensure bracket-view has enough padding for the leftmost round */
+        .bracket-view {
+            padding-left: 30px !important;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -765,585 +669,362 @@ button.danger:hover { background: #d32f2f; }
             <span>Tournament Bracket – Live View</span>
         </div>
         <div id="bracketContainer" class="bracket-view">
-<div class="round-wrapper"><div class="round-title">Round of 32</div>
-                <div class="match-card" data-matchid="0">
-                    <div class="match has-winner">
-                        <div class="teams">
-                            <span class="team winner">
-                                <strong>School A</strong>
-                                <span class="sub">Team A1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School I</strong>
-                                <span class="sub">Team I1</span>
-                            </span>
-                        </div>
-                        <div class="winner-badge">2 : 0</div>
-                        
-                        <div class="scores-inline" id="scores-0">
-                            <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 2 : 0</div>
-                            <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">2</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 2:</span><span class="score-highlight">2</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 3:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">0</span></div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="1">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School A</strong>
-                                <span class="sub">Team A2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School N</strong>
-                                <span class="sub">Team N1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="2">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School E</strong>
-                                <span class="sub">Team E1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School K</strong>
-                                <span class="sub">Team K2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="3">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School E</strong>
-                                <span class="sub">Team E2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School P</strong>
-                                <span class="sub">Team P1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="4">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School C</strong>
-                                <span class="sub">Team C1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School J</strong>
-                                <span class="sub">Team J1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="5">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School C</strong>
-                                <span class="sub">Team C2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School O</strong>
-                                <span class="sub">Team O1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="6">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School G</strong>
-                                <span class="sub">Team G1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School L</strong>
-                                <span class="sub">Team L2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="7">
-                    <div class="match has-winner">
-                        <div class="teams">
-                            <span class="team winner">
-                                <strong>School G</strong>
-                                <span class="sub">Team G2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team bye">
-                                <strong>—</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="8">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School B</strong>
-                                <span class="sub">Team B1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School I</strong>
-                                <span class="sub">Team I2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="9">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School B</strong>
-                                <span class="sub">Team B2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School N</strong>
-                                <span class="sub">Team N2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="10">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School F</strong>
-                                <span class="sub">Team F1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School L</strong>
-                                <span class="sub">Team L1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="11">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School F</strong>
-                                <span class="sub">Team F2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School P</strong>
-                                <span class="sub">Team P2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="12">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School D</strong>
-                                <span class="sub">Team D1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School K</strong>
-                                <span class="sub">Team K1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="13">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School D</strong>
-                                <span class="sub">Team D2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School O</strong>
-                                <span class="sub">Team O2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="14">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School H</strong>
-                                <span class="sub">Team H1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School M</strong>
-                                <span class="sub">Team M1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="15">
-                    <div class="match has-winner">
-                        <div class="teams">
-                            <span class="team winner">
-                                <strong>School H</strong>
-                                <span class="sub">Team H2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team bye">
-                                <strong>—</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div></div><div class="round-wrapper"><div class="round-title">Round of 16</div>
-                <div class="match-card" data-matchid="16">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School A</strong>
-                                <span class="sub">Team A1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="17">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="18">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="19">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School G</strong>
-                                <span class="sub">Team G2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="20">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="21">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="22">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="23">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School H</strong>
-                                <span class="sub">Team H2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div></div><div class="round-wrapper"><div class="round-title">Quarter‑finals</div>
-                <div class="match-card" data-matchid="24">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="25">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="26">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="27">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div></div><div class="round-wrapper"><div class="round-title">Semi‑finals</div>
-                <div class="match-card" data-matchid="28">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="29">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div></div><div class="round-wrapper"><div class="round-title">Final</div>
-                <div class="match-card" data-matchid="30">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div></div>
-        <script>
-            let tooltipTimeout = null;
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip';
-            tooltip.id = 'static-tooltip';
-            document.body.appendChild(tooltip);
+            <div class="no-bracket">Loading bracket...</div>
+        </div>
+        <div class="footer">Generated by Tourney Hall • test🌓Manage teams, generate23</div>
+    </div>
 
-            function toggleTheme() {
-                const html = document.documentElement;
-                const current = html.getAttribute('data-theme');
-                const newTheme = current === 'dark' ? 'light' : 'dark';
-                html.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-            }
-            const saved = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', saved);
+    <script>
+        // ===== EMBEDDED DATA =====
+        const bracketData = {"teams": [{"name": "Team A1", "school": "School A", "seed": true, "active": true}, {"name": "Team A2", "school": "School A", "seed": false, "active": true}, {"name": "Team B1", "school": "School B", "seed": true, "active": true}, {"name": "Team B2", "school": "School B", "seed": false, "active": true}, {"name": "Team C1", "school": "School C", "seed": true, "active": true}, {"name": "Team C2", "school": "School C", "seed": false, "active": true}, {"name": "Team D1", "school": "School D", "seed": true, "active": true}, {"name": "Team D2", "school": "School D", "seed": false, "active": true}, {"name": "Team E1", "school": "School E", "seed": true, "active": true}, {"name": "Team E2", "school": "School E", "seed": false, "active": true}, {"name": "Team F1", "school": "School F", "seed": true, "active": true}, {"name": "Team F2", "school": "School F", "seed": false, "active": true}, {"name": "Team G1", "school": "School G", "seed": true, "active": true}, {"name": "Team G2", "school": "School G", "seed": false, "active": true}, {"name": "Team H1", "school": "School H", "seed": true, "active": true}, {"name": "Team H2", "school": "School H", "seed": false, "active": true}, {"name": "Team I1", "school": "School I", "seed": false, "active": true}, {"name": "Team I2", "school": "School I", "seed": false, "active": true}, {"name": "Team J1", "school": "School J", "seed": false, "active": true}, {"name": "Team K1", "school": "School K", "seed": false, "active": true}, {"name": "Team K2", "school": "School K", "seed": false, "active": true}, {"name": "Team L1", "school": "School L", "seed": false, "active": true}, {"name": "Team L2", "school": "School L", "seed": false, "active": true}, {"name": "Team M1", "school": "School M", "seed": false, "active": true}, {"name": "Team N1", "school": "School N", "seed": false, "active": true}, {"name": "Team N2", "school": "School N", "seed": false, "active": true}, {"name": "Team O1", "school": "School O", "seed": false, "active": true}, {"name": "Team O2", "school": "School O", "seed": false, "active": true}, {"name": "Team P1", "school": "School P", "seed": false, "active": true}, {"name": "Team P2", "school": "School P", "seed": false, "active": true}], "brackets": [[{"id": 0, "team1": {"name": "Team A1", "school": "School A", "seed": true, "active": true}, "team2": {"name": "Team I1", "school": "School I", "seed": false, "active": true}, "winner": {"name": "Team A1", "school": "School A", "seed": true, "active": true}, "parent_id": 16}, {"id": 1, "team1": {"name": "Team A2", "school": "School A", "seed": false, "active": true}, "team2": {"name": "Team N1", "school": "School N", "seed": false, "active": true}, "winner": null, "parent_id": 16}, {"id": 2, "team1": {"name": "Team E1", "school": "School E", "seed": true, "active": true}, "team2": {"name": "Team K2", "school": "School K", "seed": false, "active": true}, "winner": null, "parent_id": 17}, {"id": 3, "team1": {"name": "Team E2", "school": "School E", "seed": false, "active": true}, "team2": {"name": "Team P1", "school": "School P", "seed": false, "active": true}, "winner": null, "parent_id": 17}, {"id": 4, "team1": {"name": "Team C1", "school": "School C", "seed": true, "active": true}, "team2": {"name": "Team J1", "school": "School J", "seed": false, "active": true}, "winner": null, "parent_id": 18}, {"id": 5, "team1": {"name": "Team C2", "school": "School C", "seed": false, "active": true}, "team2": {"name": "Team O1", "school": "School O", "seed": false, "active": true}, "winner": null, "parent_id": 18}, {"id": 6, "team1": {"name": "Team G1", "school": "School G", "seed": true, "active": true}, "team2": {"name": "Team L2", "school": "School L", "seed": false, "active": true}, "winner": null, "parent_id": 19}, {"id": 7, "team1": {"name": "Team G2", "school": "School G", "seed": false, "active": true}, "team2": "Bye", "winner": {"name": "Team G2", "school": "School G", "seed": false, "active": true}, "parent_id": 19}, {"id": 8, "team1": {"name": "Team B1", "school": "School B", "seed": true, "active": true}, "team2": {"name": "Team I2", "school": "School I", "seed": false, "active": true}, "winner": null, "parent_id": 20}, {"id": 9, "team1": {"name": "Team B2", "school": "School B", "seed": false, "active": true}, "team2": {"name": "Team N2", "school": "School N", "seed": false, "active": true}, "winner": null, "parent_id": 20}, {"id": 10, "team1": {"name": "Team F1", "school": "School F", "seed": true, "active": true}, "team2": {"name": "Team L1", "school": "School L", "seed": false, "active": true}, "winner": null, "parent_id": 21}, {"id": 11, "team1": {"name": "Team F2", "school": "School F", "seed": false, "active": true}, "team2": {"name": "Team P2", "school": "School P", "seed": false, "active": true}, "winner": null, "parent_id": 21}, {"id": 12, "team1": {"name": "Team D1", "school": "School D", "seed": true, "active": true}, "team2": {"name": "Team K1", "school": "School K", "seed": false, "active": true}, "winner": null, "parent_id": 22}, {"id": 13, "team1": {"name": "Team D2", "school": "School D", "seed": false, "active": true}, "team2": {"name": "Team O2", "school": "School O", "seed": false, "active": true}, "winner": null, "parent_id": 22}, {"id": 14, "team1": {"name": "Team H1", "school": "School H", "seed": true, "active": true}, "team2": {"name": "Team M1", "school": "School M", "seed": false, "active": true}, "winner": null, "parent_id": 23}, {"id": 15, "team1": {"name": "Team H2", "school": "School H", "seed": false, "active": true}, "team2": "Bye", "winner": {"name": "Team H2", "school": "School H", "seed": false, "active": true}, "parent_id": 23}], [{"id": 16, "team1": {"name": "Team A1", "school": "School A", "seed": true, "active": true}, "team2": null, "winner": null, "left_child": 0, "right_child": 1, "parent_id": 24}, {"id": 17, "team1": null, "team2": null, "winner": null, "left_child": 2, "right_child": 3, "parent_id": 24}, {"id": 18, "team1": null, "team2": null, "winner": null, "left_child": 4, "right_child": 5, "parent_id": 25}, {"id": 19, "team1": null, "team2": {"name": "Team G2", "school": "School G", "seed": false, "active": true}, "winner": null, "left_child": 6, "right_child": 7, "parent_id": 25}, {"id": 20, "team1": null, "team2": null, "winner": null, "left_child": 8, "right_child": 9, "parent_id": 26}, {"id": 21, "team1": null, "team2": null, "winner": null, "left_child": 10, "right_child": 11, "parent_id": 26}, {"id": 22, "team1": null, "team2": null, "winner": null, "left_child": 12, "right_child": 13, "parent_id": 27}, {"id": 23, "team1": null, "team2": {"name": "Team H2", "school": "School H", "seed": false, "active": true}, "winner": null, "left_child": 14, "right_child": 15, "parent_id": 27}], [{"id": 24, "team1": null, "team2": null, "winner": null, "left_child": 16, "right_child": 17, "parent_id": 28}, {"id": 25, "team1": null, "team2": null, "winner": null, "left_child": 18, "right_child": 19, "parent_id": 28}, {"id": 26, "team1": null, "team2": null, "winner": null, "left_child": 20, "right_child": 21, "parent_id": 29}, {"id": 27, "team1": null, "team2": null, "winner": null, "left_child": 22, "right_child": 23, "parent_id": 29}], [{"id": 28, "team1": null, "team2": null, "winner": null, "left_child": 24, "right_child": 25, "parent_id": 30}, {"id": 29, "team1": null, "team2": null, "winner": null, "left_child": 26, "right_child": 27, "parent_id": 30}], [{"id": 30, "team1": null, "team2": null, "winner": null, "left_child": 28, "right_child": 29}]], "scores": {"0": {"games": [[2, 0], [1, 0], [0, 0]], "best_of": 2}}};
 
-            function toggleScores(matchId) {
-                const el = document.getElementById('scores-' + matchId);
-                if (el) {
-                    el.classList.toggle('active');
-                    setTimeout(drawCurvyLines, 300);
+        // ===== THEME =====
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        const saved = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', saved);
+
+        // ===== BRACKET LOGIC =====
+        let currentBracket = null;
+        let scoresData = {};
+        let tempScores = {};
+
+        // ===== HELPER FUNCTIONS =====
+        function getRoundName(idx, total) {
+            const names = [];
+            if (total >= 1) names.push('Final');
+            if (total >= 2) names.push('Semi‑finals');
+            if (total >= 3) names.push('Quarter‑finals');
+            if (total >= 4) names.push('Round of 16');
+            if (total >= 5) names.push('Round of 32');
+            if (total >= 6) names.push('Round of 64');
+            names.reverse();
+            return idx < names.length ? names[idx] : `Round ${idx+1}`;
+        }
+
+        function findMatch(matchId) {
+            if (!currentBracket) return null;
+            for (const round of currentBracket) {
+                for (const match of round) {
+                    if (match.id === matchId) return match;
                 }
             }
+            return null;
+        }
 
-            // Make match cards clickable to toggle scores (only if they have scores)
-            document.querySelectorAll('.match-card').forEach(card => {
-                const scoresEl = card.querySelector('.scores-inline');
-                if (scoresEl && scoresEl.innerHTML.trim() !== '') {
-                    card.style.cursor = 'pointer';
-                    card.addEventListener('click', function(e) {
-                        // Don't toggle if clicking on something inside that might be interactive
-                        if (e.target.closest('input') || e.target.closest('button') || e.target.closest('select')) return;
-                        const matchId = this.dataset.matchid;
-                        if (matchId) toggleScores(parseInt(matchId));
-                    });
-                }
+        // ===== RENDER BRACKET =====
+        function renderBracket(rounds) {
+            const container = document.getElementById('bracketContainer');
+            container.innerHTML = '';
+            container.style.position = 'relative';
+            const total = rounds.length;
+
+            // We need to pass the rounds to alignBracket later.
+            currentBracket = rounds;
+
+            rounds.forEach((round, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'round-wrapper';
+                wrapper.style.display = 'flex';
+                wrapper.style.flexDirection = 'column';
+                wrapper.style.justifyContent = 'flex-start';
+                wrapper.style.flex = '1';
+
+                const title = document.createElement('div');
+                title.className = 'round-title';
+                title.textContent = getRoundName(idx, total);
+                wrapper.appendChild(title);
+
+                const matchContainer = document.createElement('div');
+                matchContainer.className = 'match-container';
+                matchContainer.style.display = 'flex';
+                matchContainer.style.flexDirection = 'column';
+                matchContainer.style.justifyContent = 'flex-start';
+                matchContainer.style.flex = '1';
+                matchContainer.style.width = '100%';
+                matchContainer.style.position = 'relative';
+
+                round.forEach(match => {
+                    const card = document.createElement('div');
+                    card.className = 'match-card';
+                    card.dataset.matchId = match.id;
+                    card.dataset.round = idx;
+
+                    const t1 = match.team1;
+                    const t2 = match.team2;
+                    const winner = match.winner;
+
+                    const matchDiv = document.createElement('div');
+                    matchDiv.className = 'match';
+                    if (winner) matchDiv.classList.add('has-winner');
+
+                    const teamsDiv = document.createElement('div');
+                    teamsDiv.className = 'teams';
+
+                    // ---- Team 1 ----
+                    const t1Span = document.createElement('span');
+                    t1Span.className = 'team';
+                    if (t1 === null || t1 === undefined) {
+                        t1Span.textContent = 'TBD';
+                        t1Span.classList.add('tbd');
+                    } else if (t1 === 'Bye') {
+                        t1Span.textContent = '—';
+                        t1Span.classList.add('bye');
+                    } else {
+                        const school = typeof t1 === 'string' ? '' : t1.school;
+                        const name = typeof t1 === 'string' ? t1 : t1.name;
+                        t1Span.innerHTML = `<strong>${school}</strong><span class="sub">${name}</span>`;
+                        if (winner && (winner === name || (typeof winner === 'object' && winner.name === name))) {
+                            t1Span.classList.add('winner');
+                        }
+                    }
+                    teamsDiv.appendChild(t1Span);
+
+                    const sep = document.createElement('span');
+                    sep.className = 'separator';
+                    sep.textContent = 'vs';
+                    teamsDiv.appendChild(sep);
+
+                    // ---- Team 2 ----
+                    const t2Span = document.createElement('span');
+                    t2Span.className = 'team';
+                    if (t2 === null || t2 === undefined) {
+                        t2Span.textContent = 'TBD';
+                        t2Span.classList.add('tbd');
+                    } else if (t2 === 'Bye') {
+                        t2Span.textContent = '—';
+                        t2Span.classList.add('bye');
+                    } else {
+                        const school = typeof t2 === 'string' ? '' : t2.school;
+                        const name = typeof t2 === 'string' ? t2 : t2.name;
+                        t2Span.innerHTML = `<strong>${school}</strong><span class="sub">${name}</span>`;
+                        if (winner && (winner === name || (typeof winner === 'object' && winner.name === name))) {
+                            t2Span.classList.add('winner');
+                        }
+                    }
+                    teamsDiv.appendChild(t2Span);
+
+                    matchDiv.appendChild(teamsDiv);
+
+                    // ---- Winner badge ----
+                    const isBye = (t1 === 'Bye' || t1 === null || t1 === undefined ||
+                                t2 === 'Bye' || t2 === null || t2 === undefined);
+                    if (winner && !isBye) {
+                        const badge = document.createElement('div');
+                        badge.className = 'winner-badge';
+                        const stored = scoresData[match.id] || { games: [] };
+                        const games = stored.games || [];
+                        const t1w = games.filter(g => g[0] > g[1]).length;
+                        const t2w = games.filter(g => g[1] > g[0]).length;
+                        badge.textContent = `${t1w} : ${t2w}`;
+                        matchDiv.appendChild(badge);
+                    }
+
+                    // ---- Inline scores ----
+                    const scoresDiv = document.createElement('div');
+                    scoresDiv.className = 'scores-inline';
+                    scoresDiv.id = `scores-${match.id}`;
+
+                    // Only add click listener if there are scores to show.
+                    // We'll check later if scores exist.
+                    // For static site, we still need to build the scores content but we'll only show it when expanded.
+                    // We'll build the scores content in toggleScores dynamically or pre-build.
+                    // For simplicity, we'll pre-build the content and put it inside scoresDiv, but hidden by default.
+
+                    // Build content if scores exist
+                    const matchScores = scoresData[match.id];
+                    if (matchScores && matchScores.games && matchScores.games.length > 0) {
+                        const games = matchScores.games;
+                        const t1w = games.filter(g => g[0] > g[1]).length;
+                        const t2w = games.filter(g => g[1] > g[0]).length;
+                        let innerHtml = `<div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: ${t1w} : ${t2w}</div>`;
+                        games.forEach((g, i) => {
+                            innerHtml += `<div class="game-row">
+                                <span class="label">Game ${i+1}:</span>
+                                <span class="score-highlight">${g[0]}</span>
+                                <span class="sep"> : </span>
+                                <span class="score-highlight">${g[1]}</span>
+                            </div>`;
+                        });
+                        scoresDiv.innerHTML = innerHtml;
+                        card.style.cursor = 'pointer';
+                        card.addEventListener('click', (e) => {
+                            if (e.target.closest('input') || e.target.closest('button') || e.target.closest('select')) return;
+                            toggleScores(match.id, card);
+                        });
+                    } else {
+                        // No scores: don't allow expand
+                        card.style.cursor = 'default';
+                    }
+
+                    matchDiv.appendChild(scoresDiv);
+                    card.appendChild(matchDiv);
+
+                    matchContainer.appendChild(card);
+                });
+
+                wrapper.appendChild(matchContainer);
+                container.appendChild(wrapper);
             });
 
-            // ---- Tooltip ----
+            // After rendering, align parents
+            setTimeout(() => {
+                alignBracket(rounds);
+                drawCurvyLines();
+            }, 150);
+        }
+
+        // ===== ALIGN BRACKET =====
+        function alignBracket(rounds) {
+            for (let i = 0; i < rounds.length - 1; i++) {
+                const children = document.querySelectorAll(`.match-card[data-round="${i}"]`);
+                const parents = document.querySelectorAll(`.match-card[data-round="${i+1}"]`);
+                if (children.length === 0 || parents.length === 0) continue;
+
+                for (let p = 0; p < parents.length; p++) {
+                    const child1 = children[p * 2];
+                    const child2 = children[p * 2 + 1];
+                    if (!child1 || !child2) continue;
+
+                    // Reset parent styles before computing positions
+                    parents[p].style.marginTop = '0px';
+                    parents[p].style.transform = '';
+
+                    const container = child1.parentElement;
+                    const containerRect = container.getBoundingClientRect();
+                    const child1Rect = child1.getBoundingClientRect();
+                    const child2Rect = child2.getBoundingClientRect();
+
+                    const child1Center = child1Rect.top + child1Rect.height / 2 - containerRect.top;
+                    const child2Center = child2Rect.top + child2Rect.height / 2 - containerRect.top;
+                    const avgCenter = (child1Center + child2Center) / 2;
+
+                    const parentRect = parents[p].getBoundingClientRect();
+                    const parentCenter = parentRect.top + parentRect.height / 2 - containerRect.top;
+
+                    const offset = avgCenter - parentCenter;
+
+                    // Use marginTop for positive offsets, transform for negative
+                    if (offset >= 0) {
+                        parents[p].style.marginTop = offset + 'px';
+                        parents[p].style.transform = '';
+                    } else {
+                        parents[p].style.marginTop = '0px';
+                        parents[p].style.transform = `translateY(${offset}px)`;
+                    }
+                }
+            }
+        }
+
+        // ===== TOGGLE SCORES =====
+        function toggleScores(matchId, card) {
+            const scoresDiv = document.getElementById(`scores-${matchId}`);
+            if (!scoresDiv) return;
+            // Only toggle if it has content
+            if (scoresDiv.innerHTML.trim() === '') return;
+            if (scoresDiv.classList.contains('active')) {
+                scoresDiv.classList.remove('active');
+                setTimeout(() => drawCurvyLines(), 400);
+                return;
+            }
+            scoresDiv.classList.add('active');
+            setTimeout(() => drawCurvyLines(), 400);
+        }
+
+        // ===== CURVY LINES =====
+        function drawCurvyLines() {
+            const container = document.getElementById('bracketContainer');
+            if (!container) return;
+            document.querySelectorAll('.bracket-svg').forEach(el => el.remove());
+
+            const rect = container.getBoundingClientRect();
+            const contentWidth = container.scrollWidth;
+            const contentHeight = container.scrollHeight;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('class', 'bracket-svg');
+            svg.style.width = contentWidth + 'px';
+            svg.style.height = contentHeight + 'px';
+            svg.style.opacity = '0';
+
+            const cards = container.querySelectorAll('.match-card');
+            const positions = {};
+            cards.forEach(el => {
+                const id = parseInt(el.dataset.matchId);
+                const r = el.getBoundingClientRect();
+                positions[id] = {
+                    top: r.top - rect.top + (r.height / 2),
+                    left: r.left - rect.left + r.width - 2,
+                    right: r.left - rect.left + 2
+                };
+            });
+
+            const rounds = container.querySelectorAll('.round-wrapper');
+            for (let i = 0; i < rounds.length - 1; i++) {
+                const current = rounds[i].querySelectorAll('.match-card');
+                const next = rounds[i+1].querySelectorAll('.match-card');
+                for (let j = 0; j < current.length; j += 2) {
+                    const parentIdx = Math.floor(j / 2);
+                    if (parentIdx >= next.length) break;
+                    const child1 = current[j];
+                    const child2 = current[j+1] || current[j];
+                    const parent = next[parentIdx];
+                    if (!child1 || !parent) continue;
+
+                    const c1Id = parseInt(child1.dataset.matchId);
+                    const c2Id = child2 !== child1 ? parseInt(child2.dataset.matchId) : null;
+                    const pId = parseInt(parent.dataset.matchId);
+
+                    const c1Pos = positions[c1Id];
+                    const c2Pos = c2Id !== null ? positions[c2Id] : null;
+                    const pPos = positions[pId];
+                    if (!c1Pos || !pPos) continue;
+
+                    const midY = c2Pos ? (c1Pos.top + c2Pos.top) / 2 : c1Pos.top;
+                    const startX = c1Pos.left;
+                    const endX = pPos.right;
+                    const midX = (startX + endX) / 2;
+
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    const d = `M ${startX} ${c1Pos.top} Q ${midX} ${c1Pos.top}, ${midX} ${midY} Q ${midX} ${pPos.top}, ${endX} ${pPos.top}`;
+                    path.setAttribute('d', d);
+                    svg.appendChild(path);
+
+                    if (c2Pos) {
+                        const startX2 = c2Pos.left;
+                        const d2 = `M ${startX2} ${c2Pos.top} Q ${midX} ${c2Pos.top}, ${midX} ${midY}`;
+                        const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path2.setAttribute('d', d2);
+                        svg.appendChild(path2);
+                    }
+                }
+            }
+
+            container.appendChild(svg);
+            requestAnimationFrame(() => {
+                svg.style.opacity = '1';
+            });
+        }
+
+        // ===== TOOLTIP (cursor‑following) =====
+        let tooltipTimeout = null;
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.id = 'static-tooltip';
+        document.body.appendChild(tooltip);
+
+        // Add tooltip events to each match card with scores
+        document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.match-card').forEach(card => {
                 const scoresEl = card.querySelector('.scores-inline');
-                if (!scoresEl || scoresEl.innerHTML.trim() === '') return; // no scores
+                if (!scoresEl || scoresEl.innerHTML.trim() === '') return;
 
                 card.addEventListener('mouseenter', function(e) {
-                    // Build tooltip content from scoresEl
                     const title = this.querySelector('.teams').textContent.trim();
                     const content = scoresEl.innerHTML;
                     tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${content}`;
@@ -1364,91 +1045,16 @@ button.danger:hover { background: #d32f2f; }
                     }, 200);
                 });
             });
+        });
 
-            // ---- Draw curvy lines (same algorithm as display) ----
-            function drawCurvyLines() {
-                const container = document.getElementById('bracketContainer');
-                if (!container) return;
-                document.querySelectorAll('.bracket-svg').forEach(el => el.remove());
-
-                const rect = container.getBoundingClientRect();
-                const contentWidth = container.scrollWidth;
-                const contentHeight = container.scrollHeight;
-
-                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                svg.setAttribute('class', 'bracket-svg');
-                svg.style.width = contentWidth + 'px';
-                svg.style.height = contentHeight + 'px';
-                svg.style.opacity = '0';
-
-                const cards = container.querySelectorAll('.match-card');
-                const positions = {};
-                cards.forEach(el => {
-                    const id = parseInt(el.dataset.matchid);
-                    const r = el.getBoundingClientRect();
-                    positions[id] = {
-                        top: r.top - rect.top + (r.height / 2),
-                        left: r.left - rect.left + r.width - 2,
-                        right: r.left - rect.left + 2
-                    };
-                });
-
-                const rounds = container.querySelectorAll('.round-wrapper');
-                for (let i = 0; i < rounds.length - 1; i++) {
-                    const current = rounds[i].querySelectorAll('.match-card');
-                    const next = rounds[i+1].querySelectorAll('.match-card');
-                    for (let j = 0; j < current.length; j += 2) {
-                        const parentIdx = Math.floor(j / 2);
-                        if (parentIdx >= next.length) break;
-                        const child1 = current[j];
-                        const child2 = current[j+1] || current[j];
-                        const parent = next[parentIdx];
-                        if (!child1 || !parent) continue;
-
-                        const c1Id = parseInt(child1.dataset.matchid);
-                        const c2Id = child2 !== child1 ? parseInt(child2.dataset.matchid) : null;
-                        const pId = parseInt(parent.dataset.matchid);
-
-                        const c1Pos = positions[c1Id];
-                        const c2Pos = c2Id !== null ? positions[c2Id] : null;
-                        const pPos = positions[pId];
-                        if (!c1Pos || !pPos) continue;
-
-                        const midY = c2Pos ? (c1Pos.top + c2Pos.top) / 2 : c1Pos.top;
-                        const startX = c1Pos.left;
-                        const endX = pPos.right;
-                        const midX = (startX + endX) / 2;
-
-                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                        const d = `M ${startX} ${c1Pos.top} Q ${midX} ${c1Pos.top}, ${midX} ${midY} Q ${midX} ${pPos.top}, ${endX} ${pPos.top}`;
-                        path.setAttribute('d', d);
-                        svg.appendChild(path);
-
-                        if (c2Pos) {
-                            const startX2 = c2Pos.left;
-                            const d2 = `M ${startX2} ${c2Pos.top} Q ${midX} ${c2Pos.top}, ${midX} ${midY}`;
-                            const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                            path2.setAttribute('d', d2);
-                            svg.appendChild(path2);
-                        }
-                    }
-                }
-
-                container.appendChild(svg);
-                requestAnimationFrame(() => {
-                    svg.style.opacity = '1';
-                });
-            }
-
-            // Wait for layout and draw lines
-            setTimeout(drawCurvyLines, 200);
-            window.addEventListener('resize', () => {
-                setTimeout(drawCurvyLines, 300);
-            });
-        </script>
-        
-        </div>
-        <div class="footer">Generated by Tourney Hall • test🌓Manage teams, generate23</div>
-    </div>
+        // ===== INIT =====
+        const data = bracketData;
+        if (data.brackets && data.brackets.length > 0) {
+            scoresData = data.scores || {};
+            renderBracket(data.brackets);
+        } else {
+            document.getElementById('bracketContainer').innerHTML = '<div class="no-bracket">No bracket has been generated yet.</div>';
+        }
+    </script>
 </body>
 </html>
