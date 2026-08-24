@@ -558,34 +558,54 @@ button.danger:hover { background: #d32f2f; }
         :root { --primary: #1a73e8; }
         .match-card { cursor: default; }
         .match-card .match .team { cursor: default; }
+        /* --- Polished tooltip --- */
         .tooltip {
             position: fixed;
             background: var(--surface-solid);
             backdrop-filter: var(--backdrop-blur);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 16px 20px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.2), 0 0 0 1px var(--glass-border);
+            border-radius: 16px;
+            padding: 18px 22px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.05);
             z-index: 9998;
             display: none;
-            min-width: 200px;
-            animation: fadeIn 0.2s ease;
+            min-width: 220px;
+            max-width: 320px;
+            animation: fadeIn 0.25s ease;
             color: var(--text);
+            line-height: 1.5;
         }
         .tooltip.active { display: block; }
         .tooltip .tooltip-title {
-            font-weight: 600;
-            margin-bottom: 6px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
             color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
         }
         .tooltip .tooltip-game {
-            font-size: 0.85rem;
-            padding: 2px 0;
+            font-size: 0.9rem;
+            padding: 4px 0;
             color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
         }
         .tooltip .tooltip-game .score-highlight {
             color: var(--text);
             font-weight: 600;
+        }
+        .tooltip .tooltip-overall {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--primary);
+            text-align: right;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96) translateY(-4px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
         .scores-inline {
             margin-top: 10px;
@@ -829,10 +849,22 @@ button.danger:hover { background: #d32f2f; }
                         tooltip.classList.remove('active');
                         return;
                     }
+                    // Extract title from the teams display
                     const title = this.querySelector('.teams').textContent.trim();
-                    tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${scoresEl.innerHTML}`;
-                    tooltip.style.left = (e.clientX + 15) + 'px';
-                    tooltip.style.top = (e.clientY + 15) + 'px';
+                    // Get the scores content – we'll reuse the HTML but wrap it nicely.
+                    let content = scoresEl.innerHTML;
+                    // Replace "Overall: ..." with a styled overall line
+                    // We'll just use the raw content; the CSS will style it.
+                    tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${content}`;
+                    // Position the tooltip
+                    let x = e.clientX + 16;
+                    let y = e.clientY + 16;
+                    // Keep tooltip inside viewport (optional)
+                    const rect = tooltip.getBoundingClientRect();
+                    if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 16;
+                    if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 16;
+                    tooltip.style.left = x + 'px';
+                    tooltip.style.top = y + 'px';
                     tooltip.classList.add('active');
                     clearTimeout(tooltipTimeout);
                 });
