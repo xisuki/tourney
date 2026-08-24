@@ -328,11 +328,15 @@ button.danger:hover { background: #d32f2f; }
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-x: auto;
+    overflow-y: hidden;
     padding: 20px 20px 10px 20px;
     gap: 30px;
+    scrollbar-gutter: stable;
 }
+.bracket-view .round-wrapper:first-child { margin-left: auto; }
+.bracket-view .round-wrapper:last-child { margin-right: auto; }
 .round-wrapper {
     position: relative;
     display: flex;
@@ -343,6 +347,8 @@ button.danger:hover { background: #d32f2f; }
 }
 .round-wrapper .match-container {
     justify-content: flex-start !important;
+    flex: 0 0 auto !important;
+    height: var(--bracket-height, auto);
 }
 .round-title {
     text-align: center;
@@ -364,9 +370,9 @@ button.danger:hover { background: #d32f2f; }
 .match-card {
     position: relative;
     z-index: 1;
-    margin: 8px 0;
+    margin: 0;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
     background: var(--surface-solid);
     border-radius: 8px;
     border: 1px solid var(--glass-border);
@@ -380,6 +386,8 @@ button.danger:hover { background: #d32f2f; }
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    left: 0;
     animation: cardReveal 0.6s cubic-bezier(.22,1,.36,1) both;
 }
 @keyframes cardReveal {
@@ -472,6 +480,7 @@ button.danger:hover { background: #d32f2f; }
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
     width: 100%;
+    min-width: 0;
 }
 .match-card .scores-inline.active {
     margin-top: 10px !important;
@@ -549,7 +558,7 @@ button.danger:hover { background: #d32f2f; }
     }
 }
 .bracket-svg {
-    transition: opacity 0.25s ease;
+    transition: opacity 0.08s ease;
 }
 
 /* Tooltip (global) */
@@ -667,7 +676,10 @@ button.danger:hover { background: #d32f2f; }
 
         /* Overrides for static */
         .match-card {
-            margin: 8px 0;
+            position: absolute;
+            left: 0;
+            margin: 0;
+            transition: top 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.2s ease, border-color 0.2s ease;
         }
         @keyframes cardReveal {
             from { opacity: 0; }
@@ -686,7 +698,12 @@ button.danger:hover { background: #d32f2f; }
         }
         .bracket-view {
             padding: 20px !important;
+            justify-content: flex-start;
+            overflow-y: hidden;
+            scrollbar-gutter: stable;
         }
+        .bracket-view .round-wrapper:first-child { margin-left: auto; }
+        .bracket-view .round-wrapper:last-child { margin-right: auto; }
         .bracket-svg {
             position: absolute;
             top: 0;
@@ -711,6 +728,9 @@ button.danger:hover { background: #d32f2f; }
         }
         @keyframes drawLine {
             to { stroke-dashoffset: 0; }
+        }
+        .bracket-svg {
+            transition: opacity 0.08s ease;
         }
         .tooltip {
             position: fixed;
@@ -943,11 +963,33 @@ button.danger:hover { background: #d32f2f; }
                     attachTooltips();
                 });
             });
-            setTimeout(() => {
+        }
+
+        function animateBracketLayout(activeCard) {
+            const start = performance.now();
+            const initialPositions = new Map([...document.querySelectorAll('.match-card')].map(card => {
+                const rect = card.getBoundingClientRect();
+                return [card, { top: rect.top, left: rect.left, height: rect.height }];
+            }));
+            let linesHidden = false;
+            let positionChangedDuringLayout = false;
+            const frame = (now) => {
                 alignBracket();
-                drawCurvyLines();
-                attachTooltips();
-            }, 180);
+                const positionChanged = [...initialPositions].some(([card, position]) => {
+                    if (card === activeCard) return false;
+                    const rect = card.getBoundingClientRect();
+                    return Math.abs(rect.top - position.top) > 0.5 || Math.abs(rect.left - position.left) > 0.5;
+                });
+                positionChangedDuringLayout = positionChangedDuringLayout || positionChanged;
+                if (positionChanged && !linesHidden) {
+                    const lines = document.querySelector('.bracket-svg');
+                    if (lines) lines.style.opacity = '0';
+                    linesHidden = true;
+                }
+                if (now - start < 450) requestAnimationFrame(frame);
+                else if (positionChangedDuringLayout) drawCurvyLines();
+            };
+            requestAnimationFrame(frame);
         }
 
         // ===== TOGGLE SCORES =====
@@ -965,13 +1007,8 @@ button.danger:hover { background: #d32f2f; }
             }
 
             if (scoresDiv.classList.contains('active')) {
-                const lines = document.querySelector('.bracket-svg');
-                if (lines) lines.style.opacity = '0';
                 scoresDiv.classList.remove('active');
-                setTimeout(() => {
-                    alignBracket();
-                    drawCurvyLines();
-                }, 350);
+                animateBracketLayout(card);
                 return;
             }
 
@@ -998,11 +1035,7 @@ button.danger:hover { background: #d32f2f; }
 
             scoresDiv.innerHTML = html;
             scoresDiv.classList.add('active');
-
-            setTimeout(() => {
-                alignBracket();
-                drawCurvyLines();
-            }, 350);
+            animateBracketLayout(card);
         }
 
         // ===== FIND MATCH =====
@@ -1021,42 +1054,35 @@ button.danger:hover { background: #d32f2f; }
             document.querySelectorAll('.match-card').forEach(card => {
                 card.style.marginTop = '';
                 card.style.transform = '';
+                card.style.top = '';
             });
             const rounds = document.querySelectorAll('.round-wrapper');
-            for (let i = 0; i < rounds.length - 1; i++) {
-                const children = rounds[i].querySelectorAll('.match-card');
-                const parents = rounds[i+1].querySelectorAll('.match-card');
-                if (children.length === 0 || parents.length === 0) continue;
-
-                const container = children[0]?.parentElement;
-                if (!container) continue;
-                const containerRect = container.getBoundingClientRect();
-
-                for (let p = 0; p < parents.length; p++) {
-                    const child1 = children[p * 2];
-                    const child2 = children[p * 2 + 1];
-                    if (!child1 || !child2) continue;
-
-                    parents[p].style.marginTop = '0px';
-                    parents[p].style.transform = '';
-
-                    const child1Rect = child1.getBoundingClientRect();
-                    const child2Rect = child2.getBoundingClientRect();
-                    const child1Center = child1Rect.top + child1Rect.height / 2 - containerRect.top;
-                    const child2Center = child2Rect.top + child2Rect.height / 2 - containerRect.top;
-                    const avgCenter = (child1Center + child2Center) / 2;
-
-                    const parentRect = parents[p].getBoundingClientRect();
-                    const parentCenter = parentRect.top + parentRect.height / 2 - containerRect.top;
-                    const offset = avgCenter - parentCenter;
-
-                    if (offset >= 0) {
-                        parents[p].style.marginTop = offset + 'px';
-                        parents[p].style.transform = '';
-                    } else {
-                        parents[p].style.transform = `translateY(${offset}px)`;
-                    }
-                }
+            const centers = new Map();
+            const heights = new Map();
+            rounds.forEach(round => round.querySelectorAll('.match-card').forEach(card => {
+                heights.set(card, card.getBoundingClientRect().height);
+            }));
+            let columnHeight = 0;
+            const firstRound = rounds[0]?.querySelectorAll('.match-card') || [];
+            firstRound.forEach(card => {
+                card.style.top = `${columnHeight}px`;
+                centers.set(card, columnHeight + heights.get(card) / 2);
+                columnHeight += heights.get(card) + 16;
+            });
+            columnHeight = Math.max(0, columnHeight - 16);
+            rounds.forEach(round => round.querySelector('.match-container').style.setProperty('--bracket-height', `${columnHeight}px`));
+            for (let i = 1; i < rounds.length; i++) {
+                const children = rounds[i - 1].querySelectorAll('.match-card');
+                const parents = rounds[i].querySelectorAll('.match-card');
+                parents.forEach((parent, index) => {
+                    const child1 = children[index * 2];
+                    const child2 = children[index * 2 + 1];
+                    if (!child1 || !child2) return;
+                    const center = (centers.get(child1) + centers.get(child2)) / 2;
+                    const top = Math.max(0, center - heights.get(parent) / 2);
+                    parent.style.top = `${top}px`;
+                    centers.set(parent, top + heights.get(parent) / 2);
+                });
             }
         }
 
