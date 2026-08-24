@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sffsa</title>
+    <title>saddsasda</title>
     <style>
         /* ===== THEMES ===== */
 html, body {
@@ -257,10 +257,10 @@ button.danger:hover { background: #d32f2f; }
     display: flex;
     flex-direction: column;
     gap: 10px;
-    pointer-events: none; /* allows clicks through container, but not on toast itself */
+    pointer-events: none;
 }
 .toast {
-    pointer-events: auto; /* re-enable clicks on the toast */
+    pointer-events: auto;
     background: var(--surface-solid);
     padding: 14px 20px;
     border-radius: 12px;
@@ -463,6 +463,7 @@ button.danger:hover { background: #d32f2f; }
     pointer-events: none;
     z-index: 0;
     transition: opacity 0.3s;
+    overflow: visible !important;
 }
 .bracket-svg path {
     stroke: var(--primary);
@@ -472,6 +473,21 @@ button.danger:hover { background: #d32f2f; }
     stroke-linecap: round;
 }
 [data-theme="dark"] .bracket-svg path { opacity: 0.25; }
+
+/* ---- Animated connector lines ---- */
+.bracket-svg path {
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: drawLine 1s ease forwards;
+}
+@keyframes drawLine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+.bracket-svg {
+    transition: opacity 1s;
+}
 
 /* Tooltip */
 .tooltip {
@@ -520,20 +536,6 @@ button.danger:hover { background: #d32f2f; }
     .btn-group button { flex: 1 1 100%; }
     h1 { font-size: 1.6rem; }
 }
-/* ---- Animated connector lines ---- */
-.bracket-svg path {
-    stroke-dasharray: 800;
-    stroke-dashoffset: 800;
-    animation: drawLine 1s ease forwards;
-}
-@keyframes drawLine {
-    to {
-        stroke-dashoffset: 0;
-    }
-}
-.bracket-svg {
-    transition: opacity 1s;
-}
 .match-card .match .team.tbd {
     color: var(--text-light);
     font-style: italic;
@@ -558,7 +560,7 @@ button.danger:hover { background: #d32f2f; }
         :root { --primary: #1a73e8; }
         .match-card { cursor: default; }
         .match-card .match .team { cursor: default; }
-        /* --- Polished tooltip --- */
+        /* --- Tooltip --- */
         .tooltip {
             position: fixed;
             background: var(--surface-solid);
@@ -574,6 +576,7 @@ button.danger:hover { background: #d32f2f; }
             animation: fadeIn 0.25s ease;
             color: var(--text);
             line-height: 1.5;
+            pointer-events: none;
         }
         .tooltip.active { display: block; }
         .tooltip .tooltip-title {
@@ -606,6 +609,10 @@ button.danger:hover { background: #d32f2f; }
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.96) translateY(-4px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        /* Prevent scroll bars from expanding */
+        .bracket-svg {
+            overflow: visible !important;
         }
         .scores-inline {
             margin-top: 10px;
@@ -662,7 +669,7 @@ button.danger:hover { background: #d32f2f; }
 <body>
     <div class="container" style="position:relative;">
         <div class="title-wrapper">
-            <h1>sffsa</h1>
+            <h1>saddsasda</h1>
             <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
         </div>
         <div class="subhead" style="display:flex; gap:15px; align-items:center;">
@@ -842,38 +849,51 @@ button.danger:hover { background: #d32f2f; }
                 }
             }
 
+            // Tooltip follow cursor
+            let currentCard = null;
             document.querySelectorAll('.match-card').forEach(card => {
                 card.addEventListener('mouseenter', function(e) {
+                    currentCard = this;
                     const scoresEl = this.querySelector('.scores-inline');
                     if (!scoresEl || !scoresEl.querySelector('.game-row')) {
                         tooltip.classList.remove('active');
                         return;
                     }
-                    // Extract title from the teams display
                     const title = this.querySelector('.teams').textContent.trim();
-                    // Get the scores content – we'll reuse the HTML but wrap it nicely.
-                    let content = scoresEl.innerHTML;
-                    // Replace "Overall: ..." with a styled overall line
-                    // We'll just use the raw content; the CSS will style it.
+                    const content = scoresEl.innerHTML;
                     tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${content}`;
-                    // Position the tooltip
-                    let x = e.clientX + 16;
-                    let y = e.clientY + 16;
-                    // Keep tooltip inside viewport (optional)
-                    const rect = tooltip.getBoundingClientRect();
-                    if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 16;
-                    if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 16;
-                    tooltip.style.left = x + 'px';
-                    tooltip.style.top = y + 'px';
+                    // Position initially
+                    updateTooltipPosition(e);
                     tooltip.classList.add('active');
                     clearTimeout(tooltipTimeout);
                 });
                 card.addEventListener('mouseleave', function() {
+                    currentCard = null;
                     tooltipTimeout = setTimeout(() => {
                         tooltip.classList.remove('active');
                     }, 200);
                 });
+                // Update position on mouse move
+                card.addEventListener('mousemove', function(e) {
+                    if (tooltip.classList.contains('active')) {
+                        updateTooltipPosition(e);
+                    }
+                });
             });
+
+            function updateTooltipPosition(e) {
+                let x = e.clientX + 16;
+                let y = e.clientY + 16;
+                const rect = tooltip.getBoundingClientRect();
+                // Adjust if tooltip would go off screen
+                if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 16;
+                if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 16;
+                // Ensure at least 0
+                x = Math.max(0, x);
+                y = Math.max(0, y);
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+            }
 
             function drawCurvyLines() {
                 document.querySelectorAll('.bracket-svg').forEach(el => el.remove());
@@ -884,6 +904,8 @@ button.danger:hover { background: #d32f2f; }
                 svg.setAttribute('class', 'bracket-svg');
                 svg.style.width = rect.width + 'px';
                 svg.style.height = rect.height + 'px';
+                // Ensure SVG doesn't cause scroll
+                svg.style.overflow = 'visible';
 
                 const cards = container.querySelectorAll('.match-card');
                 const positions = {};
@@ -940,7 +962,7 @@ button.danger:hover { background: #d32f2f; }
         </script>
         
         </div>
-        <div class="footer">Generated by Tourney Hall • sffsa</div>
+        <div class="footer">Generated by Tourney Hall • saddsasda</div>
     </div>
 </body>
 </html>
