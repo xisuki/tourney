@@ -2,10 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test🌓Manage teams, generate27</title>
-    <style>
-        /* ===== THEMES ===== */
+    <title>test🌓Manage teams, generate28 – Bracket</title>
+    <style>/* ===== THEMES ===== */
 html, body {
     overflow: visible !important;
     transform: none !important;
@@ -596,765 +594,70 @@ button.danger:hover { background: #d32f2f; }
 .match-card .team.winner[style*="cursor: pointer"]:hover {
     background: #4caf50 !important;
     cursor: default;
-}
-        /* Ensure match-card margins and padding match display.html */
-        .match-card {
-            margin: 8px 0 !important;
-        }
-        .match-card .scores-inline {
-            margin-top: 0 !important;
-            padding-top: 0 !important;
-        }
-        .match-card .scores-inline.active {
-            margin-top: 10px !important;
-            padding-top: 10px !important;
-        }
-        /* SVG lines */
-        .bracket-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: visible !important;
-        }
-        .bracket-svg path {
-            stroke: var(--primary);
-            stroke-width: 2.5;
-            fill: none;
-            opacity: 0.35;
-            stroke-linecap: round;
-        }
-        [data-theme="dark"] .bracket-svg path { opacity: 0.25; }
-        .bracket-svg path {
-            stroke-dasharray: 800;
-            stroke-dashoffset: 800;
-            animation: drawLine 1s ease forwards;
-        }
-        @keyframes drawLine {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-        .bracket-svg {
-            transition: opacity 1s;
-        }
-        /* Tooltip */
-        .tooltip {
-            position: fixed;
-            background: var(--surface-solid);
-            backdrop-filter: var(--backdrop-blur);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 16px 20px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.2), 0 0 0 1px var(--glass-border);
-            z-index: 9998;
-            display: none;
-            min-width: 200px;
-            animation: fadeIn 0.2s ease;
-            color: var(--text);
-            pointer-events: none;
-            transition: left 0.05s, top 0.05s;
-        }
-        .tooltip.active { display: block; }
-        .tooltip .tooltip-title {
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--primary);
-        }
-        .tooltip .tooltip-game {
-            font-size: 0.85rem;
-            padding: 2px 0;
-            color: var(--text-light);
-            display: flex;
-            justify-content: space-between;
-        }
-        .tooltip .tooltip-game .score-highlight {
-            color: var(--text);
-            font-weight: 600;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        .no-bracket {
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 1.1rem;
-            color: var(--text-light);
-        }
-        /* Match the display layout exactly */
-        .match-container {
-            position: relative;
-        }
-        .round-wrapper .match-container {
-            justify-content: flex-start !important;
-        }
-        .match-card .match .team {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0;
-        }
-        .match-card .match .team strong {
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        .match-card .match .team .sub {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            font-weight: 400;
-        }
-        .match-card .match .team.winner strong {
-            color: #fff;
-        }
-        .match-card .match .team.winner .sub {
-            color: #a5d6a7;
-        }
-        .match-card .match .teams {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            gap: 4px;
-        }
-        .match-card .match .team {
-            flex: 1;
-            text-align: center;
-        }
-        .match-card .match .separator {
-            flex: 0 0 auto;
-            font-size: 0.85rem;
-            font-weight: 300;
-            color: var(--text-light);
-            padding: 0 4px;
-        }
-        .match-card .match .team.tbd {
-            color: var(--text-light);
-            font-style: italic;
-        }
-        .match-card .match .team.bye {
-            color: var(--bye-color);
-            font-style: italic;
-        }
-        /* Ensure bracket-view has padding like display */
-        .bracket-view {
-            padding: 20px !important;
-        }
-    </style>
+}</style>
 </head>
 <body>
-    <div class="container" style="position:relative;">
+    <div class="container">
         <div class="title-wrapper">
-            <h1>test🌓Manage teams, generate27</h1>
+            <h1>test🌓Manage teams, generate28</h1>
             <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
         </div>
         <div class="subhead" style="display:flex; gap:15px; align-items:center;">
-            <span>Tournament Bracket – Live View</span>
+            <span>Tournament Bracket</span>
+            <div style="flex:1;"></div>
+            <button onclick="location.href='/'" class="secondary">Dashboard</button>
         </div>
         <div id="bracketContainer" class="bracket-view">
-            
-            <div class="round-wrapper">
-                <div class="round-title">Round of 32</div>
-                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
-            
-                <div class="match-card" data-matchid="0" data-round="0">
-                    <div class="match has-winner">
-                        <div class="teams">
-                            <span class="team winner">
-                                <strong>School A</strong>
-                                <span class="sub">Team A1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School I</strong>
-                                <span class="sub">Team I1</span>
-                            </span>
-                        </div>
-                        <div class="winner-badge">2 : 0</div>
-                        
-                    <div class="scores-inline" id="scores-0">
-                        <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 2 : 0</div>
-                        <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">2</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 2:</span><span class="score-highlight">1</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 3:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">0</span></div>
-                    </div>
-                    
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="1" data-round="0">
-                    <div class="match has-winner">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School A</strong>
-                                <span class="sub">Team A2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team winner">
-                                <strong>School N</strong>
-                                <span class="sub">Team N1</span>
-                            </span>
-                        </div>
-                        <div class="winner-badge">0 : 2</div>
-                        
-                    <div class="scores-inline" id="scores-1">
-                        <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 0 : 2</div>
-                        <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 2:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">1</span></div><div class="game-row"><span class="label">Game 3:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">1</span></div>
-                    </div>
-                    
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="2" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School E</strong>
-                                <span class="sub">Team E1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School K</strong>
-                                <span class="sub">Team K2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="3" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School E</strong>
-                                <span class="sub">Team E2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School P</strong>
-                                <span class="sub">Team P1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="4" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School C</strong>
-                                <span class="sub">Team C1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School J</strong>
-                                <span class="sub">Team J1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="5" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School C</strong>
-                                <span class="sub">Team C2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School O</strong>
-                                <span class="sub">Team O1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="6" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School G</strong>
-                                <span class="sub">Team G1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School L</strong>
-                                <span class="sub">Team L2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="7" data-round="0">
-                    <div class="match has-winner">
-                        <div class="teams">
-                            <span class="team winner">
-                                <strong>School G</strong>
-                                <span class="sub">Team G2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team bye">
-                                <strong>—</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="8" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School B</strong>
-                                <span class="sub">Team B1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School I</strong>
-                                <span class="sub">Team I2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="9" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School B</strong>
-                                <span class="sub">Team B2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School N</strong>
-                                <span class="sub">Team N2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="10" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School F</strong>
-                                <span class="sub">Team F1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School L</strong>
-                                <span class="sub">Team L1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="11" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School F</strong>
-                                <span class="sub">Team F2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School P</strong>
-                                <span class="sub">Team P2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="12" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School D</strong>
-                                <span class="sub">Team D1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School K</strong>
-                                <span class="sub">Team K1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="13" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School D</strong>
-                                <span class="sub">Team D2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School O</strong>
-                                <span class="sub">Team O2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="14" data-round="0">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School H</strong>
-                                <span class="sub">Team H1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School M</strong>
-                                <span class="sub">Team M1</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="15" data-round="0">
-                    <div class="match has-winner">
-                        <div class="teams">
-                            <span class="team winner">
-                                <strong>School H</strong>
-                                <span class="sub">Team H2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team bye">
-                                <strong>—</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                </div></div>
-            <div class="round-wrapper">
-                <div class="round-title">Round of 16</div>
-                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
-            
-                <div class="match-card" data-matchid="16" data-round="1">
-                    <div class="match has-winner">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School A</strong>
-                                <span class="sub">Team A1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team winner">
-                                <strong>School N</strong>
-                                <span class="sub">Team N1</span>
-                            </span>
-                        </div>
-                        <div class="winner-badge">0 : 0</div>
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="17" data-round="1">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="18" data-round="1">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="19" data-round="1">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School G</strong>
-                                <span class="sub">Team G2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="20" data-round="1">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="21" data-round="1">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="22" data-round="1">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="23" data-round="1">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School H</strong>
-                                <span class="sub">Team H2</span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                </div></div>
-            <div class="round-wrapper">
-                <div class="round-title">Quarter‑finals</div>
-                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
-            
-                <div class="match-card" data-matchid="24" data-round="2">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School N</strong>
-                                <span class="sub">Team N1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="25" data-round="2">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="26" data-round="2">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="27" data-round="2">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                </div></div>
-            <div class="round-wrapper">
-                <div class="round-title">Semi‑finals</div>
-                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
-            
-                <div class="match-card" data-matchid="28" data-round="3">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                
-                <div class="match-card" data-matchid="29" data-round="3">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                </div></div>
-            <div class="round-wrapper">
-                <div class="round-title">Final</div>
-                <div class="match-container" style="display:flex;flex-direction:column;justify-content:flex-start;flex:1;width:100%;position:relative;">
-            
-                <div class="match-card" data-matchid="30" data-round="4">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                </div></div>
+            <div class="no-bracket">Loading bracket...</div>
         </div>
-        <div class="footer">Generated by Tourney Hall • test🌓Manage teams, generate27</div>
     </div>
 
     <script>
+        // ===== API HELPER =====
+        async function apiFetch(url, options = {}) {
+            try {
+                const res = await fetch(url, options);
+                if (!res.ok) {
+                    let errMsg = `Server error (${res.status})`;
+                    try {
+                        const data = await res.json();
+                        if (data.message) errMsg = data.message;
+                    } catch (_) {}
+                    showToast(errMsg, true);
+                    return null;
+                }
+                return await res.json();
+            } catch (error) {
+                showToast('🔌 Connection lost – is Tourney Hall still running?', true);
+                console.error('API fetch error:', error);
+                return null;
+            }
+        }
+
+        // ===== TOAST =====
+        function showToast(text, isError = false) {
+            let container = document.getElementById('toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toast-container';
+                document.body.appendChild(container);
+            }
+            const toast = document.createElement('div');
+            toast.className = `toast ${isError ? 'error' : 'success'}`;
+            toast.innerHTML = `<span>${text}</span><span class="toast-close">&times;</span>`;
+            toast.querySelector('.toast-close').addEventListener('click', () => {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            });
+            container.appendChild(toast);
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => toast.remove(), 300);
+                }
+            }, 4000);
+        }
+
         // ===== THEME =====
         function toggleTheme() {
             const html = document.documentElement;
@@ -1366,102 +669,210 @@ button.danger:hover { background: #d32f2f; }
         const saved = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', saved);
 
-        // ===== TOOLTIP =====
-        let tooltipTimeout = null;
-        const tooltip = document.createElement('div');
-        tooltip.className = 'tooltip';
-        tooltip.id = 'static-tooltip';
-        document.body.appendChild(tooltip);
+        // ===== BRACKET LOGIC =====
+        let currentBracket = null;
+        let scoresData = {};
+        let tempScores = {};
 
-        document.querySelectorAll('.match-card').forEach(card => {
-            const scoresEl = card.querySelector('.scores-inline');
-            if (!scoresEl || scoresEl.innerHTML.trim() === '' || scoresEl.innerHTML.includes('No scores recorded')) return;
-
-            card.addEventListener('mouseenter', function(e) {
-                const title = this.querySelector('.teams').textContent.trim();
-                const content = scoresEl.innerHTML;
-                tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${content}`;
-                // Position tooltip
-                let x = e.clientX + 16;
-                let y = e.clientY + 16;
-                const rect = tooltip.getBoundingClientRect();
-                if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 16;
-                if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 16;
-                tooltip.style.left = x + 'px';
-                tooltip.style.top = y + 'px';
-                tooltip.classList.add('active');
-                clearTimeout(tooltipTimeout);
-            });
-            card.addEventListener('mousemove', function(e) {
-                if (tooltip.classList.contains('active')) {
-                    let x = e.clientX + 16;
-                    let y = e.clientY + 16;
-                    const rect = tooltip.getBoundingClientRect();
-                    if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 16;
-                    if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 16;
-                    tooltip.style.left = x + 'px';
-                    tooltip.style.top = y + 'px';
-                }
-            });
-            card.addEventListener('mouseleave', function() {
-                tooltipTimeout = setTimeout(() => {
-                    tooltip.classList.remove('active');
-                }, 200);
-            });
-        });
-
-        // ===== EXPAND SCORES =====
-        function toggleScores(matchId) {
-            const el = document.getElementById('scores-' + matchId);
-            if (el) {
-                el.classList.toggle('active');
-                setTimeout(drawCurvyLines, 300);
-            }
+        async function loadScores() {
+            const data = await apiFetch('/api/scores');
+            if (data) scoresData = data;
         }
 
-        document.querySelectorAll('.match-card').forEach(card => {
-            const scoresEl = card.querySelector('.scores-inline');
-            if (scoresEl && scoresEl.innerHTML.trim() !== '' && !scoresEl.innerHTML.includes('No scores recorded')) {
-                card.style.cursor = 'pointer';
-                card.addEventListener('click', function(e) {
-                    if (e.target.closest('input') || e.target.closest('button') || e.target.closest('select')) return;
-                    const matchId = this.dataset.matchid;
-                    if (matchId) toggleScores(parseInt(matchId));
-                });
+        function getRoundName(idx, total) {
+            const names = [];
+            if (total >= 1) names.push('Final');
+            if (total >= 2) names.push('Semi‑finals');
+            if (total >= 3) names.push('Quarter‑finals');
+            if (total >= 4) names.push('Round of 16');
+            if (total >= 5) names.push('Round of 32');
+            if (total >= 6) names.push('Round of 64');
+            names.reverse();
+            return idx < names.length ? names[idx] : `Round ${idx+1}`;
+        }
+
+        async function loadBracket() {
+            await loadScores();
+            const container = document.getElementById('bracketContainer');
+            container.innerHTML = '<div class="no-bracket">Loading...</div>';
+            const rounds = await apiFetch('/api/bracket');
+            if (!rounds) {
+                container.innerHTML = '<div class="no-bracket">⚠️ Could not load bracket – is the server running?</div>';
+                return;
             }
-        });
+            if (!rounds.length) {
+                container.innerHTML = '<div class="no-bracket">No bracket generated.</div>';
+                return;
+            }
+            currentBracket = rounds;
+            renderBracket(rounds);
+        }
 
-        // ===== ALIGN BRACKET (same as display) =====
-        function alignBracket() {
-            const rounds = document.querySelectorAll('.round-wrapper');
+        // ===== RENDER BRACKET =====
+        function renderBracket(rounds) {
+            const container = document.getElementById('bracketContainer');
+            container.innerHTML = '';
+            container.style.position = 'relative';
+            const total = rounds.length;
+
+            rounds.forEach((round, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'round-wrapper';
+                wrapper.style.display = 'flex';
+                wrapper.style.flexDirection = 'column';
+                wrapper.style.justifyContent = 'flex-start';
+                wrapper.style.flex = '1';
+
+                const title = document.createElement('div');
+                title.className = 'round-title';
+                title.textContent = getRoundName(idx, total);
+                wrapper.appendChild(title);
+
+                const matchContainer = document.createElement('div');
+                matchContainer.className = 'match-container';
+                matchContainer.style.display = 'flex';
+                matchContainer.style.flexDirection = 'column';
+                matchContainer.style.justifyContent = 'flex-start';
+                matchContainer.style.flex = '1';
+                matchContainer.style.width = '100%';
+                matchContainer.style.position = 'relative';
+
+                round.forEach(match => {
+                    const card = document.createElement('div');
+                    card.className = 'match-card';
+                    card.dataset.matchId = match.id;
+                    card.dataset.round = idx;
+
+                    const t1 = match.team1;
+                    const t2 = match.team2;
+                    const winner = match.winner;
+
+                    const matchDiv = document.createElement('div');
+                    matchDiv.className = 'match';
+                    if (winner) matchDiv.classList.add('has-winner');
+
+                    const teamsDiv = document.createElement('div');
+                    teamsDiv.className = 'teams';
+
+                    // ---- Team 1 ----
+                    const t1Span = document.createElement('span');
+                    t1Span.className = 'team';
+                    if (t1 === null || t1 === undefined) {
+                        t1Span.textContent = 'TBD';
+                        t1Span.classList.add('tbd');
+                    } else if (t1 === 'Bye') {
+                        t1Span.textContent = '—';
+                        t1Span.classList.add('bye');
+                    } else {
+                        const school = typeof t1 === 'string' ? '' : t1.school;
+                        const name = typeof t1 === 'string' ? t1 : t1.name;
+                        t1Span.innerHTML = `<strong>${school}</strong><span class="sub">${name}</span>`;
+                        if (winner && (winner === name || (typeof winner === 'object' && winner.name === name))) {
+                            t1Span.classList.add('winner');
+                        }
+                    }
+                    teamsDiv.appendChild(t1Span);
+
+                    const sep = document.createElement('span');
+                    sep.className = 'separator';
+                    sep.textContent = 'vs';
+                    teamsDiv.appendChild(sep);
+
+                    // ---- Team 2 ----
+                    const t2Span = document.createElement('span');
+                    t2Span.className = 'team';
+                    if (t2 === null || t2 === undefined) {
+                        t2Span.textContent = 'TBD';
+                        t2Span.classList.add('tbd');
+                    } else if (t2 === 'Bye') {
+                        t2Span.textContent = '—';
+                        t2Span.classList.add('bye');
+                    } else {
+                        const school = typeof t2 === 'string' ? '' : t2.school;
+                        const name = typeof t2 === 'string' ? t2 : t2.name;
+                        t2Span.innerHTML = `<strong>${school}</strong><span class="sub">${name}</span>`;
+                        if (winner && (winner === name || (typeof winner === 'object' && winner.name === name))) {
+                            t2Span.classList.add('winner');
+                        }
+                    }
+                    teamsDiv.appendChild(t2Span);
+
+                    matchDiv.appendChild(teamsDiv);
+
+                    // ---- Winner badge ----
+                    const isBye = (t1 === 'Bye' || t1 === null || t1 === undefined ||
+                                t2 === 'Bye' || t2 === null || t2 === undefined);
+                    if (winner && !isBye) {
+                        const badge = document.createElement('div');
+                        badge.className = 'winner-badge';
+                        const stored = scoresData[match.id] || { games: [] };
+                        const games = stored.games || [];
+                        const t1w = games.filter(g => g[0] > g[1]).length;
+                        const t2w = games.filter(g => g[1] > g[0]).length;
+                        badge.textContent = `${t1w} : ${t2w}`;
+                        matchDiv.appendChild(badge);
+                    }
+
+                    // ---- Inline scores ----
+                    const scoresDiv = document.createElement('div');
+                    scoresDiv.className = 'scores-inline';
+                    scoresDiv.id = `scores-${match.id}`;
+
+                    if (!isBye) {
+                        card.addEventListener('click', (e) => {
+                            if (e.target.closest('input') || e.target.closest('button') || e.target.closest('select')) return;
+                            toggleScores(match.id, card);
+                        });
+                    }
+
+                    matchDiv.appendChild(scoresDiv);
+                    card.appendChild(matchDiv);
+
+                    matchContainer.appendChild(card);
+                });
+
+                wrapper.appendChild(matchContainer);
+                container.appendChild(wrapper);
+            });
+
+            // Wait for layout, then align and draw lines
+            setTimeout(() => {
+                alignBracket(rounds);
+                drawCurvyLines();
+            }, 150);
+        }
+
+        // ===== ALIGN BRACKET (reset margins first) =====
+        function alignBracket(rounds) {
             for (let i = 0; i < rounds.length - 1; i++) {
-                const children = rounds[i].querySelectorAll('.match-card');
-                const parents = rounds[i+1].querySelectorAll('.match-card');
+                const children = document.querySelectorAll(`.match-card[data-round="${i}"]`);
+                const parents = document.querySelectorAll(`.match-card[data-round="${i+1}"]`);
                 if (children.length === 0 || parents.length === 0) continue;
-
-                const container = children[0]?.parentElement;
-                if (!container) continue;
-                const containerRect = container.getBoundingClientRect();
 
                 for (let p = 0; p < parents.length; p++) {
                     const child1 = children[p * 2];
                     const child2 = children[p * 2 + 1];
                     if (!child1 || !child2) continue;
 
-                    // Reset styles
+                    // Reset parent styles before computing positions
                     parents[p].style.marginTop = '0px';
                     parents[p].style.transform = '';
 
+                    const container = child1.parentElement;
+                    const containerRect = container.getBoundingClientRect();
                     const child1Rect = child1.getBoundingClientRect();
                     const child2Rect = child2.getBoundingClientRect();
+
                     const child1Center = child1Rect.top + child1Rect.height / 2 - containerRect.top;
                     const child2Center = child2Rect.top + child2Rect.height / 2 - containerRect.top;
                     const avgCenter = (child1Center + child2Center) / 2;
 
                     const parentRect = parents[p].getBoundingClientRect();
                     const parentCenter = parentRect.top + parentRect.height / 2 - containerRect.top;
+
                     const offset = avgCenter - parentCenter;
 
+                    // Use marginTop for positive offsets, transform for negative
                     if (offset >= 0) {
                         parents[p].style.marginTop = offset + 'px';
                         parents[p].style.transform = '';
@@ -1473,7 +884,275 @@ button.danger:hover { background: #d32f2f; }
             }
         }
 
-        // ===== DRAW CURVY LINES =====
+        // ===== UPDATE GAME INPUTS =====
+        window.updateGameInputs = function(matchId) {
+            const select = document.getElementById(`firstToSelect_${matchId}`);
+            if (!select) return;
+            const firstTo = parseInt(select.value);
+            const maxGames = (2 * firstTo) - 1;
+
+            const container = document.getElementById(`gameInputs_${matchId}`);
+            if (!container) return;
+
+            const currentValues = {};
+            const existingRows = container.querySelectorAll('.game-row');
+            existingRows.forEach((row, idx) => {
+                const i = idx + 1;
+                const s1 = row.querySelector('input[id^="score1_"]');
+                const s2 = row.querySelector('input[id^="score2_"]');
+                if (s1 && s2) {
+                    currentValues[`${i}_1`] = s1.value;
+                    currentValues[`${i}_2`] = s2.value;
+                }
+            });
+
+            let html = '';
+            for (let i = 1; i <= maxGames; i++) {
+                const v1 = currentValues[`${i}_1`] || '';
+                const v2 = currentValues[`${i}_2`] || '';
+                html += `<div class="game-row">
+                    <span class="label">Game ${i}:</span>
+                    <input type="number" id="score1_${matchId}_${i}" value="${v1}" placeholder="0" min="0" style="width:50px;text-align:center;">
+                    <span class="sep">:</span>
+                    <input type="number" id="score2_${matchId}_${i}" value="${v2}" placeholder="0" min="0" style="width:50px;text-align:center;">
+                </div>`;
+            }
+            container.innerHTML = html;
+
+            const newGames = [];
+            const newRows = container.querySelectorAll('.game-row');
+            newRows.forEach(row => {
+                const s1 = row.querySelector('input[id^="score1_"]');
+                const s2 = row.querySelector('input[id^="score2_"]');
+                if (s1 && s2) {
+                    const v1 = parseInt(s1.value) || 0;
+                    const v2 = parseInt(s2.value) || 0;
+                    newGames.push([v1, v2]);
+                }
+            });
+            if (!tempScores[matchId]) tempScores[matchId] = {};
+            tempScores[matchId].games = newGames;
+            tempScores[matchId].firstTo = firstTo;
+
+            setTimeout(() => drawCurvyLines(), 400);
+        };
+
+        // ===== SCORES TOGGLE =====
+        function toggleScores(matchId, card) {
+            const scoresDiv = document.getElementById(`scores-${matchId}`);
+            if (!scoresDiv) return;
+
+            const match = findMatch(matchId);
+            if (!match) return;
+            const t1 = match.team1;
+            const t2 = match.team2;
+            if (t1 === null || t1 === undefined || t1 === 'Bye' ||
+                t2 === null || t2 === undefined || t2 === 'Bye') {
+                return;
+            }
+
+            if (scoresDiv.classList.contains('active')) {
+                scoresDiv.classList.remove('active');
+                const teamSpans = card.querySelectorAll('.team');
+                teamSpans.forEach(span => {
+                    span.onclick = null;
+                    span.style.cursor = 'default';
+                });
+                setTimeout(() => drawCurvyLines(), 400);
+                return;
+            }
+
+            const t1Name = typeof t1 === 'string' ? t1 : t1.name;
+            const t2Name = typeof t2 === 'string' ? t2 : t2.name;
+
+            const stored = scoresData[matchId] || { games: [], best_of: 1 };
+            const savedGames = stored.games || [];
+            const firstTo = stored.best_of || 1;
+
+            const temp = tempScores[matchId] || {};
+            const games = temp.games || savedGames.map(g => [...g]);
+            const currentFirstTo = temp.firstTo || firstTo;
+
+            let html = '';
+
+            html += `<div style="margin-bottom:8px;">
+                <label>First to:
+                    <select id="firstToSelect_${matchId}" style="padding:4px 8px; border-radius:6px;" 
+                        onclick="event.stopPropagation();" 
+                        onchange="updateGameInputs(${matchId})">
+                        <option value="1" ${currentFirstTo===1?'selected':''}>1</option>
+                        <option value="2" ${currentFirstTo===2?'selected':''}>2</option>
+                        <option value="3" ${currentFirstTo===3?'selected':''}>3</option>
+                        <option value="4" ${currentFirstTo===4?'selected':''}>4</option>
+                    </select>
+                </label>
+            </div>`;
+
+            html += `<div id="gameInputs_${matchId}">`;
+            const maxGamesToShow = Math.max(1, (2 * currentFirstTo) - 1);
+            for (let i = 1; i <= maxGamesToShow; i++) {
+                const val1 = (games.length >= i) ? games[i-1][0] : '';
+                const val2 = (games.length >= i) ? games[i-1][1] : '';
+                html += `<div class="game-row">
+                    <span class="label">Game ${i}:</span>
+                    <input type="number" id="score1_${matchId}_${i}" value="${val1}" placeholder="0" min="0" style="width:50px;text-align:center;">
+                    <span class="sep">:</span>
+                    <input type="number" id="score2_${matchId}_${i}" value="${val2}" placeholder="0" min="0" style="width:50px;text-align:center;">
+                </div>`;
+            }
+            html += `</div>`;
+
+            html += `<div class="btn-group" style="margin-top:8px; justify-content:flex-end;">
+                <button onclick="saveScores(${matchId}, '${t1Name}', '${t2Name}')">Save Scores</button>
+            </div>`;
+
+            scoresDiv.innerHTML = html;
+            scoresDiv.classList.add('active');
+
+            const teamSpans = card.querySelectorAll('.team');
+            if (teamSpans.length >= 2) {
+                const team1 = teamSpans[0];
+                const team2 = teamSpans[1];
+                team1.onclick = null;
+                team2.onclick = null;
+                team1.onclick = (e) => {
+                    e.stopPropagation();
+                    manualWinner(matchId, t1Name);
+                };
+                team2.onclick = (e) => {
+                    e.stopPropagation();
+                    manualWinner(matchId, t2Name);
+                };
+                team1.style.cursor = 'pointer';
+                team2.style.cursor = 'pointer';
+                team1.onmouseover = () => { team1.style.background = 'var(--highlight)'; };
+                team1.onmouseout = () => { team1.style.background = 'transparent'; };
+                team2.onmouseover = () => { team2.style.background = 'var(--highlight)'; };
+                team2.onmouseout = () => { team2.style.background = 'transparent'; };
+            }
+
+            const inputs = scoresDiv.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const currentGames = [];
+                    const gameInputs = scoresDiv.querySelectorAll('.game-row');
+                    gameInputs.forEach(row => {
+                        const s1 = row.querySelector('input[id^="score1_"]');
+                        const s2 = row.querySelector('input[id^="score2_"]');
+                        if (s1 && s2) {
+                            const v1 = parseInt(s1.value) || 0;
+                            const v2 = parseInt(s2.value) || 0;
+                            currentGames.push([v1, v2]);
+                        }
+                    });
+                    const firstToSelect = document.getElementById(`firstToSelect_${matchId}`);
+                    const firstToVal = firstToSelect ? parseInt(firstToSelect.value) : 1;
+                    tempScores[matchId] = {
+                        games: currentGames,
+                        firstTo: firstToVal
+                    };
+                });
+            });
+
+            const firstToSelect = document.getElementById(`firstToSelect_${matchId}`);
+            if (firstToSelect) {
+                const newSelect = firstToSelect.cloneNode(true);
+                firstToSelect.parentNode.replaceChild(newSelect, firstToSelect);
+                newSelect.addEventListener('change', function() {
+                    const currentGames = [];
+                    const gameInputs = scoresDiv.querySelectorAll('.game-row');
+                    gameInputs.forEach(row => {
+                        const s1 = row.querySelector('input[id^="score1_"]');
+                        const s2 = row.querySelector('input[id^="score2_"]');
+                        if (s1 && s2) {
+                            const v1 = parseInt(s1.value) || 0;
+                            const v2 = parseInt(s2.value) || 0;
+                            currentGames.push([v1, v2]);
+                        }
+                    });
+                    const firstToVal = parseInt(this.value);
+                    tempScores[matchId] = {
+                        games: currentGames,
+                        firstTo: firstToVal
+                    };
+                    updateGameInputs(matchId);
+                });
+            }
+
+            setTimeout(() => drawCurvyLines(), 400);
+        }
+
+        // ===== SAVE SCORES =====
+        async function saveScores(matchId, t1Name, t2Name) {
+            const games = [];
+            const inputs = document.querySelectorAll(`input[id^="score1_${matchId}_"]`);
+            if (inputs.length === 0) {
+                showToast('No scores to save.', true);
+                return;
+            }
+            inputs.forEach((el, idx) => {
+                const i = idx + 1;
+                const s1 = parseInt(document.getElementById(`score1_${matchId}_${i}`).value) || 0;
+                const s2 = parseInt(document.getElementById(`score2_${matchId}_${i}`).value) || 0;
+                games.push([s1, s2]);
+            });
+            let t1w = 0, t2w = 0;
+            games.forEach(([s1, s2]) => {
+                if (s1 > s2) t1w++;
+                else if (s2 > s1) t2w++;
+            });
+            let winner = null;
+            if (t1w > t2w) winner = t1Name;
+            else if (t2w > t1w) winner = t2Name;
+            else {
+                showToast('Tie – manual override required.', true);
+                await apiFetch('/api/set_score', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ match_id: matchId, games, best_of: 2 })
+                });
+                loadBracket();
+                return;
+            }
+
+            await apiFetch('/api/set_score', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ match_id: matchId, games, best_of: 2 })
+            });
+
+            const data = await apiFetch('/api/advance', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ match_id: matchId, winner })
+            });
+            if (!data) return;
+            if (data.success) {
+                delete tempScores[matchId];
+                showToast(`Winner: ${winner}`, false);
+                loadBracket();
+            } else {
+                showToast('Error: ' + data.message, true);
+            }
+        }
+
+        async function manualWinner(matchId, winnerName) {
+            if (!confirm(`Set "${winnerName}" as winner?`)) return;
+            const data = await apiFetch('/api/advance', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ match_id: matchId, winner: winnerName })
+            });
+            if (!data) return;
+            if (data.success) {
+                showToast(`Winner: ${winnerName}`, false);
+                loadBracket();
+            } else {
+                showToast('Error: ' + data.message, true);
+            }
+        }
+
+        // ===== CURVY LINES =====
         function drawCurvyLines() {
             const container = document.getElementById('bracketContainer');
             if (!container) return;
@@ -1492,7 +1171,7 @@ button.danger:hover { background: #d32f2f; }
             const cards = container.querySelectorAll('.match-card');
             const positions = {};
             cards.forEach(el => {
-                const id = parseInt(el.dataset.matchid);
+                const id = parseInt(el.dataset.matchId);
                 const r = el.getBoundingClientRect();
                 positions[id] = {
                     top: r.top - rect.top + (r.height / 2),
@@ -1513,9 +1192,9 @@ button.danger:hover { background: #d32f2f; }
                     const parent = next[parentIdx];
                     if (!child1 || !parent) continue;
 
-                    const c1Id = parseInt(child1.dataset.matchid);
-                    const c2Id = child2 !== child1 ? parseInt(child2.dataset.matchid) : null;
-                    const pId = parseInt(parent.dataset.matchid);
+                    const c1Id = parseInt(child1.dataset.matchId);
+                    const c2Id = child2 !== child1 ? parseInt(child2.dataset.matchId) : null;
+                    const pId = parseInt(parent.dataset.matchId);
 
                     const c1Pos = positions[c1Id];
                     const c2Pos = c2Id !== null ? positions[c2Id] : null;
@@ -1548,18 +1227,23 @@ button.danger:hover { background: #d32f2f; }
             });
         }
 
-        // ===== INIT =====
-        setTimeout(() => {
-            alignBracket();
-            drawCurvyLines();
-        }, 150);
+        // ===== HELPERS =====
+        function findMatch(matchId) {
+            if (!currentBracket) return null;
+            for (const round of currentBracket) {
+                for (const match of round) {
+                    if (match.id === matchId) return match;
+                }
+            }
+            return null;
+        }
 
         window.addEventListener('resize', () => {
-            setTimeout(() => {
-                alignBracket();
-                drawCurvyLines();
-            }, 200);
+            setTimeout(drawCurvyLines, 200);
         });
+
+        // ===== INIT =====
+        loadBracket();
     </script>
 </body>
 </html>
