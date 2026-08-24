@@ -685,6 +685,74 @@ button.danger:hover { background: #d32f2f; }
             color: var(--bye-color);
             font-style: italic;
         }
+        /* SVG lines */
+        .bracket-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: visible !important;
+        }
+        .bracket-svg path {
+            stroke: var(--primary);
+            stroke-width: 2.5;
+            fill: none;
+            opacity: 0.35;
+            stroke-linecap: round;
+        }
+        [data-theme="dark"] .bracket-svg path { opacity: 0.25; }
+        .bracket-svg path {
+            stroke-dasharray: 800;
+            stroke-dashoffset: 800;
+            animation: drawLine 1s ease forwards;
+        }
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        .bracket-svg {
+            transition: opacity 1s;
+        }
+        /* Tooltip */
+        .tooltip {
+            position: fixed;
+            background: var(--surface-solid);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2), 0 0 0 1px var(--glass-border);
+            z-index: 9998;
+            display: none;
+            min-width: 200px;
+            animation: fadeIn 0.2s ease;
+            color: var(--text);
+            pointer-events: none;
+            transition: left 0.05s, top 0.05s;
+        }
+        .tooltip.active { display: block; }
+        .tooltip .tooltip-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+        .tooltip .tooltip-game {
+            font-size: 0.85rem;
+            padding: 2px 0;
+            color: var(--text-light);
+        }
+        .tooltip .tooltip-game .score-highlight {
+            color: var(--text);
+            font-weight: 600;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -701,45 +769,40 @@ button.danger:hover { background: #d32f2f; }
                 <div class="match-card" data-matchid="0">
                     <div class="match has-winner">
                         <div class="teams">
-                            <span class="team">
+                            <span class="team winner">
                                 <strong>School A</strong>
                                 <span class="sub">Team A1</span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team winner">
+                            <span class="team">
                                 <strong>School I</strong>
                                 <span class="sub">Team I1</span>
                             </span>
                         </div>
-                        <div class="winner-badge">0 : 0</div>
+                        <div class="winner-badge">2 : 0</div>
                         
                         <div class="scores-inline" id="scores-0">
+                            <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 2 : 0</div>
+                            <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">2</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 2:</span><span class="score-highlight">2</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 3:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">0</span></div>
                             
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
                         </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="1">
-                    <div class="match has-winner">
+                    <div class="match ">
                         <div class="teams">
                             <span class="team">
                                 <strong>School A</strong>
                                 <span class="sub">Team A2</span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team winner">
-                                <strong>School M</strong>
-                                <span class="sub">Team M1</span>
+                            <span class="team">
+                                <strong>School N</strong>
+                                <span class="sub">Team N1</span>
                             </span>
                         </div>
-                        <div class="winner-badge">0 : 0</div>
                         
-                        <div class="scores-inline" id="scores-1">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="match-card" data-matchid="2">
@@ -752,16 +815,11 @@ button.danger:hover { background: #d32f2f; }
                             <span class="separator">vs</span>
                             <span class="team">
                                 <strong>School K</strong>
-                                <span class="sub">Team K1</span>
+                                <span class="sub">Team K2</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-2">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="3">
@@ -773,17 +831,12 @@ button.danger:hover { background: #d32f2f; }
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>School O</strong>
-                                <span class="sub">Team O1</span>
+                                <strong>School P</strong>
+                                <span class="sub">Team P1</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-3">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="4">
@@ -801,11 +854,6 @@ button.danger:hover { background: #d32f2f; }
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-4">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="5">
@@ -817,17 +865,12 @@ button.danger:hover { background: #d32f2f; }
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>School N</strong>
-                                <span class="sub">Team N1</span>
+                                <strong>School O</strong>
+                                <span class="sub">Team O1</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-5">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="6">
@@ -840,38 +883,28 @@ button.danger:hover { background: #d32f2f; }
                             <span class="separator">vs</span>
                             <span class="team">
                                 <strong>School L</strong>
-                                <span class="sub">Team L1</span>
+                                <span class="sub">Team L2</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-6">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="7">
-                    <div class="match ">
+                    <div class="match has-winner">
                         <div class="teams">
-                            <span class="team">
+                            <span class="team winner">
                                 <strong>School G</strong>
                                 <span class="sub">Team G2</span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School P</strong>
-                                <span class="sub">Team P1</span>
+                            <span class="team bye">
+                                <strong>—</strong>
+                                <span class="sub"></span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-7">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="8">
@@ -889,11 +922,6 @@ button.danger:hover { background: #d32f2f; }
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-8">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="9">
@@ -905,17 +933,12 @@ button.danger:hover { background: #d32f2f; }
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>School M</strong>
-                                <span class="sub">Team M2</span>
+                                <strong>School N</strong>
+                                <span class="sub">Team N2</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-9">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="10">
@@ -927,17 +950,12 @@ button.danger:hover { background: #d32f2f; }
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>School K</strong>
-                                <span class="sub">Team K2</span>
+                                <strong>School L</strong>
+                                <span class="sub">Team L1</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-10">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="11">
@@ -949,17 +967,12 @@ button.danger:hover { background: #d32f2f; }
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>School O</strong>
-                                <span class="sub">Team O2</span>
+                                <strong>School P</strong>
+                                <span class="sub">Team P2</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-11">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="12">
@@ -971,17 +984,12 @@ button.danger:hover { background: #d32f2f; }
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>School J</strong>
-                                <span class="sub">Team J2</span>
+                                <strong>School K</strong>
+                                <span class="sub">Team K1</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-12">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="13">
@@ -993,17 +1001,12 @@ button.danger:hover { background: #d32f2f; }
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>School N</strong>
-                                <span class="sub">Team N2</span>
+                                <strong>School O</strong>
+                                <span class="sub">Team O2</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-13">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="14">
@@ -1015,61 +1018,46 @@ button.danger:hover { background: #d32f2f; }
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>School L</strong>
-                                <span class="sub">Team L2</span>
-                            </span>
-                        </div>
-                        
-                        
-                        <div class="scores-inline" id="scores-14">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="match-card" data-matchid="15">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School H</strong>
-                                <span class="sub">Team H2</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
-                                <strong>School P</strong>
-                                <span class="sub">Team P2</span>
-                            </span>
-                        </div>
-                        
-                        
-                        <div class="scores-inline" id="scores-15">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
-                        </div>
-                    </div>
-                </div></div><div class="round-wrapper"><div class="round-title">Round of 16</div>
-                <div class="match-card" data-matchid="16">
-                    <div class="match ">
-                        <div class="teams">
-                            <span class="team">
-                                <strong>School I</strong>
-                                <span class="sub">Team I1</span>
-                            </span>
-                            <span class="separator">vs</span>
-                            <span class="team">
                                 <strong>School M</strong>
                                 <span class="sub">Team M1</span>
                             </span>
                         </div>
                         
                         
-                        <div class="scores-inline" id="scores-16">
-                            
-                            
-                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="15">
+                    <div class="match has-winner">
+                        <div class="teams">
+                            <span class="team winner">
+                                <strong>School H</strong>
+                                <span class="sub">Team H2</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team bye">
+                                <strong>—</strong>
+                                <span class="sub"></span>
+                            </span>
                         </div>
+                        
+                        
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Round of 16</div>
+                <div class="match-card" data-matchid="16">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School A</strong>
+                                <span class="sub">Team A1</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        
                     </div>
                 </div>
                 <div class="match-card" data-matchid="17">
@@ -1114,9 +1102,9 @@ button.danger:hover { background: #d32f2f; }
                                 <span class="sub"></span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
+                            <span class="team">
+                                <strong>School G</strong>
+                                <span class="sub">Team G2</span>
                             </span>
                         </div>
                         
@@ -1182,9 +1170,9 @@ button.danger:hover { background: #d32f2f; }
                                 <span class="sub"></span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team tbd">
-                                <strong>TBD</strong>
-                                <span class="sub"></span>
+                            <span class="team">
+                                <strong>School H</strong>
+                                <span class="sub">Team H2</span>
                             </span>
                         </div>
                         
@@ -1310,6 +1298,155 @@ button.danger:hover { background: #d32f2f; }
                         
                     </div>
                 </div></div>
+        <script>
+            let tooltipTimeout = null;
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.id = 'static-tooltip';
+            document.body.appendChild(tooltip);
+
+            function toggleTheme() {
+                const html = document.documentElement;
+                const current = html.getAttribute('data-theme');
+                const newTheme = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            }
+            const saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+
+            function toggleScores(matchId) {
+                const el = document.getElementById('scores-' + matchId);
+                if (el) {
+                    el.classList.toggle('active');
+                    setTimeout(drawCurvyLines, 300);
+                }
+            }
+
+            // Make match cards clickable to toggle scores (only if they have scores)
+            document.querySelectorAll('.match-card').forEach(card => {
+                const scoresEl = card.querySelector('.scores-inline');
+                if (scoresEl && scoresEl.innerHTML.trim() !== '') {
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', function(e) {
+                        // Don't toggle if clicking on something inside that might be interactive
+                        if (e.target.closest('input') || e.target.closest('button') || e.target.closest('select')) return;
+                        const matchId = this.dataset.matchid;
+                        if (matchId) toggleScores(parseInt(matchId));
+                    });
+                }
+            });
+
+            // ---- Tooltip ----
+            document.querySelectorAll('.match-card').forEach(card => {
+                const scoresEl = card.querySelector('.scores-inline');
+                if (!scoresEl || scoresEl.innerHTML.trim() === '') return; // no scores
+
+                card.addEventListener('mouseenter', function(e) {
+                    // Build tooltip content from scoresEl
+                    const title = this.querySelector('.teams').textContent.trim();
+                    const content = scoresEl.innerHTML;
+                    tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${content}`;
+                    tooltip.style.left = (e.clientX + 16) + 'px';
+                    tooltip.style.top = (e.clientY + 16) + 'px';
+                    tooltip.classList.add('active');
+                    clearTimeout(tooltipTimeout);
+                });
+                card.addEventListener('mousemove', function(e) {
+                    if (tooltip.classList.contains('active')) {
+                        tooltip.style.left = (e.clientX + 16) + 'px';
+                        tooltip.style.top = (e.clientY + 16) + 'px';
+                    }
+                });
+                card.addEventListener('mouseleave', function() {
+                    tooltipTimeout = setTimeout(() => {
+                        tooltip.classList.remove('active');
+                    }, 200);
+                });
+            });
+
+            // ---- Draw curvy lines (same algorithm as display) ----
+            function drawCurvyLines() {
+                const container = document.getElementById('bracketContainer');
+                if (!container) return;
+                document.querySelectorAll('.bracket-svg').forEach(el => el.remove());
+
+                const rect = container.getBoundingClientRect();
+                const contentWidth = container.scrollWidth;
+                const contentHeight = container.scrollHeight;
+
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('class', 'bracket-svg');
+                svg.style.width = contentWidth + 'px';
+                svg.style.height = contentHeight + 'px';
+                svg.style.opacity = '0';
+
+                const cards = container.querySelectorAll('.match-card');
+                const positions = {};
+                cards.forEach(el => {
+                    const id = parseInt(el.dataset.matchid);
+                    const r = el.getBoundingClientRect();
+                    positions[id] = {
+                        top: r.top - rect.top + (r.height / 2),
+                        left: r.left - rect.left + r.width - 2,
+                        right: r.left - rect.left + 2
+                    };
+                });
+
+                const rounds = container.querySelectorAll('.round-wrapper');
+                for (let i = 0; i < rounds.length - 1; i++) {
+                    const current = rounds[i].querySelectorAll('.match-card');
+                    const next = rounds[i+1].querySelectorAll('.match-card');
+                    for (let j = 0; j < current.length; j += 2) {
+                        const parentIdx = Math.floor(j / 2);
+                        if (parentIdx >= next.length) break;
+                        const child1 = current[j];
+                        const child2 = current[j+1] || current[j];
+                        const parent = next[parentIdx];
+                        if (!child1 || !parent) continue;
+
+                        const c1Id = parseInt(child1.dataset.matchid);
+                        const c2Id = child2 !== child1 ? parseInt(child2.dataset.matchid) : null;
+                        const pId = parseInt(parent.dataset.matchid);
+
+                        const c1Pos = positions[c1Id];
+                        const c2Pos = c2Id !== null ? positions[c2Id] : null;
+                        const pPos = positions[pId];
+                        if (!c1Pos || !pPos) continue;
+
+                        const midY = c2Pos ? (c1Pos.top + c2Pos.top) / 2 : c1Pos.top;
+                        const startX = c1Pos.left;
+                        const endX = pPos.right;
+                        const midX = (startX + endX) / 2;
+
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        const d = `M ${startX} ${c1Pos.top} Q ${midX} ${c1Pos.top}, ${midX} ${midY} Q ${midX} ${pPos.top}, ${endX} ${pPos.top}`;
+                        path.setAttribute('d', d);
+                        svg.appendChild(path);
+
+                        if (c2Pos) {
+                            const startX2 = c2Pos.left;
+                            const d2 = `M ${startX2} ${c2Pos.top} Q ${midX} ${c2Pos.top}, ${midX} ${midY}`;
+                            const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                            path2.setAttribute('d', d2);
+                            svg.appendChild(path2);
+                        }
+                    }
+                }
+
+                container.appendChild(svg);
+                requestAnimationFrame(() => {
+                    svg.style.opacity = '1';
+                });
+            }
+
+            // Wait for layout and draw lines
+            setTimeout(drawCurvyLines, 200);
+            window.addEventListener('resize', () => {
+                setTimeout(drawCurvyLines, 300);
+            });
+        </script>
+        
         </div>
         <div class="footer">Generated by Tourney Hall • test🌓Manage teams, generate23</div>
     </div>
