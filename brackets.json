@@ -9,6 +9,81 @@
                 "active": true
             },
             "team2": {
+                "name": "wda",
+                "school": "wadwadad",
+                "seed": false,
+                "active": true
+            },
+            "winner": {
+                "name": "ds",
+                "school": "awdawdad",
+                "seed": false,
+                "active": true
+            },
+            "parent_id": 4
+        },
+        {
+            "id": 1,
+            "team1": {
+                "name": "awdaw",
+                "school": "dawda",
+                "seed": false,
+                "active": true
+            },
+            "team2": "Bye",
+            "winner": {
+                "name": "awdaw",
+                "school": "dawda",
+                "seed": false,
+                "active": true
+            },
+            "parent_id": 4
+        },
+        {
+            "id": 2,
+            "team1": {
+                "name": "awd",
+                "school": "aweaffea",
+                "seed": false,
+                "active": true
+            },
+            "team2": "Bye",
+            "winner": {
+                "name": "awd",
+                "school": "aweaffea",
+                "seed": false,
+                "active": true
+            },
+            "parent_id": 5
+        },
+        {
+            "id": 3,
+            "team1": {
+                "name": "eaf",
+                "school": "eafefa",
+                "seed": false,
+                "active": true
+            },
+            "team2": "Bye",
+            "winner": {
+                "name": "eaf",
+                "school": "eafefa",
+                "seed": false,
+                "active": true
+            },
+            "parent_id": 5
+        }
+    ],
+    [
+        {
+            "id": 4,
+            "team1": {
+                "name": "ds",
+                "school": "awdawdad",
+                "seed": false,
+                "active": true
+            },
+            "team2": {
                 "name": "awdaw",
                 "school": "dawda",
                 "seed": false,
@@ -20,10 +95,12 @@
                 "seed": false,
                 "active": true
             },
-            "parent_id": 2
+            "left_child": 0,
+            "right_child": 1,
+            "parent_id": 6
         },
         {
-            "id": 1,
+            "id": 5,
             "team1": {
                 "name": "awd",
                 "school": "aweaffea",
@@ -36,23 +113,40 @@
                 "seed": false,
                 "active": true
             },
-            "winner": null,
-            "parent_id": 2
+            "winner": {
+                "name": "awd",
+                "school": "aweaffea",
+                "seed": false,
+                "active": true
+            },
+            "left_child": 2,
+            "right_child": 3,
+            "parent_id": 6
         }
     ],
     [
         {
-            "id": 2,
+            "id": 6,
             "team1": {
                 "name": "awdaw",
                 "school": "dawda",
                 "seed": false,
                 "active": true
             },
-            "team2": null,
-            "winner": null,
-            "left_child": 0,
-            "right_child": 1
+            "team2": {
+                "name": "awd",
+                "school": "aweaffea",
+                "seed": false,
+                "active": true
+            },
+            "winner": {
+                "name": "awd",
+                "school": "aweaffea",
+                "seed": false,
+                "active": true
+            },
+            "left_child": 4,
+            "right_child": 5
         }
     ]
 ]
