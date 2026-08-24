@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>saddsasda</title>
+    <title>sdad</title>
     <style>
         /* ===== THEMES ===== */
 html, body {
@@ -351,26 +351,26 @@ button.danger:hover { background: #d32f2f; }
 .match-card.has-winner {
     border-left-color: #4caf50;
 }
-/* --- Team formatting --- */
-.match-card .match .teams {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 6px;
-}
+/* --- Team formatting (School-first) --- */
 .match-card .match .team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: 1rem;
     text-align: center;
     padding: 4px 8px;
     border-radius: 8px;
     flex: 1;
 }
-.match-card .match .team .school {
-    font-size: 0.7rem;
+.match-card .match .team strong {
+    font-weight: 700;
+    font-size: 1rem;
+}
+.match-card .match .team .sub {
+    font-size: 0.75rem;
     color: var(--text-light);
-    display: block;
     font-weight: 400;
 }
 .match-card .match .team.bye {
@@ -381,11 +381,13 @@ button.danger:hover { background: #d32f2f; }
 .match-card .match .team.winner {
     background: #4caf50;
     color: #fff;
-    font-weight: 700;
     border-radius: 8px;
     padding: 4px 12px;
 }
-.match-card .match .team.winner .school {
+.match-card .match .team.winner strong {
+    color: #fff;
+}
+.match-card .match .team.winner .sub {
     color: #a5d6a7;
 }
 .match-card .match .separator {
@@ -489,7 +491,7 @@ button.danger:hover { background: #d32f2f; }
     transition: opacity 1s;
 }
 
-/* Tooltip */
+/* Tooltip (global) */
 .tooltip {
     position: fixed;
     background: var(--surface-solid);
@@ -503,6 +505,8 @@ button.danger:hover { background: #d32f2f; }
     min-width: 200px;
     animation: fadeIn 0.2s ease;
     color: var(--text);
+    pointer-events: none;
+    transition: left 0.05s, top 0.05s;
 }
 .tooltip.active { display: block; }
 .tooltip .tooltip-title {
@@ -560,59 +564,37 @@ button.danger:hover { background: #d32f2f; }
         :root { --primary: #1a73e8; }
         .match-card { cursor: default; }
         .match-card .match .team { cursor: default; }
-        /* --- Tooltip --- */
+        /* Tooltip – same as local */
         .tooltip {
             position: fixed;
             background: var(--surface-solid);
             backdrop-filter: var(--backdrop-blur);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 18px 22px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2), 0 0 0 1px var(--glass-border);
             z-index: 9998;
             display: none;
-            min-width: 220px;
-            max-width: 320px;
-            animation: fadeIn 0.25s ease;
+            min-width: 200px;
+            animation: fadeIn 0.2s ease;
             color: var(--text);
-            line-height: 1.5;
             pointer-events: none;
+            transition: left 0.05s, top 0.05s;
         }
         .tooltip.active { display: block; }
         .tooltip .tooltip-title {
-            font-weight: 700;
-            font-size: 1.05rem;
-            margin-bottom: 8px;
+            font-weight: 600;
+            margin-bottom: 6px;
             color: var(--primary);
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 6px;
         }
         .tooltip .tooltip-game {
-            font-size: 0.9rem;
-            padding: 4px 0;
+            font-size: 0.85rem;
+            padding: 2px 0;
             color: var(--text-light);
-            display: flex;
-            justify-content: space-between;
         }
         .tooltip .tooltip-game .score-highlight {
             color: var(--text);
             font-weight: 600;
-        }
-        .tooltip .tooltip-overall {
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px solid var(--border);
-            font-weight: 600;
-            color: var(--primary);
-            text-align: right;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.96) translateY(-4px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        /* Prevent scroll bars from expanding */
-        .bracket-svg {
-            overflow: visible !important;
         }
         .scores-inline {
             margin-top: 10px;
@@ -653,15 +635,26 @@ button.danger:hover { background: #d32f2f; }
             color: var(--text-light);
             font-size: 0.9rem;
         }
-        .match-card .match .team.tbd {
+        /* School-first layout */
+        .match-card .match .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+        .match-card .match .team strong {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .match-card .match .team .sub {
+            font-size: 0.75rem;
             color: var(--text-light);
-            font-style: italic;
+            font-weight: 400;
         }
-        .match-card .match .team.bye {
-            color: var(--bye-color);
-            font-style: italic;
+        .match-card .match .team.winner strong {
+            color: #fff;
         }
-        .match-card .match .team.winner .school {
+        .match-card .match .team.winner .sub {
             color: #a5d6a7;
         }
     </style>
@@ -669,7 +662,7 @@ button.danger:hover { background: #d32f2f; }
 <body>
     <div class="container" style="position:relative;">
         <div class="title-wrapper">
-            <h1>saddsasda</h1>
+            <h1>sdad</h1>
             <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
         </div>
         <div class="subhead" style="display:flex; gap:15px; align-items:center;">
@@ -681,13 +674,13 @@ button.danger:hover { background: #d32f2f; }
                     <div class="match has-winner">
                         <div class="teams">
                             <span class="team winner">
-                                ds
-                                <span class="school">awdawdad</span>
+                                <strong>awdawdad</strong>
+                                <span class="sub">ds</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                wda
-                                <span class="school">wadwadad</span>
+                                <strong>wadwadad</strong>
+                                <span class="sub">wda</span>
                             </span>
                         </div>
                         <div class="winner-badge">1 : 0</div>
@@ -702,13 +695,13 @@ button.danger:hover { background: #d32f2f; }
                     <div class="match has-winner">
                         <div class="teams">
                             <span class="team winner">
-                                awdaw
-                                <span class="school">dawda</span>
+                                <strong>dawda</strong>
+                                <span class="sub">awdaw</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team bye">
-                                —
-                                <span class="school"></span>
+                                <strong>—</strong>
+                                <span class="sub"></span>
                             </span>
                         </div>
                         
@@ -723,13 +716,13 @@ button.danger:hover { background: #d32f2f; }
                     <div class="match has-winner">
                         <div class="teams">
                             <span class="team winner">
-                                awd
-                                <span class="school">aweaffea</span>
+                                <strong>aweaffea</strong>
+                                <span class="sub">awd</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team bye">
-                                —
-                                <span class="school"></span>
+                                <strong>—</strong>
+                                <span class="sub"></span>
                             </span>
                         </div>
                         
@@ -744,13 +737,13 @@ button.danger:hover { background: #d32f2f; }
                     <div class="match has-winner">
                         <div class="teams">
                             <span class="team winner">
-                                eaf
-                                <span class="school">eafefa</span>
+                                <strong>eafefa</strong>
+                                <span class="sub">eaf</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team bye">
-                                —
-                                <span class="school"></span>
+                                <strong>—</strong>
+                                <span class="sub"></span>
                             </span>
                         </div>
                         
@@ -765,13 +758,13 @@ button.danger:hover { background: #d32f2f; }
                     <div class="match has-winner">
                         <div class="teams">
                             <span class="team">
-                                ds
-                                <span class="school">awdawdad</span>
+                                <strong>awdawdad</strong>
+                                <span class="sub">ds</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team winner">
-                                awdaw
-                                <span class="school">dawda</span>
+                                <strong>dawda</strong>
+                                <span class="sub">awdaw</span>
                             </span>
                         </div>
                         <div class="winner-badge">0 : 1</div>
@@ -786,13 +779,13 @@ button.danger:hover { background: #d32f2f; }
                     <div class="match has-winner">
                         <div class="teams">
                             <span class="team winner">
-                                awd
-                                <span class="school">aweaffea</span>
+                                <strong>aweaffea</strong>
+                                <span class="sub">awd</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                eaf
-                                <span class="school">eafefa</span>
+                                <strong>eafefa</strong>
+                                <span class="sub">eaf</span>
                             </span>
                         </div>
                         <div class="winner-badge">2 : 1</div>
@@ -807,13 +800,13 @@ button.danger:hover { background: #d32f2f; }
                     <div class="match has-winner">
                         <div class="teams">
                             <span class="team">
-                                awdaw
-                                <span class="school">dawda</span>
+                                <strong>dawda</strong>
+                                <span class="sub">awdaw</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team winner">
-                                awd
-                                <span class="school">aweaffea</span>
+                                <strong>aweaffea</strong>
+                                <span class="sub">awd</span>
                             </span>
                         </div>
                         <div class="winner-badge">0 : 1</div>
@@ -849,51 +842,37 @@ button.danger:hover { background: #d32f2f; }
                 }
             }
 
-            // Tooltip follow cursor
-            let currentCard = null;
+            // Tooltip – cursor following
             document.querySelectorAll('.match-card').forEach(card => {
                 card.addEventListener('mouseenter', function(e) {
-                    currentCard = this;
                     const scoresEl = this.querySelector('.scores-inline');
                     if (!scoresEl || !scoresEl.querySelector('.game-row')) {
                         tooltip.classList.remove('active');
                         return;
                     }
-                    const title = this.querySelector('.teams').textContent.trim();
+                    // Extract title from the teams (schools)
+                    const school1 = this.querySelector('.team strong')?.textContent || '';
+                    const school2 = this.querySelectorAll('.team strong')[1]?.textContent || '';
+                    const title = school1 + ' vs ' + school2;
                     const content = scoresEl.innerHTML;
                     tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${content}`;
-                    // Position initially
-                    updateTooltipPosition(e);
+                    tooltip.style.left = (e.clientX + 16) + 'px';
+                    tooltip.style.top = (e.clientY + 16) + 'px';
                     tooltip.classList.add('active');
                     clearTimeout(tooltipTimeout);
                 });
+                card.addEventListener('mousemove', function(e) {
+                    if (tooltip.classList.contains('active')) {
+                        tooltip.style.left = (e.clientX + 16) + 'px';
+                        tooltip.style.top = (e.clientY + 16) + 'px';
+                    }
+                });
                 card.addEventListener('mouseleave', function() {
-                    currentCard = null;
                     tooltipTimeout = setTimeout(() => {
                         tooltip.classList.remove('active');
                     }, 200);
                 });
-                // Update position on mouse move
-                card.addEventListener('mousemove', function(e) {
-                    if (tooltip.classList.contains('active')) {
-                        updateTooltipPosition(e);
-                    }
-                });
             });
-
-            function updateTooltipPosition(e) {
-                let x = e.clientX + 16;
-                let y = e.clientY + 16;
-                const rect = tooltip.getBoundingClientRect();
-                // Adjust if tooltip would go off screen
-                if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 16;
-                if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 16;
-                // Ensure at least 0
-                x = Math.max(0, x);
-                y = Math.max(0, y);
-                tooltip.style.left = x + 'px';
-                tooltip.style.top = y + 'px';
-            }
 
             function drawCurvyLines() {
                 document.querySelectorAll('.bracket-svg').forEach(el => el.remove());
@@ -904,8 +883,6 @@ button.danger:hover { background: #d32f2f; }
                 svg.setAttribute('class', 'bracket-svg');
                 svg.style.width = rect.width + 'px';
                 svg.style.height = rect.height + 'px';
-                // Ensure SVG doesn't cause scroll
-                svg.style.overflow = 'visible';
 
                 const cards = container.querySelectorAll('.match-card');
                 const positions = {};
@@ -962,7 +939,7 @@ button.danger:hover { background: #d32f2f; }
         </script>
         
         </div>
-        <div class="footer">Generated by Tourney Hall • saddsasda</div>
+        <div class="footer">Generated by Tourney Hall • sdad</div>
     </div>
 </body>
 </html>
