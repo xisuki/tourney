@@ -1,31 +1,193 @@
 [
     {
-        "name": "ds",
-        "school": "awdawdad",
+        "name": "Team A1",
+        "school": "School A",
+        "seed": true,
+        "active": true
+    },
+    {
+        "name": "Team A2",
+        "school": "School A",
         "seed": false,
         "active": true
     },
     {
-        "name": "eaf",
-        "school": "eafefa",
+        "name": "Team B1",
+        "school": "School B",
+        "seed": true,
+        "active": true
+    },
+    {
+        "name": "Team B2",
+        "school": "School B",
         "seed": false,
         "active": true
     },
     {
-        "name": "awd",
-        "school": "aweaffea",
+        "name": "Team C1",
+        "school": "School C",
+        "seed": true,
+        "active": true
+    },
+    {
+        "name": "Team C2",
+        "school": "School C",
         "seed": false,
         "active": true
     },
     {
-        "name": "awdaw",
-        "school": "dawda",
+        "name": "Team D1",
+        "school": "School D",
+        "seed": true,
+        "active": true
+    },
+    {
+        "name": "Team D2",
+        "school": "School D",
         "seed": false,
         "active": true
     },
     {
-        "name": "wda",
-        "school": "wadwadad",
+        "name": "Team E1",
+        "school": "School E",
+        "seed": true,
+        "active": true
+    },
+    {
+        "name": "Team E2",
+        "school": "School E",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team F1",
+        "school": "School F",
+        "seed": true,
+        "active": true
+    },
+    {
+        "name": "Team F2",
+        "school": "School F",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team G1",
+        "school": "School G",
+        "seed": true,
+        "active": true
+    },
+    {
+        "name": "Team G2",
+        "school": "School G",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team H1",
+        "school": "School H",
+        "seed": true,
+        "active": true
+    },
+    {
+        "name": "Team H2",
+        "school": "School H",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team I1",
+        "school": "School I",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team I2",
+        "school": "School I",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team J1",
+        "school": "School J",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team J2",
+        "school": "School J",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team K1",
+        "school": "School K",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team K2",
+        "school": "School K",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team L1",
+        "school": "School L",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team L2",
+        "school": "School L",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team M1",
+        "school": "School M",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team M2",
+        "school": "School M",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team N1",
+        "school": "School N",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team N2",
+        "school": "School N",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team O1",
+        "school": "School O",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team O2",
+        "school": "School O",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team P1",
+        "school": "School P",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "Team P2",
+        "school": "School P",
         "seed": false,
         "active": true
     }
