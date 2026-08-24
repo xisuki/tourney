@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>oisjeadawda</title>
+    <title>awdwadwadwadwadadasds</title>
     <style>
         /* ===== THEMES ===== */
 html, body {
@@ -247,22 +247,19 @@ button.danger:hover { background: #d32f2f; }
 }
 #toast-container {
     position: fixed !important;
-    top: 20px !important;
-    right: 20px !important;
-    z-index: 999999 !important;
-    max-width: 420px;
+    top: 24px !important;
+    right: 24px !important;
+    z-index: 9999 !important;
+    max-width: 440px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    pointer-events: none; /* allow clicks to pass through container but not toasts */
 }
-
-#toast-container .toast {
-    pointer-events: auto; /* allow clicking on toast elements */
+.toast {
     background: var(--surface-solid);
     padding: 14px 20px;
     border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow);
     border-left: 6px solid var(--primary);
     animation: slideIn 0.3s ease;
     display: flex;
@@ -272,6 +269,24 @@ button.danger:hover { background: #d32f2f; }
     color: var(--text);
     border: 1px solid var(--glass-border);
     backdrop-filter: var(--backdrop-blur);
+}
+.toast.error { border-left-color: #f44336; }
+.toast.success { border-left-color: #4caf50; }
+.toast .toast-close {
+    cursor: pointer;
+    margin-left: auto;
+    font-weight: bold;
+    color: var(--text-light);
+    font-size: 1.2rem;
+}
+.toast .toast-close:hover { color: var(--text); }
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
 }
 
 /* ===== BRACKET VIEW ===== */
@@ -622,20 +637,20 @@ button.danger:hover { background: #d32f2f; }
 <body>
     <div class="container" style="position:relative;">
         <div class="title-wrapper">
-            <h1>oisjeadawda</h1>
+            <h1>awdwadwadwadwadadasds</h1>
             <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
         </div>
         <div class="subhead" style="display:flex; gap:15px; align-items:center;">
             <span>Tournament Bracket – Live View</span>
         </div>
         <div id="bracketContainer" class="bracket-view">
-<div class="round-wrapper"><div class="round-title">Semi‑finals</div>
+<div class="round-wrapper"><div class="round-title">Quarter‑finals</div>
                 <div class="match-card" data-matchid="0" onclick="toggleScores(0)">
                     <div class="match ">
                         <div class="teams">
                             <span class="team">
-                                re
-                                <span class="school">e</span>
+                                ds
+                                <span class="school">das</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
@@ -671,8 +686,50 @@ button.danger:hover { background: #d32f2f; }
                             <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
                         </div>
                     </div>
-                </div></div><div class="round-wrapper"><div class="round-title">Final</div>
+                </div>
                 <div class="match-card" data-matchid="2" onclick="toggleScores(2)">
+                    <div class="match has-winner">
+                        <div class="teams">
+                            <span class="team winner">
+                                re
+                                <span class="school">e</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        <div class="winner-badge">0 : 0</div>
+                        <div class="scores-inline" id="scores-2">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="3" onclick="toggleScores(3)">
+                    <div class="match has-winner">
+                        <div class="teams">
+                            <span class="team winner">
+                                d
+                                <span class="school">fd</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        <div class="winner-badge">0 : 0</div>
+                        <div class="scores-inline" id="scores-3">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Semi‑finals</div>
+                <div class="match-card" data-matchid="4" onclick="toggleScores(4)">
                     <div class="match ">
                         <div class="teams">
                             <span class="team tbd">
@@ -686,7 +743,49 @@ button.danger:hover { background: #d32f2f; }
                             </span>
                         </div>
                         
-                        <div class="scores-inline" id="scores-2">
+                        <div class="scores-inline" id="scores-4">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="5" onclick="toggleScores(5)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                re
+                                <span class="school">e</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                d
+                                <span class="school">fd</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-5">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Final</div>
+                <div class="match-card" data-matchid="6" onclick="toggleScores(6)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                TBD
+                                <span class="school"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                TBD
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-6">
                             
                             
                             <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
@@ -803,7 +902,7 @@ button.danger:hover { background: #d32f2f; }
         </script>
         
         </div>
-        <div class="footer">Generated by Tourney Hall • oisjeadawda</div>
+        <div class="footer">Generated by Tourney Hall • awdwadwadwadwadadasds</div>
     </div>
 </body>
 </html>
