@@ -550,6 +550,20 @@ button.danger:hover { background: #d32f2f; }
 .btn-group:last-child {
     margin-bottom: 0;
 }
+#toast-container {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 99999 !important;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none; /* allows clicks to pass through, but we want interaction? */
+}
+.toast {
+    pointer-events: auto; /* re-enable clicks on the toast itself */
+}
         :root { --primary: #1a73e8; }
         .match-card { cursor: default; }
         .match-card .match .team { cursor: default; }
@@ -649,13 +663,13 @@ button.danger:hover { background: #d32f2f; }
                     <div class="match ">
                         <div class="teams">
                             <span class="team">
-                                ds
-                                <span class="school">das</span>
+                                adsads
+                                <span class="school">dasdsa</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                dwa
-                                <span class="school">wad</span>
+                                ef
+                                <span class="school">ef</span>
                             </span>
                         </div>
                         
@@ -667,19 +681,19 @@ button.danger:hover { background: #d32f2f; }
                     </div>
                 </div>
                 <div class="match-card" data-matchid="1" onclick="toggleScores(1)">
-                    <div class="match has-winner">
+                    <div class="match ">
                         <div class="teams">
-                            <span class="team winner">
-                                ef
-                                <span class="school">ef</span>
+                            <span class="team">
+                                ds
+                                <span class="school">das</span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team bye">
-                                —
-                                <span class="school"></span>
+                            <span class="team">
+                                dwa
+                                <span class="school">wad</span>
                             </span>
                         </div>
-                        <div class="winner-badge">0 : 0</div>
+                        
                         <div class="scores-inline" id="scores-1">
                             
                             
@@ -688,19 +702,19 @@ button.danger:hover { background: #d32f2f; }
                     </div>
                 </div>
                 <div class="match-card" data-matchid="2" onclick="toggleScores(2)">
-                    <div class="match has-winner">
+                    <div class="match ">
                         <div class="teams">
-                            <span class="team winner">
-                                re
-                                <span class="school">e</span>
+                            <span class="team">
+                                asdwdas
+                                <span class="school">dsasad</span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team bye">
-                                —
-                                <span class="school"></span>
+                            <span class="team">
+                                d
+                                <span class="school">fd</span>
                             </span>
                         </div>
-                        <div class="winner-badge">0 : 0</div>
+                        
                         <div class="scores-inline" id="scores-2">
                             
                             
@@ -712,8 +726,8 @@ button.danger:hover { background: #d32f2f; }
                     <div class="match has-winner">
                         <div class="teams">
                             <span class="team winner">
-                                d
-                                <span class="school">fd</span>
+                                re
+                                <span class="school">e</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team bye">
@@ -737,9 +751,9 @@ button.danger:hover { background: #d32f2f; }
                                 <span class="school"></span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team">
-                                ef
-                                <span class="school">ef</span>
+                            <span class="team tbd">
+                                TBD
+                                <span class="school"></span>
                             </span>
                         </div>
                         
@@ -753,14 +767,14 @@ button.danger:hover { background: #d32f2f; }
                 <div class="match-card" data-matchid="5" onclick="toggleScores(5)">
                     <div class="match ">
                         <div class="teams">
-                            <span class="team">
-                                re
-                                <span class="school">e</span>
+                            <span class="team tbd">
+                                TBD
+                                <span class="school"></span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                d
-                                <span class="school">fd</span>
+                                re
+                                <span class="school">e</span>
                             </span>
                         </div>
                         
