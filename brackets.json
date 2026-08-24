@@ -3,150 +3,416 @@
         {
             "id": 0,
             "team1": {
-                "name": "ds",
-                "school": "awdawdad",
-                "seed": false,
+                "name": "Team A1",
+                "school": "School A",
+                "seed": true,
                 "active": true
             },
             "team2": {
-                "name": "wda",
-                "school": "wadwadad",
+                "name": "Team I1",
+                "school": "School I",
                 "seed": false,
                 "active": true
             },
-            "winner": {
-                "name": "ds",
-                "school": "awdawdad",
-                "seed": false,
-                "active": true
-            },
-            "parent_id": 4
+            "winner": null,
+            "parent_id": 16
         },
         {
             "id": 1,
             "team1": {
-                "name": "awdaw",
-                "school": "dawda",
+                "name": "Team A2",
+                "school": "School A",
                 "seed": false,
                 "active": true
             },
-            "team2": "Bye",
-            "winner": {
-                "name": "awdaw",
-                "school": "dawda",
+            "team2": {
+                "name": "Team M1",
+                "school": "School M",
                 "seed": false,
                 "active": true
             },
-            "parent_id": 4
+            "winner": null,
+            "parent_id": 16
         },
         {
             "id": 2,
             "team1": {
-                "name": "awd",
-                "school": "aweaffea",
+                "name": "Team E1",
+                "school": "School E",
+                "seed": true,
+                "active": true
+            },
+            "team2": {
+                "name": "Team K1",
+                "school": "School K",
                 "seed": false,
                 "active": true
             },
-            "team2": "Bye",
-            "winner": {
-                "name": "awd",
-                "school": "aweaffea",
-                "seed": false,
-                "active": true
-            },
-            "parent_id": 5
+            "winner": null,
+            "parent_id": 17
         },
         {
             "id": 3,
             "team1": {
-                "name": "eaf",
-                "school": "eafefa",
-                "seed": false,
-                "active": true
-            },
-            "team2": "Bye",
-            "winner": {
-                "name": "eaf",
-                "school": "eafefa",
-                "seed": false,
-                "active": true
-            },
-            "parent_id": 5
-        }
-    ],
-    [
-        {
-            "id": 4,
-            "team1": {
-                "name": "ds",
-                "school": "awdawdad",
+                "name": "Team E2",
+                "school": "School E",
                 "seed": false,
                 "active": true
             },
             "team2": {
-                "name": "awdaw",
-                "school": "dawda",
+                "name": "Team O1",
+                "school": "School O",
                 "seed": false,
                 "active": true
             },
-            "winner": {
-                "name": "awdaw",
-                "school": "dawda",
+            "winner": null,
+            "parent_id": 17
+        },
+        {
+            "id": 4,
+            "team1": {
+                "name": "Team C1",
+                "school": "School C",
+                "seed": true,
+                "active": true
+            },
+            "team2": {
+                "name": "Team J1",
+                "school": "School J",
                 "seed": false,
                 "active": true
             },
-            "left_child": 0,
-            "right_child": 1,
-            "parent_id": 6
+            "winner": null,
+            "parent_id": 18
         },
         {
             "id": 5,
             "team1": {
-                "name": "awd",
-                "school": "aweaffea",
+                "name": "Team C2",
+                "school": "School C",
                 "seed": false,
                 "active": true
             },
             "team2": {
-                "name": "eaf",
-                "school": "eafefa",
+                "name": "Team N1",
+                "school": "School N",
                 "seed": false,
                 "active": true
             },
-            "winner": {
-                "name": "awd",
-                "school": "aweaffea",
+            "winner": null,
+            "parent_id": 18
+        },
+        {
+            "id": 6,
+            "team1": {
+                "name": "Team G1",
+                "school": "School G",
+                "seed": true,
+                "active": true
+            },
+            "team2": {
+                "name": "Team L1",
+                "school": "School L",
                 "seed": false,
                 "active": true
             },
-            "left_child": 2,
-            "right_child": 3,
-            "parent_id": 6
+            "winner": null,
+            "parent_id": 19
+        },
+        {
+            "id": 7,
+            "team1": {
+                "name": "Team G2",
+                "school": "School G",
+                "seed": false,
+                "active": true
+            },
+            "team2": {
+                "name": "Team P1",
+                "school": "School P",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 19
+        },
+        {
+            "id": 8,
+            "team1": {
+                "name": "Team B1",
+                "school": "School B",
+                "seed": true,
+                "active": true
+            },
+            "team2": {
+                "name": "Team I2",
+                "school": "School I",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 20
+        },
+        {
+            "id": 9,
+            "team1": {
+                "name": "Team B2",
+                "school": "School B",
+                "seed": false,
+                "active": true
+            },
+            "team2": {
+                "name": "Team M2",
+                "school": "School M",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 20
+        },
+        {
+            "id": 10,
+            "team1": {
+                "name": "Team F1",
+                "school": "School F",
+                "seed": true,
+                "active": true
+            },
+            "team2": {
+                "name": "Team K2",
+                "school": "School K",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 21
+        },
+        {
+            "id": 11,
+            "team1": {
+                "name": "Team F2",
+                "school": "School F",
+                "seed": false,
+                "active": true
+            },
+            "team2": {
+                "name": "Team O2",
+                "school": "School O",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 21
+        },
+        {
+            "id": 12,
+            "team1": {
+                "name": "Team D1",
+                "school": "School D",
+                "seed": true,
+                "active": true
+            },
+            "team2": {
+                "name": "Team J2",
+                "school": "School J",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 22
+        },
+        {
+            "id": 13,
+            "team1": {
+                "name": "Team D2",
+                "school": "School D",
+                "seed": false,
+                "active": true
+            },
+            "team2": {
+                "name": "Team N2",
+                "school": "School N",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 22
+        },
+        {
+            "id": 14,
+            "team1": {
+                "name": "Team H1",
+                "school": "School H",
+                "seed": true,
+                "active": true
+            },
+            "team2": {
+                "name": "Team L2",
+                "school": "School L",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 23
+        },
+        {
+            "id": 15,
+            "team1": {
+                "name": "Team H2",
+                "school": "School H",
+                "seed": false,
+                "active": true
+            },
+            "team2": {
+                "name": "Team P2",
+                "school": "School P",
+                "seed": false,
+                "active": true
+            },
+            "winner": null,
+            "parent_id": 23
         }
     ],
     [
         {
-            "id": 6,
-            "team1": {
-                "name": "awdaw",
-                "school": "dawda",
-                "seed": false,
-                "active": true
-            },
-            "team2": {
-                "name": "awd",
-                "school": "aweaffea",
-                "seed": false,
-                "active": true
-            },
-            "winner": {
-                "name": "awd",
-                "school": "aweaffea",
-                "seed": false,
-                "active": true
-            },
+            "id": 16,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 0,
+            "right_child": 1,
+            "parent_id": 24
+        },
+        {
+            "id": 17,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 2,
+            "right_child": 3,
+            "parent_id": 24
+        },
+        {
+            "id": 18,
+            "team1": null,
+            "team2": null,
+            "winner": null,
             "left_child": 4,
-            "right_child": 5
+            "right_child": 5,
+            "parent_id": 25
+        },
+        {
+            "id": 19,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 6,
+            "right_child": 7,
+            "parent_id": 25
+        },
+        {
+            "id": 20,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 8,
+            "right_child": 9,
+            "parent_id": 26
+        },
+        {
+            "id": 21,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 10,
+            "right_child": 11,
+            "parent_id": 26
+        },
+        {
+            "id": 22,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 12,
+            "right_child": 13,
+            "parent_id": 27
+        },
+        {
+            "id": 23,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 14,
+            "right_child": 15,
+            "parent_id": 27
+        }
+    ],
+    [
+        {
+            "id": 24,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 16,
+            "right_child": 17,
+            "parent_id": 28
+        },
+        {
+            "id": 25,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 18,
+            "right_child": 19,
+            "parent_id": 28
+        },
+        {
+            "id": 26,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 20,
+            "right_child": 21,
+            "parent_id": 29
+        },
+        {
+            "id": 27,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 22,
+            "right_child": 23,
+            "parent_id": 29
+        }
+    ],
+    [
+        {
+            "id": 28,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 24,
+            "right_child": 25,
+            "parent_id": 30
+        },
+        {
+            "id": 29,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 26,
+            "right_child": 27,
+            "parent_id": 30
+        }
+    ],
+    [
+        {
+            "id": 30,
+            "team1": null,
+            "team2": null,
+            "winner": null,
+            "left_child": 28,
+            "right_child": 29
         }
     ]
 ]
