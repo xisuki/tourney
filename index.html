@@ -247,19 +247,22 @@ button.danger:hover { background: #d32f2f; }
 }
 #toast-container {
     position: fixed !important;
-    top: 24px !important;
-    right: 24px !important;
-    z-index: 9999 !important;
-    max-width: 440px;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 999999 !important;
+    max-width: 420px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    pointer-events: none; /* allow clicks to pass through container but not toasts */
 }
-.toast {
+
+#toast-container .toast {
+    pointer-events: auto; /* allow clicking on toast elements */
     background: var(--surface-solid);
     padding: 14px 20px;
     border-radius: 12px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     border-left: 6px solid var(--primary);
     animation: slideIn 0.3s ease;
     display: flex;
@@ -269,24 +272,6 @@ button.danger:hover { background: #d32f2f; }
     color: var(--text);
     border: 1px solid var(--glass-border);
     backdrop-filter: var(--backdrop-blur);
-}
-.toast.error { border-left-color: #f44336; }
-.toast.success { border-left-color: #4caf50; }
-.toast .toast-close {
-    cursor: pointer;
-    margin-left: auto;
-    font-weight: bold;
-    color: var(--text-light);
-    font-size: 1.2rem;
-}
-.toast .toast-close:hover { color: var(--text); }
-@keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-@keyframes slideOut {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
 }
 
 /* ===== BRACKET VIEW ===== */
@@ -644,7 +629,179 @@ button.danger:hover { background: #d32f2f; }
             <span>Tournament Bracket – Live View</span>
         </div>
         <div id="bracketContainer" class="bracket-view">
-<div class="no-bracket">No bracket has been generated yet.</div>
+<div class="round-wrapper"><div class="round-title">Semi‑finals</div>
+                <div class="match-card" data-matchid="0" onclick="toggleScores(0)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                re
+                                <span class="school">e</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                dwa
+                                <span class="school">wad</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-0">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="1" onclick="toggleScores(1)">
+                    <div class="match has-winner">
+                        <div class="teams">
+                            <span class="team winner">
+                                ef
+                                <span class="school">ef</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team bye">
+                                —
+                                <span class="school"></span>
+                            </span>
+                        </div>
+                        <div class="winner-badge">0 : 0</div>
+                        <div class="scores-inline" id="scores-1">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Final</div>
+                <div class="match-card" data-matchid="2" onclick="toggleScores(2)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                TBD
+                                <span class="school"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                ef
+                                <span class="school">ef</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-2">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div>
+        <script>
+            let tooltipTimeout = null;
+            // Create a single persistent tooltip
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.id = 'static-tooltip';
+            document.body.appendChild(tooltip);
+
+            function toggleTheme() {
+                const html = document.documentElement;
+                const current = html.getAttribute('data-theme');
+                const newTheme = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            }
+            const saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+
+            function toggleScores(matchId) {
+                const el = document.getElementById('scores-' + matchId);
+                if (el) {
+                    el.classList.toggle('active');
+                    setTimeout(drawCurvyLines, 300);
+                }
+            }
+
+            document.querySelectorAll('.match-card').forEach(card => {
+                card.addEventListener('mouseenter', function(e) {
+                    const scoresEl = this.querySelector('.scores-inline');
+                    if (!scoresEl || !scoresEl.querySelector('.game-row')) {
+                        tooltip.classList.remove('active');
+                        return;
+                    }
+                    const title = this.querySelector('.teams').textContent.trim();
+                    // Update content and position
+                    tooltip.innerHTML = `<div class="tooltip-title">${title}</div>${scoresEl.innerHTML}`;
+                    tooltip.style.left = (e.clientX + 15) + 'px';
+                    tooltip.style.top = (e.clientY + 15) + 'px';
+                    tooltip.classList.add('active');
+                    clearTimeout(tooltipTimeout);
+                });
+                card.addEventListener('mouseleave', function() {
+                    tooltipTimeout = setTimeout(() => {
+                        tooltip.classList.remove('active');
+                    }, 200);
+                });
+            });
+
+            function drawCurvyLines() {
+                document.querySelectorAll('.bracket-svg').forEach(el => el.remove());
+                const container = document.getElementById('bracketContainer');
+                if (!container) return;
+                const rect = container.getBoundingClientRect();
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('class', 'bracket-svg');
+                svg.style.width = rect.width + 'px';
+                svg.style.height = rect.height + 'px';
+                const cards = container.querySelectorAll('.match-card');
+                const positions = {};
+                cards.forEach(el => {
+                    const id = parseInt(el.dataset.matchid);
+                    const r = el.getBoundingClientRect();
+                    positions[id] = {
+                        top: r.top - rect.top + (r.height / 2),
+                        left: r.left - rect.left + r.width,
+                    };
+                });
+                const rounds = container.querySelectorAll('.round-wrapper');
+                for (let i = 0; i < rounds.length - 1; i++) {
+                    const current = rounds[i].querySelectorAll('.match-card');
+                    const next = rounds[i+1].querySelectorAll('.match-card');
+                    for (let j = 0; j < current.length; j += 2) {
+                        const parentIdx = Math.floor(j / 2);
+                        if (parentIdx >= next.length) break;
+                        const child = current[j];
+                        const child2 = current[j+1] || current[j];
+                        const parent = next[parentIdx];
+                        if (!child || !parent) continue;
+                        const cId = parseInt(child.dataset.matchid);
+                        const pId = parseInt(parent.dataset.matchid);
+                        const cPos = positions[cId];
+                        const pPos = positions[pId];
+                        if (!cPos || !pPos) continue;
+                        const midX = (cPos.left + pPos.left) / 2;
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        const d = `M ${cPos.left} ${cPos.top} Q ${midX} ${cPos.top}, ${midX} ${(cPos.top + pPos.top)/2} Q ${midX} ${pPos.top}, ${pPos.left} ${pPos.top}`;
+                        path.setAttribute('d', d);
+                        svg.appendChild(path);
+                        if (child2 && child2 !== child) {
+                            const c2Id = parseInt(child2.dataset.matchid);
+                            const c2Pos = positions[c2Id];
+                            if (c2Pos) {
+                                const d2 = `M ${c2Pos.left} ${c2Pos.top} Q ${midX} ${c2Pos.top}, ${midX} ${(c2Pos.top + pPos.top)/2} Q ${midX} ${pPos.top}, ${pPos.left} ${pPos.top}`;
+                                const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                                path2.setAttribute('d', d2);
+                                svg.appendChild(path2);
+                            }
+                        }
+                    }
+                }
+                container.appendChild(svg);
+            }
+
+            setTimeout(drawCurvyLines, 200);
+            window.addEventListener('resize', () => {
+                setTimeout(drawCurvyLines, 300);
+            });
+        </script>
+        
         </div>
         <div class="footer">Generated by Tourney Hall • oisjeadawda</div>
     </div>
