@@ -22,5 +22,11 @@
         "school": "dawda",
         "seed": false,
         "active": true
+    },
+    {
+        "name": "wda",
+        "school": "wadwadad",
+        "seed": false,
+        "active": true
     }
 ]
