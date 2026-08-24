@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test1</title>
+    <title>test2</title>
     <style>
         /* ===== THEMES ===== */
 html, body {
@@ -301,7 +301,7 @@ button.danger:hover { background: #d32f2f; }
     flex-direction: row;
     justify-content: center;
     overflow-x: auto;
-    padding: 20px 0 10px 0;
+    padding: 20px 20px 10px 20px; /* left padding */
     gap: 30px;
 }
 .round-wrapper {
@@ -535,6 +535,9 @@ button.danger:hover { background: #d32f2f; }
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
 }
+.tooltip-game .game-label {
+    margin-right: 2px;
+}
 .no-bracket {
     text-align: center;
     padding: 40px 20px;
@@ -689,46 +692,46 @@ button.danger:hover { background: #d32f2f; }
 <body>
     <div class="container" style="position:relative;">
         <div class="title-wrapper">
-            <h1>test1</h1>
+            <h1>test2</h1>
             <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
         </div>
         <div class="subhead" style="display:flex; gap:15px; align-items:center;">
             <span>Tournament Bracket – Live View</span>
         </div>
         <div id="bracketContainer" class="bracket-view">
-<div class="round-wrapper"><div class="round-title">Quarter‑finals</div>
+<div class="round-wrapper"><div class="round-title">Round of 32</div>
                 <div class="match-card" data-matchid="0" onclick="toggleScores(0)">
-                    <div class="match has-winner">
+                    <div class="match ">
                         <div class="teams">
-                            <span class="team winner">
-                                <strong>awdawdad</strong>
-                                <span class="sub">ds</span>
+                            <span class="team">
+                                <strong>School A</strong>
+                                <span class="sub">Team A1</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>wadwadad</strong>
-                                <span class="sub">wda</span>
+                                <strong>School I</strong>
+                                <span class="sub">Team I1</span>
                             </span>
                         </div>
-                        <div class="winner-badge">1 : 0</div>
+                        
                         <div class="scores-inline" id="scores-0">
-                            <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 1 : 0</div>
-                            <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">1</span><span class="sep"> : </span><span class="score-highlight">0</span></div>
                             
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
                         </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="1" onclick="toggleScores(1)">
-                    <div class="match has-winner">
+                    <div class="match ">
                         <div class="teams">
-                            <span class="team winner">
-                                <strong>dawda</strong>
-                                <span class="sub">awdaw</span>
+                            <span class="team">
+                                <strong>School A</strong>
+                                <span class="sub">Team A2</span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team bye">
-                                <strong>—</strong>
-                                <span class="sub"></span>
+                            <span class="team">
+                                <strong>School M</strong>
+                                <span class="sub">Team M1</span>
                             </span>
                         </div>
                         
@@ -740,16 +743,16 @@ button.danger:hover { background: #d32f2f; }
                     </div>
                 </div>
                 <div class="match-card" data-matchid="2" onclick="toggleScores(2)">
-                    <div class="match has-winner">
+                    <div class="match ">
                         <div class="teams">
-                            <span class="team winner">
-                                <strong>aweaffea</strong>
-                                <span class="sub">awd</span>
+                            <span class="team">
+                                <strong>School E</strong>
+                                <span class="sub">Team E1</span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team bye">
-                                <strong>—</strong>
-                                <span class="sub"></span>
+                            <span class="team">
+                                <strong>School K</strong>
+                                <span class="sub">Team K1</span>
                             </span>
                         </div>
                         
@@ -761,16 +764,16 @@ button.danger:hover { background: #d32f2f; }
                     </div>
                 </div>
                 <div class="match-card" data-matchid="3" onclick="toggleScores(3)">
-                    <div class="match has-winner">
+                    <div class="match ">
                         <div class="teams">
-                            <span class="team winner">
-                                <strong>eafefa</strong>
-                                <span class="sub">eaf</span>
+                            <span class="team">
+                                <strong>School E</strong>
+                                <span class="sub">Team E2</span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team bye">
-                                <strong>—</strong>
-                                <span class="sub"></span>
+                            <span class="team">
+                                <strong>School O</strong>
+                                <span class="sub">Team O1</span>
                             </span>
                         </div>
                         
@@ -780,67 +783,571 @@ button.danger:hover { background: #d32f2f; }
                             <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
                         </div>
                     </div>
-                </div></div><div class="round-wrapper"><div class="round-title">Semi‑finals</div>
+                </div>
                 <div class="match-card" data-matchid="4" onclick="toggleScores(4)">
-                    <div class="match has-winner">
+                    <div class="match ">
                         <div class="teams">
                             <span class="team">
-                                <strong>awdawdad</strong>
-                                <span class="sub">ds</span>
+                                <strong>School C</strong>
+                                <span class="sub">Team C1</span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team winner">
-                                <strong>dawda</strong>
-                                <span class="sub">awdaw</span>
+                            <span class="team">
+                                <strong>School J</strong>
+                                <span class="sub">Team J1</span>
                             </span>
                         </div>
-                        <div class="winner-badge">0 : 1</div>
+                        
                         <div class="scores-inline" id="scores-4">
-                            <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 0 : 1</div>
-                            <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">1</span></div>
                             
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
                         </div>
                     </div>
                 </div>
                 <div class="match-card" data-matchid="5" onclick="toggleScores(5)">
-                    <div class="match has-winner">
+                    <div class="match ">
                         <div class="teams">
-                            <span class="team winner">
-                                <strong>aweaffea</strong>
-                                <span class="sub">awd</span>
+                            <span class="team">
+                                <strong>School C</strong>
+                                <span class="sub">Team C2</span>
                             </span>
                             <span class="separator">vs</span>
                             <span class="team">
-                                <strong>eafefa</strong>
-                                <span class="sub">eaf</span>
+                                <strong>School N</strong>
+                                <span class="sub">Team N1</span>
                             </span>
                         </div>
-                        <div class="winner-badge">2 : 1</div>
+                        
                         <div class="scores-inline" id="scores-5">
-                            <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 2 : 1</div>
-                            <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">1</span><span class="sep"> : </span><span class="score-highlight">0</span></div><div class="game-row"><span class="label">Game 2:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">1</span></div><div class="game-row"><span class="label">Game 3:</span><span class="score-highlight">1</span><span class="sep"> : </span><span class="score-highlight">0</span></div>
                             
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="6" onclick="toggleScores(6)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School G</strong>
+                                <span class="sub">Team G1</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School L</strong>
+                                <span class="sub">Team L1</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-6">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="7" onclick="toggleScores(7)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School G</strong>
+                                <span class="sub">Team G2</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School P</strong>
+                                <span class="sub">Team P1</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-7">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="8" onclick="toggleScores(8)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School B</strong>
+                                <span class="sub">Team B1</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School I</strong>
+                                <span class="sub">Team I2</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-8">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="9" onclick="toggleScores(9)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School B</strong>
+                                <span class="sub">Team B2</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School M</strong>
+                                <span class="sub">Team M2</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-9">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="10" onclick="toggleScores(10)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School F</strong>
+                                <span class="sub">Team F1</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School K</strong>
+                                <span class="sub">Team K2</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-10">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="11" onclick="toggleScores(11)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School F</strong>
+                                <span class="sub">Team F2</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School O</strong>
+                                <span class="sub">Team O2</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-11">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="12" onclick="toggleScores(12)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School D</strong>
+                                <span class="sub">Team D1</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School J</strong>
+                                <span class="sub">Team J2</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-12">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="13" onclick="toggleScores(13)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School D</strong>
+                                <span class="sub">Team D2</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School N</strong>
+                                <span class="sub">Team N2</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-13">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="14" onclick="toggleScores(14)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School H</strong>
+                                <span class="sub">Team H1</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School L</strong>
+                                <span class="sub">Team L2</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-14">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="15" onclick="toggleScores(15)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team">
+                                <strong>School H</strong>
+                                <span class="sub">Team H2</span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team">
+                                <strong>School P</strong>
+                                <span class="sub">Team P2</span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-15">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Round of 16</div>
+                <div class="match-card" data-matchid="16" onclick="toggleScores(16)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-16">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="17" onclick="toggleScores(17)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-17">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="18" onclick="toggleScores(18)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-18">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="19" onclick="toggleScores(19)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-19">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="20" onclick="toggleScores(20)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-20">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="21" onclick="toggleScores(21)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-21">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="22" onclick="toggleScores(22)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-22">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="23" onclick="toggleScores(23)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-23">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Quarter‑finals</div>
+                <div class="match-card" data-matchid="24" onclick="toggleScores(24)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-24">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="25" onclick="toggleScores(25)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-25">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="26" onclick="toggleScores(26)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-26">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="27" onclick="toggleScores(27)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-27">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div></div><div class="round-wrapper"><div class="round-title">Semi‑finals</div>
+                <div class="match-card" data-matchid="28" onclick="toggleScores(28)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-28">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card" data-matchid="29" onclick="toggleScores(29)">
+                    <div class="match ">
+                        <div class="teams">
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                            <span class="separator">vs</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
+                            </span>
+                        </div>
+                        
+                        <div class="scores-inline" id="scores-29">
+                            
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
                         </div>
                     </div>
                 </div></div><div class="round-wrapper"><div class="round-title">Final</div>
-                <div class="match-card" data-matchid="6" onclick="toggleScores(6)">
-                    <div class="match has-winner">
+                <div class="match-card" data-matchid="30" onclick="toggleScores(30)">
+                    <div class="match ">
                         <div class="teams">
-                            <span class="team">
-                                <strong>dawda</strong>
-                                <span class="sub">awdaw</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
                             </span>
                             <span class="separator">vs</span>
-                            <span class="team winner">
-                                <strong>aweaffea</strong>
-                                <span class="sub">awd</span>
+                            <span class="team tbd">
+                                <strong>TBD</strong>
+                                <span class="sub"></span>
                             </span>
                         </div>
-                        <div class="winner-badge">0 : 1</div>
-                        <div class="scores-inline" id="scores-6">
-                            <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">Overall: 0 : 1</div>
-                            <div class="game-row"><span class="label">Game 1:</span><span class="score-highlight">0</span><span class="sep"> : </span><span class="score-highlight">2</span></div>
+                        
+                        <div class="scores-inline" id="scores-30">
                             
+                            
+                            <div style="color:var(--text-light);font-size:0.85rem;">No scores recorded</div>
                         </div>
                     </div>
                 </div></div>
@@ -888,7 +1395,7 @@ button.danger:hover { background: #d32f2f; }
                         const scores = row.querySelectorAll('.score-highlight');
                         const score1 = scores[0]?.textContent || '0';
                         const score2 = scores[1]?.textContent || '0';
-                        tooltipHtml += `<div class="tooltip-game">${label} <span class="score-highlight">${score1}</span> : <span class="score-highlight">${score2}</span></div>`;
+                        tooltipHtml += `<div class="tooltip-game"><span class="game-label">${label}</span> <span class="score-highlight">${score1}</span> : <span class="score-highlight">${score2}</span></div>`;
                     });
                     // Add overall if present
                     const overallEl = scoresEl.querySelector('div[style*="font-weight:600"]');
@@ -980,7 +1487,7 @@ button.danger:hover { background: #d32f2f; }
         </script>
         
         </div>
-        <div class="footer">Generated by Tourney Hall • test1</div>
+        <div class="footer">Generated by Tourney Hall • test2</div>
     </div>
 </body>
 </html>
