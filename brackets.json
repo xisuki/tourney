@@ -14,7 +14,12 @@
                 "seed": false,
                 "active": true
             },
-            "winner": null,
+            "winner": {
+                "name": "Team I1",
+                "school": "School I",
+                "seed": false,
+                "active": true
+            },
             "parent_id": 16
         },
         {
@@ -31,7 +36,12 @@
                 "seed": false,
                 "active": true
             },
-            "winner": null,
+            "winner": {
+                "name": "Team M1",
+                "school": "School M",
+                "seed": false,
+                "active": true
+            },
             "parent_id": 16
         },
         {
@@ -276,8 +286,18 @@
     [
         {
             "id": 16,
-            "team1": null,
-            "team2": null,
+            "team1": {
+                "name": "Team I1",
+                "school": "School I",
+                "seed": false,
+                "active": true
+            },
+            "team2": {
+                "name": "Team M1",
+                "school": "School M",
+                "seed": false,
+                "active": true
+            },
             "winner": null,
             "left_child": 0,
             "right_child": 1,
