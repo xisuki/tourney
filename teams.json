@@ -6,12 +6,6 @@
         "active": true
     },
     {
-        "name": "Team A2",
-        "school": "School A",
-        "seed": false,
-        "active": true
-    },
-    {
         "name": "Team B1",
         "school": "School B",
         "seed": true,
@@ -134,12 +128,6 @@
     {
         "name": "Team L2",
         "school": "School L",
-        "seed": false,
-        "active": true
-    },
-    {
-        "name": "Team M1",
-        "school": "School M",
         "seed": false,
         "active": true
     },
