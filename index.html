@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test68</title>
+    <title>test69</title>
     <style>
         /* ===== THEMES ===== */
 html {
@@ -673,8 +673,10 @@ button.danger:hover { background: #d32f2f; }
     color: var(--text-light);
     font-size: 0.82rem;
 }
+::-webkit-scrollbar {
+    display: none !important;
+}
 
-        /* Overrides for static */
         .match-card {
             position: absolute;
             left: 0;
@@ -715,7 +717,7 @@ button.danger:hover { background: #d32f2f; }
             overflow: visible !important;
         }
         .bracket-svg path {
-            stroke: #6f9fe8;
+            stroke:
             stroke-width: 2.5;
             fill: none;
             opacity: 1;
@@ -787,29 +789,28 @@ button.danger:hover { background: #d32f2f; }
 <body>
     <div class="container" style="position:relative;">
         <div class="title-wrapper">
-            <h1>test68</h1>
+            <h1>test69</h1>
             <button class="theme-toggle static-theme" onclick="toggleTheme()" aria-label="Toggle theme">Theme</button>
         </div>
         <div class="subhead" style="display:flex; gap:15px; align-items:center;">
             <span>Tournament Bracket – Live View</span>
         </div>
         <div id="bracketContainer" class="bracket-view">
-            <!-- Bracket will be rendered by JavaScript -->
+
         </div>
-        <div class="footer">test68</div>
+        <div class="footer">test69</div>
     </div>
 
     <script>
-        // ===== EMBEDDED DATA =====
-        const embeddedBracket = [[{"id":0,"team1":{"name":"Team A1","school":"School A","seed":true,"active":true},"team2":{"name":"Team I1","school":"School I","seed":false,"active":true},"winner":{"name":"Team A1","school":"School A","seed":true,"active":true},"parent_id":16},{"id":1,"team1":{"name":"Team A2","school":"School A","seed":false,"active":true},"team2":{"name":"Team N1","school":"School N","seed":false,"active":true},"winner":{"name":"Team N1","school":"School N","seed":false,"active":true},"parent_id":16},{"id":2,"team1":{"name":"Team E1","school":"School E","seed":true,"active":true},"team2":{"name":"Team K2","school":"School K","seed":false,"active":true},"winner":null,"parent_id":17},{"id":3,"team1":{"name":"Team E2","school":"School E","seed":false,"active":true},"team2":{"name":"Team P1","school":"School P","seed":false,"active":true},"winner":null,"parent_id":17},{"id":4,"team1":{"name":"Team C1","school":"School C","seed":true,"active":true},"team2":{"name":"Team J1","school":"School J","seed":false,"active":true},"winner":null,"parent_id":18},{"id":5,"team1":{"name":"Team C2","school":"School C","seed":false,"active":true},"team2":{"name":"Team O1","school":"School O","seed":false,"active":true},"winner":null,"parent_id":18},{"id":6,"team1":{"name":"Team G1","school":"School G","seed":true,"active":true},"team2":{"name":"Team L2","school":"School L","seed":false,"active":true},"winner":null,"parent_id":19},{"id":7,"team1":{"name":"Team G2","school":"School G","seed":false,"active":true},"team2":"Bye","winner":{"name":"Team G2","school":"School G","seed":false,"active":true},"parent_id":19},{"id":8,"team1":{"name":"Team B1","school":"School B","seed":true,"active":true},"team2":{"name":"Team I2","school":"School I","seed":false,"active":true},"winner":null,"parent_id":20},{"id":9,"team1":{"name":"Team B2","school":"School B","seed":false,"active":true},"team2":{"name":"Team N2","school":"School N","seed":false,"active":true},"winner":null,"parent_id":20},{"id":10,"team1":{"name":"Team F1","school":"School F","seed":true,"active":true},"team2":{"name":"Team L1","school":"School L","seed":false,"active":true},"winner":null,"parent_id":21},{"id":11,"team1":{"name":"Team F2","school":"School F","seed":false,"active":true},"team2":{"name":"Team P2","school":"School P","seed":false,"active":true},"winner":null,"parent_id":21},{"id":12,"team1":{"name":"Team D1","school":"School D","seed":true,"active":true},"team2":{"name":"Team K1","school":"School K","seed":false,"active":true},"winner":null,"parent_id":22},{"id":13,"team1":{"name":"Team D2","school":"School D","seed":false,"active":true},"team2":{"name":"Team O2","school":"School O","seed":false,"active":true},"winner":null,"parent_id":22},{"id":14,"team1":{"name":"Team H1","school":"School H","seed":true,"active":true},"team2":{"name":"Team M1","school":"School M","seed":false,"active":true},"winner":null,"parent_id":23},{"id":15,"team1":{"name":"Team H2","school":"School H","seed":false,"active":true},"team2":"Bye","winner":{"name":"Team H2","school":"School H","seed":false,"active":true},"parent_id":23}],[{"id":16,"team1":{"name":"Team A1","school":"School A","seed":true,"active":true},"team2":{"name":"Team N1","school":"School N","seed":false,"active":true},"winner":{"name":"Team N1","school":"School N","seed":false,"active":true},"left_child":0,"right_child":1,"parent_id":24},{"id":17,"team1":null,"team2":null,"winner":null,"left_child":2,"right_child":3,"parent_id":24},{"id":18,"team1":null,"team2":null,"winner":null,"left_child":4,"right_child":5,"parent_id":25},{"id":19,"team1":null,"team2":{"name":"Team G2","school":"School G","seed":false,"active":true},"winner":null,"left_child":6,"right_child":7,"parent_id":25},{"id":20,"team1":null,"team2":null,"winner":null,"left_child":8,"right_child":9,"parent_id":26},{"id":21,"team1":null,"team2":null,"winner":null,"left_child":10,"right_child":11,"parent_id":26},{"id":22,"team1":null,"team2":null,"winner":null,"left_child":12,"right_child":13,"parent_id":27},{"id":23,"team1":null,"team2":{"name":"Team H2","school":"School H","seed":false,"active":true},"winner":null,"left_child":14,"right_child":15,"parent_id":27}],[{"id":24,"team1":{"name":"Team N1","school":"School N","seed":false,"active":true},"team2":null,"winner":null,"left_child":16,"right_child":17,"parent_id":28},{"id":25,"team1":null,"team2":null,"winner":null,"left_child":18,"right_child":19,"parent_id":28},{"id":26,"team1":null,"team2":null,"winner":null,"left_child":20,"right_child":21,"parent_id":29},{"id":27,"team1":null,"team2":null,"winner":null,"left_child":22,"right_child":23,"parent_id":29}],[{"id":28,"team1":null,"team2":null,"winner":null,"left_child":24,"right_child":25,"parent_id":30},{"id":29,"team1":null,"team2":null,"winner":null,"left_child":26,"right_child":27,"parent_id":30}],[{"id":30,"team1":null,"team2":null,"winner":null,"left_child":28,"right_child":29}]];
-        const embeddedScores = {"0":{"games":[[2,0],[1,0],[0,0]],"best_of":2},"1":{"games":[[0,0],[0,1],[0,1]],"best_of":2}};
-        const teamWins = {"Team A1":1,"Team N1":2,"Team G2":1,"Team H2":1};
+
+        const embeddedBracket = [[{"id":0,"team1":{"name":"Team A1","school":"School A","seed":true,"active":true},"team2":{"name":"Team I1","school":"School I","seed":false,"active":true},"winner":{"name":"Team A1","school":"School A","seed":true,"active":true},"parent_id":16},{"id":1,"team1":{"name":"Team A2","school":"School A","seed":false,"active":true},"team2":{"name":"Team N1","school":"School N","seed":false,"active":true},"winner":{"name":"Team N1","school":"School N","seed":false,"active":true},"parent_id":16},{"id":2,"team1":{"name":"Team E1","school":"School E","seed":true,"active":true},"team2":{"name":"Team K2","school":"School K","seed":false,"active":true},"winner":{"name":"Team K2","school":"School K","seed":false,"active":true},"parent_id":17},{"id":3,"team1":{"name":"Team E2","school":"School E","seed":false,"active":true},"team2":{"name":"Team P1","school":"School P","seed":false,"active":true},"winner":{"name":"Team E2","school":"School E","seed":false,"active":true},"parent_id":17},{"id":4,"team1":{"name":"Team C1","school":"School C","seed":true,"active":true},"team2":{"name":"Team J1","school":"School J","seed":false,"active":true},"winner":null,"parent_id":18},{"id":5,"team1":{"name":"Team C2","school":"School C","seed":false,"active":true},"team2":{"name":"Team O1","school":"School O","seed":false,"active":true},"winner":null,"parent_id":18},{"id":6,"team1":{"name":"Team G1","school":"School G","seed":true,"active":true},"team2":{"name":"Team L2","school":"School L","seed":false,"active":true},"winner":null,"parent_id":19},{"id":7,"team1":{"name":"Team G2","school":"School G","seed":false,"active":true},"team2":"Bye","winner":{"name":"Team G2","school":"School G","seed":false,"active":true},"parent_id":19},{"id":8,"team1":{"name":"Team B1","school":"School B","seed":true,"active":true},"team2":{"name":"Team I2","school":"School I","seed":false,"active":true},"winner":null,"parent_id":20},{"id":9,"team1":{"name":"Team B2","school":"School B","seed":false,"active":true},"team2":{"name":"Team N2","school":"School N","seed":false,"active":true},"winner":null,"parent_id":20},{"id":10,"team1":{"name":"Team F1","school":"School F","seed":true,"active":true},"team2":{"name":"Team L1","school":"School L","seed":false,"active":true},"winner":null,"parent_id":21},{"id":11,"team1":{"name":"Team F2","school":"School F","seed":false,"active":true},"team2":{"name":"Team P2","school":"School P","seed":false,"active":true},"winner":null,"parent_id":21},{"id":12,"team1":{"name":"Team D1","school":"School D","seed":true,"active":true},"team2":{"name":"Team K1","school":"School K","seed":false,"active":true},"winner":null,"parent_id":22},{"id":13,"team1":{"name":"Team D2","school":"School D","seed":false,"active":true},"team2":{"name":"Team O2","school":"School O","seed":false,"active":true},"winner":null,"parent_id":22},{"id":14,"team1":{"name":"Team H1","school":"School H","seed":true,"active":true},"team2":{"name":"Team M1","school":"School M","seed":false,"active":true},"winner":null,"parent_id":23},{"id":15,"team1":{"name":"Team H2","school":"School H","seed":false,"active":true},"team2":"Bye","winner":{"name":"Team H2","school":"School H","seed":false,"active":true},"parent_id":23}],[{"id":16,"team1":{"name":"Team A1","school":"School A","seed":true,"active":true},"team2":{"name":"Team N1","school":"School N","seed":false,"active":true},"winner":{"name":"Team N1","school":"School N","seed":false,"active":true},"left_child":0,"right_child":1,"parent_id":24},{"id":17,"team1":{"name":"Team K2","school":"School K","seed":false,"active":true},"team2":{"name":"Team E2","school":"School E","seed":false,"active":true},"winner":null,"left_child":2,"right_child":3,"parent_id":24},{"id":18,"team1":null,"team2":null,"winner":null,"left_child":4,"right_child":5,"parent_id":25},{"id":19,"team1":null,"team2":{"name":"Team G2","school":"School G","seed":false,"active":true},"winner":null,"left_child":6,"right_child":7,"parent_id":25},{"id":20,"team1":null,"team2":null,"winner":null,"left_child":8,"right_child":9,"parent_id":26},{"id":21,"team1":null,"team2":null,"winner":null,"left_child":10,"right_child":11,"parent_id":26},{"id":22,"team1":null,"team2":null,"winner":null,"left_child":12,"right_child":13,"parent_id":27},{"id":23,"team1":null,"team2":{"name":"Team H2","school":"School H","seed":false,"active":true},"winner":null,"left_child":14,"right_child":15,"parent_id":27}],[{"id":24,"team1":{"name":"Team N1","school":"School N","seed":false,"active":true},"team2":null,"winner":null,"left_child":16,"right_child":17,"parent_id":28},{"id":25,"team1":null,"team2":null,"winner":null,"left_child":18,"right_child":19,"parent_id":28},{"id":26,"team1":null,"team2":null,"winner":null,"left_child":20,"right_child":21,"parent_id":29},{"id":27,"team1":null,"team2":null,"winner":null,"left_child":22,"right_child":23,"parent_id":29}],[{"id":28,"team1":null,"team2":null,"winner":null,"left_child":24,"right_child":25,"parent_id":30},{"id":29,"team1":null,"team2":null,"winner":null,"left_child":26,"right_child":27,"parent_id":30}],[{"id":30,"team1":null,"team2":null,"winner":null,"left_child":28,"right_child":29}]];
+        const embeddedScores = {"0":{"games":[[2,0],[1,0],[0,0]],"best_of":2},"1":{"games":[[0,0],[0,1],[0,1]],"best_of":2},"16":{"games":[[2,0],[0,3],[4,0],[0,2],[0,2]],"best_of":3},"17":{"games":[[1,0],[2,0]],"best_of":2}};
+        const teamWins = {"Team A1":1,"Team N1":2,"Team K2":1,"Team E2":1,"Team G2":1,"Team H2":1};
 
         let scoresData = embeddedScores;
         let currentBracket = embeddedBracket;
         let tooltipTimeout = null;
 
-        // ===== ROUND NAMES =====
         function getRoundName(idx, total) {
             const names = [];
             if (total >= 1) names.push('Final');
@@ -822,8 +823,7 @@ button.danger:hover { background: #d32f2f; }
             return idx < names.length ? names[idx] : `Round ${idx+1}`;
         }
 
-        // ===== RENDER BRACKET =====
-        function renderBracket(rounds) {
+function renderBracket(rounds) {
             const container = document.getElementById('bracketContainer');
             container.innerHTML = '';
             container.style.position = 'relative';
@@ -869,7 +869,6 @@ button.danger:hover { background: #d32f2f; }
                     const teamsDiv = document.createElement('div');
                     teamsDiv.className = 'teams';
 
-                    // Team 1
                     const t1Span = document.createElement('span');
                     t1Span.className = 'team';
                     if (t1 === null || t1 === undefined) {
@@ -881,7 +880,7 @@ button.danger:hover { background: #d32f2f; }
                     } else {
                         const school = typeof t1 === 'string' ? '' : t1.school;
                         const name = typeof t1 === 'string' ? t1 : t1.name;
-                        t1Span.innerHTML = `<strong>${school}</strong><span class="sub">${name}</span>`;
+                        t1Span.innerHTML = `<strong>${school}</strong><span class = "sub">${name}</span>`;
                         if (winner && (winner === name || (typeof winner === 'object' && winner.name === name))) {
                             t1Span.classList.add('winner');
                         }
@@ -893,7 +892,6 @@ button.danger:hover { background: #d32f2f; }
                     sep.textContent = 'vs';
                     teamsDiv.appendChild(sep);
 
-                    // Team 2
                     const t2Span = document.createElement('span');
                     t2Span.className = 'team';
                     if (t2 === null || t2 === undefined) {
@@ -905,7 +903,7 @@ button.danger:hover { background: #d32f2f; }
                     } else {
                         const school = typeof t2 === 'string' ? '' : t2.school;
                         const name = typeof t2 === 'string' ? t2 : t2.name;
-                        t2Span.innerHTML = `<strong>${school}</strong><span class="sub">${name}</span>`;
+                        t2Span.innerHTML = `<strong>${school}</strong><span class = "sub">${name}</span>`;
                         if (winner && (winner === name || (typeof winner === 'object' && winner.name === name))) {
                             t2Span.classList.add('winner');
                         }
@@ -914,7 +912,6 @@ button.danger:hover { background: #d32f2f; }
 
                     matchDiv.appendChild(teamsDiv);
 
-                    // Winner badge
                     const isBye = (t1 === 'Bye' || t1 === null || t1 === undefined ||
                                    t2 === 'Bye' || t2 === null || t2 === undefined);
                     if (winner && !isBye) {
@@ -928,7 +925,6 @@ button.danger:hover { background: #d32f2f; }
                         matchDiv.appendChild(badge);
                     }
 
-                    // Inline scores (filtered to exclude 0:0)
                     const scoresDiv = document.createElement('div');
                     scoresDiv.className = 'scores-inline';
                     scoresDiv.id = `scores-${match.id}`;
@@ -950,9 +946,8 @@ button.danger:hover { background: #d32f2f; }
                 container.appendChild(wrapper);
             });
 
-            // After rendering, wait for layout, then align and draw lines
             console.log('Bracket rendered, waiting for layout...');
-            // Use requestAnimationFrame to ensure layout is updated
+
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     console.log('Aligning bracket...');
@@ -992,8 +987,7 @@ button.danger:hover { background: #d32f2f; }
             requestAnimationFrame(frame);
         }
 
-        // ===== TOGGLE SCORES =====
-        function toggleScores(matchId, card) {
+function toggleScores(matchId, card) {
             const scoresDiv = document.getElementById(`scores-${matchId}`);
             if (!scoresDiv) return;
 
@@ -1019,26 +1013,25 @@ button.danger:hover { background: #d32f2f; }
 
             let html = '';
             const ftText = firstTo === 1 ? '' : `FT${firstTo}`;
-            if (ftText) html += `<div style="margin-bottom:8px; font-weight:600; color:var(--text-light);">${ftText}</div>`;
+            if (ftText) html + = `<div style = "margin-bottom:8px; font-weight:600; color:var(--text-light);">${ftText}</div>`;
 
-            html += `<div id="gameInputs_${matchId}">`;
+            html + = `<div id = "gameInputs_${matchId}">`;
             for (let i = 0; i < games.length; i++) {
                 const g = games[i];
-                html += `<div class="game-row">
-                    <span class="label">Game ${i+1}:</span>
-                    <span class="score-highlight">${g[0]}</span>
-                    <span class="sep"> : </span>
-                    <span class="score-highlight">${g[1]}</span>
+                html + = `<div class = "game-row">
+                    <span class = "label">Game ${i+1}:</span>
+                    <span class = "score-highlight">${g[0]}</span>
+                    <span class = "sep"> : </span>
+                    <span class = "score-highlight">${g[1]}</span>
                 </div>`;
             }
-            html += `</div>`;
+            html + = `</div>`;
 
             scoresDiv.innerHTML = html;
             scoresDiv.classList.add('active');
             animateBracketLayout(card);
         }
 
-        // ===== FIND MATCH =====
         function findMatch(matchId) {
             if (!currentBracket) return null;
             for (const round of currentBracket) {
@@ -1049,7 +1042,6 @@ button.danger:hover { background: #d32f2f; }
             return null;
         }
 
-        // ===== ALIGN BRACKET =====
         function alignBracket() {
             document.querySelectorAll('.match-card').forEach(card => {
                 card.style.marginTop = '';
@@ -1067,7 +1059,7 @@ button.danger:hover { background: #d32f2f; }
             firstRound.forEach(card => {
                 card.style.top = `${columnHeight}px`;
                 centers.set(card, columnHeight + heights.get(card) / 2);
-                columnHeight += heights.get(card) + 16;
+                columnHeight + = heights.get(card) + 16;
             });
             columnHeight = Math.max(0, columnHeight - 16);
             rounds.forEach(round => round.querySelector('.match-container').style.setProperty('--bracket-height', `${columnHeight}px`));
@@ -1086,7 +1078,6 @@ button.danger:hover { background: #d32f2f; }
             }
         }
 
-        // ===== DRAW CURVY LINES =====
         function drawCurvyLines() {
             const container = document.getElementById('bracketContainer');
             if (!container) {
@@ -1126,7 +1117,7 @@ button.danger:hover { background: #d32f2f; }
             for (let i = 0; i < rounds.length - 1; i++) {
                 const current = rounds[i].querySelectorAll('.match-card');
                 const next = rounds[i+1].querySelectorAll('.match-card');
-                for (let j = 0; j < current.length; j += 2) {
+                for (let j = 0; j < current.length; j + = 2) {
                     const parentIdx = Math.floor(j / 2);
                     if (parentIdx >= next.length) break;
                     const child1 = current[j];
@@ -1169,8 +1160,7 @@ button.danger:hover { background: #d32f2f; }
             });
         }
 
-        // ===== TOOLTIP =====
-        const tooltip = document.createElement('div');
+const tooltip = document.createElement('div');
         tooltip.className = 'tooltip';
         tooltip.id = 'static-tooltip';
         document.body.appendChild(tooltip);
@@ -1181,7 +1171,6 @@ button.danger:hover { background: #d32f2f; }
                 const match = findMatch(Number(card.dataset.matchId));
                 if (!scoresEl || !match || !match.winner) return;
 
-                // Remove old listeners to prevent duplicates
                 card.removeEventListener('mouseenter', onMouseEnter);
                 card.removeEventListener('mousemove', onMouseMove);
                 card.removeEventListener('mouseleave', onMouseLeave);
@@ -1195,7 +1184,7 @@ button.danger:hover { background: #d32f2f; }
                     const winnerName = typeof winner === 'string' ? winner : winner.name;
                     const winnerSchool = typeof winner === 'string' ? '' : winner.school;
                     const wins = teamWins[winnerName] || 0;
-                    tooltip.innerHTML = `<div class="tooltip-winner-label">Winner</div><div class="tooltip-title">${winnerSchool ? `${winnerSchool} – ` : ''}${winnerName}</div><div class="tooltip-wins">🏆 ${wins}</div>`;
+                    tooltip.innerHTML = `<div class = "tooltip-winner-label">Winner</div><div class = "tooltip-title">${winnerSchool ? `${winnerSchool} – ` : ''}${winnerName}</div><div class = "tooltip-wins">🏆 ${wins}</div>`;
                     tooltip.classList.add('active');
                     const rect = tooltip.getBoundingClientRect();
                     let x = e.clientX + 16;
@@ -1228,7 +1217,6 @@ button.danger:hover { background: #d32f2f; }
             });
         }
 
-        // ===== THEME TOGGLE =====
         function toggleTheme() {
             const html = document.documentElement;
             const current = html.getAttribute('data-theme');
@@ -1244,7 +1232,6 @@ button.danger:hover { background: #d32f2f; }
             drawCurvyLines();
         });
 
-        // ===== HIDE DASHBOARD BUTTON =====
         document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.subhead button');
             buttons.forEach(btn => {
@@ -1254,8 +1241,6 @@ button.danger:hover { background: #d32f2f; }
             });
         });
 
-        // ===== INIT =====
-        // Wait for the whole page to load (including fonts, images) to ensure correct dimensions
         window.addEventListener('load', function() {
             console.log('Page fully loaded, rendering bracket...');
             renderBracket(embeddedBracket);
