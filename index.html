@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test69</title>
+    <title>tourney.</title>
     <style>
         /* ===== THEMES ===== */
 html {
@@ -789,7 +789,7 @@ button.danger:hover { background: #d32f2f; }
 <body>
     <div class="container" style="position:relative;">
         <div class="title-wrapper">
-            <h1>test69</h1>
+            <h1>tourney.</h1>
             <button class="theme-toggle static-theme" onclick="toggleTheme()" aria-label="Toggle theme">Theme</button>
         </div>
         <div class="subhead" style="display:flex; gap:15px; align-items:center;">
@@ -798,14 +798,14 @@ button.danger:hover { background: #d32f2f; }
         <div id="bracketContainer" class="bracket-view">
             <!-- Bracket will be rendered by JavaScript -->
         </div>
-        <div class="footer">test69</div>
+        <div class="footer">tourney.</div>
     </div>
 
     <script>
         // ===== EMBEDDED DATA =====
-        const embeddedBracket = [];
-        const embeddedScores = {};
-        const teamWins = {};
+        const embeddedBracket = [[{"id":0,"team1":{"name":"wadwd","school":"awdawd","seed":true,"active":true},"team2":{"name":"jwahdjahwd","school":"awdawda","seed":false,"active":true},"winner":{"name":"wadwd","school":"awdawd","seed":true,"active":true},"parent_id":4},{"id":1,"team1":{"name":"awd","school":"asd","seed":false,"active":true},"team2":"Bye","winner":{"name":"awd","school":"asd","seed":false,"active":true},"parent_id":4},{"id":2,"team1":{"name":"awdwa","school":"asasd","seed":false,"active":true},"team2":"Bye","winner":{"name":"awdwa","school":"asasd","seed":false,"active":true},"parent_id":5},{"id":3,"team1":{"name":"awdsdsd","school":"asd","seed":false,"active":true},"team2":"Bye","winner":{"name":"awdsdsd","school":"asd","seed":false,"active":true},"parent_id":5}],[{"id":4,"team1":{"name":"wadwd","school":"awdawd","seed":true,"active":true},"team2":{"name":"awd","school":"asd","seed":false,"active":true},"winner":{"name":"wadwd","school":"awdawd","seed":true,"active":true},"left_child":0,"right_child":1,"parent_id":6},{"id":5,"team1":{"name":"awdwa","school":"asasd","seed":false,"active":true},"team2":{"name":"awdsdsd","school":"asd","seed":false,"active":true},"winner":{"name":"awdsdsd","school":"asd","seed":false,"active":true},"left_child":2,"right_child":3,"parent_id":6}],[{"id":6,"team1":{"name":"wadwd","school":"awdawd","seed":true,"active":true},"team2":{"name":"awdsdsd","school":"asd","seed":false,"active":true},"winner":{"name":"wadwd","school":"awdawd","seed":true,"active":true},"left_child":4,"right_child":5}]];
+        const embeddedScores = {"0":{"games":[[1,0],[0,1],[1,0]],"best_of":2}};
+        const teamWins = {"wadwd":3,"awd":1,"awdwa":1,"awdsdsd":2};
 
         let scoresData = embeddedScores;
         let currentBracket = embeddedBracket;
