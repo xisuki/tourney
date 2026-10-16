@@ -1,1 +1,32 @@
-[]
+[
+    {
+        "name": "jwahdjahwd",
+        "school": "awdawda",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "awdwa",
+        "school": "asasd",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "awd",
+        "school": "asd",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "awdsdsd",
+        "school": "asd",
+        "seed": false,
+        "active": true
+    },
+    {
+        "name": "wadwd",
+        "school": "awdawd",
+        "seed": true,
+        "active": true
+    }
+]
